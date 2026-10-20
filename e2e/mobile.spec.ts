@@ -2,7 +2,9 @@ import { devices, expect, test, type Page } from '@playwright/test';
 import { mockApis } from './fixtures';
 
 // A real phone setup: touch, mobile viewport. The Pixel profile runs in Chromium, so touch can be sent through CDP.
-const { defaultBrowserType: _ignored, ...pixel } = devices['Pixel 7'];
+// test.use() does not accept defaultBrowserType, so leave it out.
+const pixel: Partial<(typeof devices)[string]> = { ...devices['Pixel 7'] };
+delete pixel.defaultBrowserType;
 test.use(pixel);
 
 /** Swipe up with one finger, drifting a little sideways like a real thumb. Returns how far the page scrolled. */

@@ -1,10 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useMap } from 'react-leaflet';
 import { useTranslation } from 'react-i18next';
-
-/** True on phones and tablets: the main pointer is a finger. */
-export const isTouchFirst = () =>
-  typeof window !== 'undefined' && typeof window.matchMedia === 'function' && window.matchMedia('(pointer: coarse)').matches;
+import { isTouchFirst } from '@/utils/touch';
 
 /**
  * On touch screens, one finger scrolls the page and two fingers move and zoom the map.
