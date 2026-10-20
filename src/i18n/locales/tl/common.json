@@ -1,12 +1,13 @@
 {
-  "appName": "QuakeSafe",
+  "appName": "Yanig",
   "navigation": {
     "home": "Home",
     "tracker": "Tracker",
     "guides": "Gabay",
     "resources": "Resources",
     "emergencyFinder": "Emergency Finder",
-    "about": "Tungkol"
+    "about": "Tungkol",
+    "news": "Balita"
   },
   "buttons": {
     "visitWebsite": "Bisitahin ang Website",
@@ -40,9 +41,17 @@
     "privacy": "Privacy",
     "terms": "Mga Tuntunin",
     "about": "Tungkol",
-    "rights": "Lahat ng karapatan ay nakalaan.",
-    "dataSource": "Earthquake data mula sa USGS, GeoNet, BMKG, at PHIVOLCS",
+    "rights": "Libreng gamitin. Walang kailangang account.",
+    "dataSource": "Ang datos ng lindol ay mula sa USGS, GeoNet (New Zealand) at BMKG (Indonesia). Tumitingin ang Yanig ng bagong datos bawat 10 minuto.",
     "developer": "Ginawa ni"
+  },
+  "tagline": "Kaligtasan sa lindol para sa Pilipinas",
+  "notice": "Pabatid sa publiko",
+  "menu": {
+    "open": "Buksan ang menu",
+    "close": "Isara ang menu",
+    "dark": "Gumamit ng madilim na kulay",
+    "light": "Gumamit ng maliwanag na kulay",
+    "place": "Bansa at wika"
   }
 }
-

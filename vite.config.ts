@@ -10,11 +10,11 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'favicon.svg'],
       manifest: {
-        name: 'QuakeSafe - Earthquake Monitoring & Preparedness',
-        short_name: 'QuakeSafe',
-        description: 'Real-time earthquake monitoring, safety guides, and emergency resources for earthquake preparedness.',
-        theme_color: '#0f172a',
-        background_color: '#ffffff',
+        name: 'Yanig: Earthquake safety for the Philippines',
+        short_name: 'Yanig',
+        description: 'Recent earthquakes, safety steps and emergency hotlines for the Philippines.',
+        theme_color: '#1d3b8b',
+        background_color: '#f2ead8',
         display: 'standalone',
         orientation: 'portrait',
         scope: '/',
@@ -33,7 +33,7 @@ export default defineConfig({
             purpose: 'any'
           },
           {
-            src: 'web-app-manifest-512x512.png',
+            src: 'maskable-512x512.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'maskable'
@@ -89,7 +89,9 @@ export default defineConfig({
             }
           }
         ],
-        navigateFallback: null,
+        // Pages you opened before load without internet: every route is the same app shell.
+        navigateFallback: 'index.html',
+        navigateFallbackDenylist: [/^\/api\//],
         cleanupOutdatedCaches: true
       },
       devOptions: {

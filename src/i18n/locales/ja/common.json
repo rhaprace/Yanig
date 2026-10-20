@@ -1,5 +1,5 @@
 {
-  "appName": "QuakeSafe",
+  "appName": "Yanig",
   "navigation": {
     "home": "ホーム",
     "tracker": "トラッカー",
@@ -33,6 +33,19 @@
     "chile": "チリ",
     "indonesia": "インドネシア",
     "philippines": "フィリピン"
+  },
+  "tagline": "フィリピンの地震安全情報",
+  "notice": "お知らせ",
+  "menu": {
+    "open": "メニューを開く",
+    "close": "メニューを閉じる",
+    "dark": "ダークカラーにする",
+    "light": "ライトカラーにする",
+    "place": "国と言語"
+  },
+  "footer": {
+    "dataSource": "地震データはUSGS、GeoNet（ニュージーランド）、BMKG（インドネシア）から取得しています。Yanigは10分ごとに新しいデータを確認します。",
+    "developer": "制作",
+    "rights": "無料で使えます。アカウントは不要です。"
   }
 }
-

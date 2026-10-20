@@ -7,6 +7,10 @@ export default {
   ],
   theme: {
   	extend: {
+  		fontFamily: {
+  			sans: ['"Public Sans Variable"', 'system-ui', 'sans-serif'],
+  			display: ['"Big Shoulders Display"', 'Impact', '"Arial Narrow"', 'sans-serif']
+  		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
@@ -46,6 +50,11 @@ export default {
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',
   			ring: 'hsl(var(--ring))',
+  			riso: {
+  				DEFAULT: 'hsl(var(--riso))',
+  				text: 'hsl(var(--riso-text))'
+  			},
+  			board: 'hsl(var(--board))',
   			chart: {
   				'1': 'hsl(var(--chart-1))',
   				'2': 'hsl(var(--chart-2))',

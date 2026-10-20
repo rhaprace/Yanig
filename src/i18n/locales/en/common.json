@@ -1,5 +1,5 @@
 {
-  "appName": "QuakeSafe",
+  "appName": "Yanig",
   "navigation": {
     "home": "Home",
     "tracker": "Tracker",
@@ -41,9 +41,17 @@
     "privacy": "Privacy",
     "terms": "Terms",
     "about": "About",
-    "rights": "All rights reserved.",
-    "dataSource": "Earthquake data provided by USGS, GeoNet, BMKG, and PHIVOLCS",
-    "developer": "Developed by"
+    "rights": "Free to use. No account needed.",
+    "dataSource": "Earthquake data comes from USGS, GeoNet (New Zealand) and BMKG (Indonesia). Yanig checks for new data every 10 minutes.",
+    "developer": "Made by"
+  },
+  "tagline": "Earthquake safety for the Philippines",
+  "notice": "Public notice",
+  "menu": {
+    "open": "Open menu",
+    "close": "Close menu",
+    "dark": "Use dark colours",
+    "light": "Use light colours",
+    "place": "Country and language"
   }
 }
-

@@ -18,7 +18,7 @@ export const getHomeSEO = (): SEOProps => ({
     'disaster response',
     'emergency preparedness',
   ],
-  canonicalUrl: 'https://quakesafe-beta.vercel.app/',
+  canonicalUrl: 'https://yanig.vercel.app/',
   structuredData: [
     getWebApplicationSchema(),
     getOrganizationSchema(),
@@ -37,7 +37,7 @@ export const getTrackerSEO = (): SEOProps => ({
     'global earthquake tracking',
     'earthquake alerts',
   ],
-  canonicalUrl: 'https://quakesafe-beta.vercel.app/tracker',
+  canonicalUrl: 'https://yanig.vercel.app/tracker',
   structuredData: [
     getBreadcrumbSchema([
       { name: 'Home', url: '/' },
@@ -59,7 +59,7 @@ export const getGuidesSEO = (): SEOProps => ({
     'disaster preparedness checklist',
     'earthquake safety measures',
   ],
-  canonicalUrl: 'https://quakesafe-beta.vercel.app/guides',
+  canonicalUrl: 'https://yanig.vercel.app/guides',
   structuredData: [
     getBreadcrumbSchema([
       { name: 'Home', url: '/' },
@@ -83,7 +83,7 @@ export const getResourcesSEO = (): SEOProps => ({
     'emergency contact numbers',
     'disaster response agencies',
   ],
-  canonicalUrl: 'https://quakesafe-beta.vercel.app/resources',
+  canonicalUrl: 'https://yanig.vercel.app/resources',
   structuredData: [
     getBreadcrumbSchema([
       { name: 'Home', url: '/' },
@@ -109,7 +109,7 @@ export const getEmergencyFinderSEO = (): SEOProps => ({
     'emergency services locator',
     'Philippine emergency resources',
   ],
-  canonicalUrl: 'https://quakesafe-beta.vercel.app/emergency-finder',
+  canonicalUrl: 'https://yanig.vercel.app/emergency-finder',
   structuredData: [
     getBreadcrumbSchema([
       { name: 'Home', url: '/' },
@@ -128,7 +128,7 @@ export const getAboutSEO = (): SEOProps => ({
     'community safety',
     'earthquake data sources',
   ],
-  canonicalUrl: 'https://quakesafe-beta.vercel.app/about',
+  canonicalUrl: 'https://yanig.vercel.app/about',
   structuredData: [
     getBreadcrumbSchema([
       { name: 'Home', url: '/' },
@@ -151,7 +151,7 @@ export const getPrivacySEO = (): SEOProps => ({
     'user privacy',
     'data security',
   ],
-  canonicalUrl: 'https://quakesafe-beta.vercel.app/privacy',
+  canonicalUrl: 'https://yanig.vercel.app/privacy',
   noindex: false, // Keep indexed for transparency
   structuredData: [
     getBreadcrumbSchema([
@@ -170,7 +170,7 @@ export const getTermsSEO = (): SEOProps => ({
     'service agreement',
     'legal disclaimer',
   ],
-  canonicalUrl: 'https://quakesafe-beta.vercel.app/terms',
+  canonicalUrl: 'https://yanig.vercel.app/terms',
   noindex: false, // Keep indexed for transparency
   structuredData: [
     getBreadcrumbSchema([
@@ -199,7 +199,7 @@ export const getNewsSEO = (): SEOProps => ({
     'earthquake technology',
     'community earthquake stories',
   ],
-  canonicalUrl: 'https://quakesafe-beta.vercel.app/news',
+  canonicalUrl: 'https://yanig.vercel.app/news',
   ogType: 'website',
   structuredData: [
     getBreadcrumbSchema([
@@ -218,7 +218,7 @@ export const getNewsArticleSEO = (article: NewsArticle): SEOProps => ({
     'earthquake safety',
     'seismic activity',
   ],
-  canonicalUrl: `https://quakesafe-beta.vercel.app/news/${article.id}`,
+  canonicalUrl: `https://yanig.vercel.app/news/${article.id}`,
   ogType: 'article',
   structuredData: [
     getBreadcrumbSchema([

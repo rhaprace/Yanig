@@ -1,5 +1,4 @@
 import { Globe } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,33 +15,29 @@ const LocaleSelector = () => {
   const { countryCode, language, setCountry, setLanguage } = useLocaleStore();
 
   const countries = [
-    { code: 'US', name: t('country.us'), flag: '🇺🇸' },
-    { code: 'JP', name: t('country.japan'), flag: '🇯🇵' },
-    { code: 'MX', name: t('country.mexico'), flag: '🇲🇽' },
-    { code: 'CL', name: t('country.chile'), flag: '🇨🇱' },
-    { code: 'ID', name: t('country.indonesia'), flag: '🇮🇩' },
-    { code: 'PH', name: t('country.philippines'), flag: '🇵🇭' },
+    { code: 'PH', name: t('country.philippines') },
+    { code: 'ID', name: t('country.indonesia') },
+    { code: 'JP', name: t('country.japan') },
+    { code: 'US', name: t('country.us') },
+    { code: 'MX', name: t('country.mexico') },
+    { code: 'CL', name: t('country.chile') },
   ];
 
   const languages = [
-    { code: 'en', name: t('language.english'), flag: '🇬🇧' },
-    { code: 'es', name: t('language.spanish'), flag: '🇪🇸' },
-    { code: 'ja', name: t('language.japanese'), flag: '🇯🇵' },
-    { code: 'tl', name: t('language.tagalog'), flag: '🇵🇭' },
+    { code: 'en', name: t('language.english') },
+    { code: 'tl', name: t('language.tagalog') },
+    { code: 'es', name: t('language.spanish') },
+    { code: 'ja', name: t('language.japanese') },
   ];
-
-  const currentCountry = countries.find((c) => c.code === countryCode);
-  const currentLanguage = languages.find((l) => l.code === language);
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className="gap-2">
-          <Globe className="h-4 w-4" />
-          <span className="hidden sm:inline">
-            {currentCountry?.flag} {currentLanguage?.flag}
-          </span>
-        </Button>
+      <DropdownMenuTrigger
+        className="flex h-10 items-center gap-2 rounded-sm border-2 border-primary-foreground px-2 font-display text-lg font-black uppercase"
+        aria-label={t('menu.place')}
+      >
+        <Globe className="h-5 w-5" />
+        <span>{countryCode}</span>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">
         <DropdownMenuLabel>{t('country.select')}</DropdownMenuLabel>
@@ -50,23 +45,21 @@ const LocaleSelector = () => {
           <DropdownMenuItem
             key={country.code}
             onClick={() => setCountry(country.code)}
-            className={countryCode === country.code ? 'bg-muted' : ''}
+            className={countryCode === country.code ? 'bg-muted font-semibold' : ''}
           >
-            <span className="mr-2">{country.flag}</span>
+            <span className="mr-2 w-7 font-display font-black">{country.code}</span>
             {country.name}
           </DropdownMenuItem>
         ))}
-        
         <DropdownMenuSeparator />
-        
         <DropdownMenuLabel>{t('language.select')}</DropdownMenuLabel>
         {languages.map((lang) => (
           <DropdownMenuItem
             key={lang.code}
             onClick={() => setLanguage(lang.code)}
-            className={language === lang.code ? 'bg-muted' : ''}
+            className={language === lang.code ? 'bg-muted font-semibold' : ''}
           >
-            <span className="mr-2">{lang.flag}</span>
+            <span className="mr-2 w-7 font-display font-black uppercase">{lang.code}</span>
             {lang.name}
           </DropdownMenuItem>
         ))}
@@ -76,4 +69,3 @@ const LocaleSelector = () => {
 };
 
 export default LocaleSelector;
-

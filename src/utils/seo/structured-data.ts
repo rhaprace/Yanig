@@ -1,4 +1,4 @@
-const BASE_URL = 'https://quakesafe-beta.vercel.app';
+const BASE_URL = 'https://yanig.vercel.app';
 
 export const getWebApplicationSchema = () => ({
   '@context': 'https://schema.org',

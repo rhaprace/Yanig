@@ -24,7 +24,7 @@ const DEFAULT_KEYWORDS = [
   'safety guides',
 ];
 
-const BASE_URL = 'https://quakesafe-beta.vercel.app';
+const BASE_URL = 'https://yanig.vercel.app';
 const DEFAULT_OG_IMAGE = `${BASE_URL}/web-app-manifest-512x512.png`;
 
 export const SEO: React.FC<SEOProps> = ({

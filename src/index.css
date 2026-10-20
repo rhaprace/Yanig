@@ -2,79 +2,134 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
+/* Yanig: a barangay public notice. Paper, blue ink, and one red-orange riso ink. */
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
+    --background: 42 50.0% 89.8%;
+    --foreground: 230 50.9% 20.8%;
+    --card: 41 53.3% 94.1%;
+    --card-foreground: 230 50.9% 20.8%;
+    --popover: 41 53.3% 94.1%;
+    --popover-foreground: 230 50.9% 20.8%;
+    --primary: 224 65.5% 32.9%;
+    --primary-foreground: 42 50.0% 89.8%;
+    --secondary: 41 45.2% 83.5%;
+    --secondary-foreground: 230 50.9% 20.8%;
+    --muted: 41 45.2% 83.5%;
+    --muted-foreground: 228 23.1% 38.2%;
+    --accent: 41 45.2% 83.5%;
+    --accent-foreground: 224 65.5% 32.9%;
+    --destructive: 8 75.2% 41.2%;
+    --destructive-foreground: 42 50.0% 89.8%;
+    --border: 42 31.5% 71.4%;
+    --input: 42 27.8% 62.0%;
+    --ring: 9 100.0% 59.0%;
+    --riso: 9 100.0% 59.0%;
+    --riso-text: 8 75.2% 41.2%;
+    --board: 36 29.3% 57.8%;
+    --radius: 0.25rem;
   }
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --background: 225 62.3% 23.9%;
+    --foreground: 42 47.4% 88.8%;
+    --card: 224 57.8% 28.8%;
+    --card-foreground: 42 47.4% 88.8%;
+    --popover: 224 57.8% 28.8%;
+    --popover-foreground: 42 47.4% 88.8%;
+    --primary: 43 45.7% 86.3%;
+    --primary-foreground: 225 62.3% 23.9%;
+    --secondary: 224 56.4% 30.6%;
+    --secondary-foreground: 42 47.4% 88.8%;
+    --muted: 224 56.4% 30.6%;
+    --muted-foreground: 227 42.6% 81.6%;
+    --accent: 224 52.3% 34.5%;
+    --accent-foreground: 42 47.4% 88.8%;
+    --destructive: 12 100.0% 75.5%;
+    --destructive-foreground: 225 62.3% 23.9%;
+    --border: 222 46.7% 38.2%;
+    --input: 222 37.6% 46.5%;
+    --ring: 10 100.0% 65.5%;
+    --riso: 10 100.0% 65.5%;
+    --riso-text: 12 100.0% 75.5%;
+    --board: 228 66.7% 7.1%;
   }
 }
-
-
 
 @layer base {
   * {
     @apply border-border;
   }
-  
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
     margin: 0;
     min-height: 100vh;
+    /* Paper grain */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .4 0 0 0 0 .3 0 0 0 0 .15 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
   }
-  
+
   #root {
     min-height: 100vh;
+  }
+
+  h1, h2, h3 {
+    @apply font-display uppercase tracking-wide;
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: 3px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Heavy poster headline with the red ink printed slightly off register. */
+  .misreg {
+    text-shadow: 0.045em 0.04em 0 hsl(var(--riso));
+  }
+
+  /* Halftone dot fills */
+  .halftone-red {
+    background-image: radial-gradient(circle, hsl(var(--riso)) 34%, transparent 37%);
+    background-size: 7px 7px;
+  }
+  .halftone-blue {
+    background-image: radial-gradient(circle, hsl(var(--primary) / 0.35) 30%, transparent 33%);
+    background-size: 6px 6px;
+  }
+
+  /* A red rubber stamp */
+  .stamp {
+    @apply inline-block border-[3px] px-3 py-1 font-display font-black uppercase tracking-wider;
+    border-color: hsl(var(--riso));
+    color: hsl(var(--riso-text));
+    transform: rotate(-4deg);
+  }
+
+  /* The thick rule between poster sections */
+  .poster-rule {
+    border-top: 4px solid hsl(var(--primary));
+    box-shadow: 0 3px 0 hsl(var(--riso));
+  }
+
+  .page-wrap {
+    @apply mx-auto w-full max-w-6xl;
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
@@ -82,22 +137,5 @@
 .leaflet-container {
   height: 100%;
   width: 100%;
-}
-
-/* Custom scrollbar styles */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  @apply bg-muted;
-}
-
-::-webkit-scrollbar-thumb {
-  @apply bg-muted-foreground/30 rounded-full;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-muted-foreground/50;
+  font-family: inherit;
 }

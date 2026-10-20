@@ -1,5 +1,5 @@
 {
-  "appName": "QuakeSafe",
+  "appName": "Yanig",
   "navigation": {
     "home": "Inicio",
     "tracker": "Rastreador",
@@ -33,6 +33,19 @@
     "chile": "Chile",
     "indonesia": "Indonesia",
     "philippines": "Filipinas"
+  },
+  "tagline": "Seguridad ante sismos para Filipinas",
+  "notice": "Aviso público",
+  "menu": {
+    "open": "Abrir menú",
+    "close": "Cerrar menú",
+    "dark": "Usar colores oscuros",
+    "light": "Usar colores claros",
+    "place": "País e idioma"
+  },
+  "footer": {
+    "dataSource": "Los datos de sismos vienen de USGS, GeoNet (Nueva Zelanda) y BMKG (Indonesia). Yanig busca datos nuevos cada 10 minutos.",
+    "developer": "Hecho por",
+    "rights": "Gratis. No necesita cuenta."
   }
 }
-
