@@ -17,6 +17,7 @@ const EmergencyFinder = lazy(() => import('./pages/EmergencyFinder'));
 const Privacy = lazy(() => import('./pages/Privacy'));
 const Terms = lazy(() => import('./pages/Terms'));
 const Offline = lazy(() => import('./pages/Offline'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 const PageLoader = () => (
   <div className="min-h-[60vh]" aria-busy="true" />
@@ -53,6 +54,7 @@ function App() {
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
               <Route path="/offline" element={<Offline />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
         </Layout>

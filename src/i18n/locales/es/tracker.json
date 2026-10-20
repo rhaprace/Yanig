@@ -14,7 +14,8 @@
     "checking": "Buscando datos nuevos",
     "refresh": "Actualizar",
     "sources": "Fuentes",
-    "staleError": "Yanig no pudo obtener datos nuevos. La lista muestra datos de {{time}}."
+    "staleError": "Yanig no pudo obtener datos nuevos. La lista muestra datos de {{time}}.",
+    "upToDate": "Actualizado"
   },
   "controls": {
     "magnitude": "Magnitud",
@@ -54,5 +55,6 @@
     "depth": "Profundidad",
     "source": "Fuente",
     "details": "Ver detalles en el sitio web de {{source}}"
-  }
+  },
+  "offline": "No tiene conexión. Yanig muestra los sismos cuando vuelva a tener internet."
 }

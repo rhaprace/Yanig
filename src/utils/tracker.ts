@@ -344,3 +344,10 @@ export const formatClock = (time: number, language?: string): string =>
     hour: 'numeric',
     minute: '2-digit',
   }).format(time);
+
+/** After new data arrives, the refresh button waits this long. Repeated taps do not send repeated requests. */
+export const MIN_REFRESH_GAP_MS = 60_000;
+
+/** True when a manual refresh may ask the sources again. Nothing loaded yet (0) always allows it. */
+export const canRefresh = (updatedAt: number, now: number): boolean =>
+  !updatedAt || now - updatedAt >= MIN_REFRESH_GAP_MS;

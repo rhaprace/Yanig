@@ -20,7 +20,8 @@
     "source": "Pinagmulan: {{name}}",
     "updates": "Tumitingin ang Yanig ng bagong datos bawat 10 minuto.",
     "link": "Tingnan ang lahat ng lindol sa tracker",
-    "kickerNear": "Pinakabagong 5 · Malapit sa Pilipinas"
+    "kickerNear": "Pinakabagong 5 · Malapit sa Pilipinas",
+    "offline": "Wala kang internet. Ipapakita ng Yanig ang mga lindol kapag may internet ka na."
   },
   "during": {
     "kicker": "Gabay · Habang may lindol",

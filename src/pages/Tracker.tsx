@@ -8,6 +8,7 @@ import { Segmented } from '@/components/tracker/Segmented';
 import { StatusBar } from '@/components/tracker/StatusBar';
 import { QuakeList } from '@/components/tracker/QuakeList';
 import { MapLegend } from '@/components/tracker/MapLegend';
+import { useRefreshGate } from '@/hooks/useRefreshGate';
 import { useMultiSourceEarthquakeData } from '@/hooks/useMultiSourceEarthquakeData';
 import type { EarthquakeFeature } from '@/types/common';
 import { getTrackerSEO } from '@/utils/seo';
@@ -59,7 +60,8 @@ const LoadingPlaceholder = ({ label }: { label: string }) => (
 
 const Tracker = () => {
   const { t } = useTranslation('tracker');
-  const { data, error, refetch, isFetching, isPending, dataUpdatedAt } = useMultiSourceEarthquakeData();
+  const { data, error, refetch, isFetching, isPending, dataUpdatedAt, fetchStatus } = useMultiSourceEarthquakeData();
+  const { allowed: refreshAllowed, tryRefresh } = useRefreshGate(data ? dataUpdatedAt : 0);
   const now = useNow();
 
   const [minMagnitude, setMinMagnitude] = useState<MagnitudeFilter>(DEFAULT_MAGNITUDE);
@@ -98,7 +100,12 @@ const Tracker = () => {
   );
 
   const handleMapSelect = useCallback((quake: EarthquakeFeature) => setSelectedId(quake.id), []);
-  const handleRefresh = () => void refetch();
+  // The error-state retry always may run; the status bar refresh waits a minute between checks.
+  const handleRetry = () => void refetch({ cancelRefetch: false });
+  const handleRefresh = () => {
+    if (isFetching) return;
+    tryRefresh(() => refetch({ cancelRefetch: false }));
+  };
 
   const seo = getTrackerSEO();
   const showMap = view === 'map' || view === 'both';
@@ -121,6 +128,7 @@ const Tracker = () => {
           isFetching={isFetching}
           staleError={Boolean(error && data)}
           onRefresh={handleRefresh}
+          canRefresh={refreshAllowed}
         />
 
         <div className="mt-6 flex flex-wrap items-end gap-x-6 gap-y-4">
@@ -168,7 +176,11 @@ const Tracker = () => {
         </div>
 
         <div className="mt-8">
-          {isPending ? (
+          {isPending && fetchStatus === 'paused' ? (
+            <p role="status" className="border-l-8 border-riso bg-card px-5 py-6 text-lg font-semibold">
+              {t('offline')}
+            </p>
+          ) : isPending ? (
             <LoadingPlaceholder label={t('loading')} />
           ) : !data ? (
             <div role="alert" className="border-l-8 border-riso bg-card px-5 py-6">
@@ -176,7 +188,7 @@ const Tracker = () => {
                 {t('error.title')}
               </p>
               <p className="mt-2 text-lg">{t('error.body')}</p>
-              <Button className="mt-4 text-base" onClick={handleRefresh} disabled={isFetching}>
+              <Button className="mt-4 text-base" onClick={handleRetry} disabled={isFetching}>
                 {t('error.retry')}
               </Button>
             </div>

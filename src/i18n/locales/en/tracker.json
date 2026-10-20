@@ -14,7 +14,8 @@
     "checking": "Checking for new data",
     "refresh": "Refresh",
     "sources": "Sources",
-    "staleError": "Yanig could not get new data. The list shows data from {{time}}."
+    "staleError": "Yanig could not get new data. The list shows data from {{time}}.",
+    "upToDate": "Up to date"
   },
   "controls": {
     "magnitude": "Magnitude",
@@ -54,5 +55,6 @@
     "depth": "Depth",
     "source": "Source",
     "details": "See details on the {{source}} website"
-  }
+  },
+  "offline": "You are offline. Yanig shows earthquakes when you are online again."
 }

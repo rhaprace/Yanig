@@ -14,7 +14,8 @@
     "checking": "新しいデータを確認中",
     "refresh": "更新",
     "sources": "データ元",
-    "staleError": "新しいデータを取得できませんでした。リストは {{time}} のデータです。"
+    "staleError": "新しいデータを取得できませんでした。リストは {{time}} のデータです。",
+    "upToDate": "最新です"
   },
   "controls": {
     "magnitude": "マグニチュード",
@@ -54,5 +55,6 @@
     "depth": "深さ",
     "source": "データ元",
     "details": "{{source}} のウェブサイトで詳細を見る"
-  }
+  },
+  "offline": "オフラインです。インターネットにつながると、Yanigは地震を表示します。"
 }

@@ -53,5 +53,15 @@
     "dark": "Gumamit ng madilim na kulay",
     "light": "Gumamit ng maliwanag na kulay",
     "place": "Bansa at wika"
+  },
+  "map": {
+    "twoFingers": "Gumamit ng dalawang daliri para igalaw ang mapa"
+  },
+  "notFound": {
+    "title": "Walang ganitong pahina",
+    "body": "Tingnan ang address. O pumunta sa isang pahina sa ibaba.",
+    "home": "Pumunta sa home",
+    "tracker": "Tingnan ang mga bagong lindol",
+    "hotlines": "Tingnan ang mga numerong pang-emergency"
   }
 }

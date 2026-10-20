@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import TouchScrollGuard from '@/components/map/TouchScrollGuard';
 import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import { useTranslation } from 'react-i18next';
 import { Phone } from 'lucide-react';
@@ -86,6 +87,7 @@ const EmergencyFinder: React.FC = () => {
         >
           <MapContainer center={DEFAULT_MAP_CENTER} zoom={DEFAULT_MAP_ZOOM} className="h-full w-full" zoomControl>
             <MapViewController center={view.center} zoom={view.zoom} />
+            <TouchScrollGuard />
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

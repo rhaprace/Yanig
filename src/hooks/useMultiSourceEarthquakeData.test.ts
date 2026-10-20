@@ -1,3 +1,4 @@
+import type { EarthquakeFeature } from '@/types/common';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   bmkgAutoResponse,
@@ -5,7 +6,7 @@ import {
   geonetResponse,
   usgsResponse,
 } from '@/components/tracker/__fixtures__/apiResponses';
-import { fetchMultiSourceEarthquakes } from './useMultiSourceEarthquakeData';
+import { fetchMultiSourceEarthquakes, pickUSGS, USGS_FEED_URL } from './useMultiSourceEarthquakeData';
 
 const json = (body: unknown) => Promise.resolve(new Response(JSON.stringify(body), { status: 200 }));
 
@@ -39,11 +40,11 @@ describe('fetchMultiSourceEarthquakes', () => {
     expect(data.metadata.count).toBe(6);
   });
 
-  it('asks USGS for the Philippines box as well as the world', async () => {
+  it('asks USGS once, for the ready-made 30-day feed, not the slow search API', async () => {
     const spy = mockFetch(() => json({ features: [] }));
     await fetchMultiSourceEarthquakes();
-    const urls = spy.mock.calls.map(([u]) => String(u));
-    expect(urls.some((u) => u.includes('minlatitude=3') && u.includes('maxlongitude=130'))).toBe(true);
+    const usgs = spy.mock.calls.map(([u]) => String(u)).filter((u) => u.includes('usgs.gov'));
+    expect(usgs).toEqual([USGS_FEED_URL]);
   });
 
   it('still shows the other sources when one fails', async () => {
@@ -56,4 +57,25 @@ describe('fetchMultiSourceEarthquakes', () => {
     mockFetch(() => Promise.reject(new TypeError('Failed to fetch')));
     await expect(fetchMultiSourceEarthquakes()).rejects.toThrow();
   });
+});
+
+describe('pickUSGS', () => {
+  const quake = (id: string, lon: number, lat: number, time: number) =>
+    ({ id, type: 'Feature', properties: { mag: 3, place: id, time }, geometry: { type: 'Point', coordinates: [lon, lat, 10] } }) as unknown as EarthquakeFeature;
+
+  it('keeps the newest 100 worldwide and every older one near the Philippines', () => {
+    const far = Array.from({ length: 150 }, (_, i) => quake(`far${i}`, -150, 60, 10_000 - i));
+    const oldNearPH = quake('mindanao-old', 126, 7, 1);
+    const picked = pickUSGS([oldNearPH, ...far]);
+    expect(picked).toHaveLength(101);
+    expect(picked.map((q) => q.id)).toContain('mindanao-old');
+    expect(picked.map((q) => q.id)).not.toContain('far149');
+  });
+
+  it('does not list a quake near the Philippines twice', () => {
+    const picked = pickUSGS([quake('luzon', 121, 16, 5)]);
+    expect(picked.map((q) => q.id)).toEqual(['luzon']);
+  });
+
+  it('gives nothing for an empty feed', () => expect(pickUSGS([])).toEqual([]));
 });

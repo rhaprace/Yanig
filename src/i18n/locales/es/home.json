@@ -20,7 +20,8 @@
     "source": "Fuente: {{name}}",
     "updates": "Yanig busca datos nuevos cada 10 minutos.",
     "link": "Ver todos los sismos en el monitor",
-    "kickerNear": "Últimos 5 · Cerca de Filipinas"
+    "kickerNear": "Últimos 5 · Cerca de Filipinas",
+    "offline": "No tiene conexión. Yanig muestra los sismos cuando vuelva a tener internet."
   },
   "during": {
     "kicker": "Guía · Durante",

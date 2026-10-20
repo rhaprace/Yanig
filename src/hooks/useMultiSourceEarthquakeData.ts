@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import { usgsAPI } from '@/services/api';
+import { fetchWithTimeout } from '@/services/api';
 import type { EarthquakeFeature, EarthquakeResponse } from '@/types/common';
 import {
-  PH_BOUNDS,
+  isNearPhilippines,
   convertBMKGQuake,
   convertGeoNetFeature,
   mergeEarthquakes,
@@ -17,9 +17,6 @@ const BMKG_API = 'https://data.bmkg.go.id/DataMKG/TEWS';
 
 /** How often Yanig checks for new data. The page copy says "every 10 minutes". */
 export const REFRESH_INTERVAL_MS = 10 * 60 * 1000;
-
-/** How far back the Philippines query goes. */
-const PH_DAYS = 30;
 
 const devWarn = (...args: unknown[]) => {
   if (import.meta.env.DEV) console.warn(...args);
@@ -41,37 +38,31 @@ const retryOnce =
   };
 
 const fetchJson = async <T>(url: string): Promise<T> => {
-  const response = await fetch(url);
+  const response = await fetchWithTimeout(url);
   if (!response.ok) throw new Error(`${url}: ${response.status}`);
   return response.json() as Promise<T>;
 };
 
-/** The latest 100 earthquakes of magnitude 2.5 and above, worldwide. */
-const fetchUSGSWorld = async (): Promise<EarthquakeFeature[]> => {
-  const data: { features?: USGSFeature[] } = await usgsAPI.getEarthquakes({
-    limit: 100,
-    minmagnitude: 2.5,
-  });
-  return keepValid((data.features ?? []).map(normalizeUSGSFeature));
+/**
+ * USGS publishes a ready-made feed of every earthquake of magnitude 2.5 and above in the last 30 days.
+ * It answers in about a second from a cache. The USGS search API often took 13-17 seconds and gave 502 errors.
+ */
+export const USGS_FEED_URL = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month.geojson';
+
+/** How many of the newest earthquakes worldwide to keep. All earthquakes near the Philippines are kept. */
+const WORLD_COUNT = 100;
+
+/** From the 30-day feed: the newest 100 worldwide, plus every one near the Philippines. One request. */
+export const pickUSGS = (features: EarthquakeFeature[]): EarthquakeFeature[] => {
+  const newest = [...features].sort((a, b) => b.properties.time - a.properties.time);
+  const world = newest.slice(0, WORLD_COUNT);
+  const ids = new Set(world.map((f) => f.id));
+  return [...world, ...newest.filter((f) => !ids.has(f.id) && isNearPhilippines(f))];
 };
 
-/**
- * Earthquakes of magnitude 2.5 and above near the Philippines in the last 30 days.
- * The worldwide list above often has none near the Philippines.
- */
-const fetchUSGSPhilippines = async (): Promise<EarthquakeFeature[]> => {
-  // Use the date only, so the URL stays the same for a day and the browser cache can help.
-  const start = new Date(Date.now() - PH_DAYS * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
-  const data: { features?: USGSFeature[] } = await usgsAPI.getEarthquakes({
-    limit: 200,
-    minmagnitude: 2.5,
-    starttime: start,
-    minlatitude: PH_BOUNDS.minLat,
-    maxlatitude: PH_BOUNDS.maxLat,
-    minlongitude: PH_BOUNDS.minLon,
-    maxlongitude: PH_BOUNDS.maxLon,
-  });
-  return keepValid((data.features ?? []).map(normalizeUSGSFeature));
+const fetchUSGS = async (): Promise<EarthquakeFeature[]> => {
+  const data = await fetchJson<{ features?: USGSFeature[] }>(USGS_FEED_URL);
+  return pickUSGS(keepValid((data.features ?? []).map(normalizeUSGSFeature)));
 };
 
 const fetchGeoNet = async (): Promise<EarthquakeFeature[]> => {
@@ -97,8 +88,7 @@ const fetchBMKG = async (): Promise<EarthquakeFeature[]> => {
 export const fetchMultiSourceEarthquakes = async (): Promise<EarthquakeResponse> => {
   // The order matters: when two sources report one earthquake, the first one is kept.
   const sources = [
-    ['USGS', retryOnce(fetchUSGSWorld)],
-    ['USGS Philippines', retryOnce(fetchUSGSPhilippines)],
+    ['USGS', retryOnce(fetchUSGS)],
     ['GeoNet', fetchGeoNet],
     ['BMKG', fetchBMKG],
   ] as const;

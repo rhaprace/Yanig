@@ -25,7 +25,7 @@ export const StepFigure = ({ step, active }: { step: 0 | 1 | 2; active: boolean 
         </pattern>
         <style>{`
           @keyframes yanig-shake{0%,100%{transform:translate(0,0)}25%{transform:translate(-1.6px,.4px)}75%{transform:translate(1.6px,-.4px)}}
-          @media (prefers-reduced-motion: no-preference){.yanig-shake{animation:yanig-shake .32s linear infinite;transform-box:fill-box}}
+          @media (prefers-reduced-motion: no-preference){.yanig-shake{animation:yanig-shake .32s linear 3;transform-box:fill-box}}
         `}</style>
       </defs>
       <rect width="200" height="150" fill={`url(#${dots})`} opacity=".4" />

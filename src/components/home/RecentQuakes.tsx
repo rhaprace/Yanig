@@ -9,7 +9,7 @@ const QUAKE_COUNT = 5;
 
 export const RecentQuakes = () => {
   const { t, language } = useBilingual();
-  const { data, isLoading, isFetching, refetch } = useMultiSourceEarthquakeData();
+  const { data, isLoading, isFetching, refetch, fetchStatus } = useMultiSourceEarthquakeData();
   const { quakes, nearPhilippines } = homeQuakes(data?.features, QUAKE_COUNT);
 
   return (
@@ -47,6 +47,8 @@ export const RecentQuakes = () => {
             );
           })}
         </ol>
+      ) : !data && fetchStatus === 'paused' ? (
+        <p role="status" className="border-l-8 border-riso bg-card p-4 font-semibold">{t('quakes.offline')}</p>
       ) : isLoading ? (
         <div aria-busy="true">
           <p className="sr-only" role="status">{t('quakes.loading')}</p>
@@ -68,7 +70,7 @@ export const RecentQuakes = () => {
       ) : (
         <div role="alert" className="flex flex-col items-start gap-3 border-l-8 border-riso bg-card p-4 sm:flex-row sm:items-center sm:justify-between">
           <p>{t('quakes.error')}</p>
-          <Button type="button" variant="outline" disabled={isFetching} onClick={() => refetch()}>
+          <Button type="button" variant="outline" disabled={isFetching} onClick={() => refetch({ cancelRefetch: false })}>
             {t('quakes.retry')}
           </Button>
         </div>

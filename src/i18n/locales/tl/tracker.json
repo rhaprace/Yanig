@@ -14,7 +14,8 @@
     "checking": "Naghahanap ng bagong datos",
     "refresh": "I-refresh",
     "sources": "Pinagmulan",
-    "staleError": "Hindi nakakuha ng bagong datos ang Yanig. Datos mula {{time}} ang nasa listahan."
+    "staleError": "Hindi nakakuha ng bagong datos ang Yanig. Datos mula {{time}} ang nasa listahan.",
+    "upToDate": "Bago na"
   },
   "controls": {
     "magnitude": "Magnitude",
@@ -54,5 +55,6 @@
     "depth": "Lalim",
     "source": "Pinagmulan",
     "details": "Tingnan ang detalye sa website ng {{source}}"
-  }
+  },
+  "offline": "Wala kang internet. Ipapakita ng Yanig ang mga lindol kapag may internet ka na."
 }

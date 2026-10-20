@@ -47,5 +47,15 @@
     "dataSource": "Los datos de sismos vienen de USGS, GeoNet (Nueva Zelanda) y BMKG (Indonesia). Yanig busca datos nuevos cada 10 minutos.",
     "developer": "Hecho por",
     "rights": "Gratis. No necesita cuenta."
+  },
+  "map": {
+    "twoFingers": "Use dos dedos para mover el mapa"
+  },
+  "notFound": {
+    "title": "Esta página no existe",
+    "body": "Revise la dirección. O vaya a una página de abajo.",
+    "home": "Ir al inicio",
+    "tracker": "Ver sismos recientes",
+    "hotlines": "Ver números de emergencia"
   }
 }

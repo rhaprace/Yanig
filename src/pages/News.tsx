@@ -7,12 +7,14 @@ import { NewsArticleCard, NewsArticleDetail, NewsCategoryFilter } from '@/compon
 import { useNews } from '@/hooks/useNews';
 import { getNewsSEO, getNewsArticleSEO } from '@/utils/seo';
 import type { NewsArticle } from '@/types/news';
+import { useRefreshGate } from '@/hooks/useRefreshGate';
 
 const News = () => {
   const { t } = useTranslation('about');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedArticle, setSelectedArticle] = useState<NewsArticle | null>(null);
-  const { data, isLoading, refetch, isFetching } = useNews();
+  const { data, isLoading, refetch, isFetching, dataUpdatedAt } = useNews();
+  const { allowed: refreshAllowed, tryRefresh } = useRefreshGate(data ? dataUpdatedAt : 0);
 
   const articles = data?.articles ?? [];
   const isSample = data?.isSample ?? false;
@@ -39,8 +41,8 @@ const News = () => {
         <div className="mt-6 flex flex-wrap items-center gap-4">
           <button
             type="button"
-            onClick={() => refetch()}
-            disabled={isFetching}
+            onClick={() => !isFetching && tryRefresh(() => refetch({ cancelRefetch: false }))}
+            disabled={isFetching || !refreshAllowed}
             className="inline-flex min-h-11 items-center gap-2 border-2 border-primary px-4 font-semibold text-primary hover:bg-accent disabled:opacity-60"
           >
             <RefreshCw className={`h-4 w-4 ${isFetching ? 'motion-safe:animate-spin' : ''}`} aria-hidden="true" />

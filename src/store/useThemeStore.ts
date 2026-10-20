@@ -9,7 +9,9 @@ interface ThemeStore {
   toggleTheme: () => void;
 }
 
-const applyTheme = (theme: Theme) => {
+const applyTheme = (value: Theme) => {
+  // A saved value can be anything. Only the three known themes are used.
+  const theme: Theme = value === 'dark' || value === 'light' ? value : 'system';
   const root = window.document.documentElement;
   root.classList.remove('light', 'dark');
 
@@ -61,11 +63,12 @@ export const useThemeStore = create<ThemeStore>()(
   )
 );
 if (typeof window !== 'undefined') {
-  const stored = localStorage.getItem('theme-storage');
-  if (stored) {
-    const { state } = JSON.parse(stored);
-    applyTheme(state.theme);
-  } else {
-    applyTheme('system');
+  // A damaged or blocked saved value must not stop the app from starting.
+  let saved: unknown;
+  try {
+    saved = JSON.parse(localStorage.getItem('theme-storage') ?? 'null')?.state?.theme;
+  } catch {
+    saved = undefined;
   }
+  applyTheme(saved === 'dark' || saved === 'light' ? saved : 'system');
 }

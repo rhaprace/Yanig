@@ -333,7 +333,7 @@ export const countries: Record<string, CountryConfig> = {
 };
 
 export const getCountryConfig = (countryCode: string): CountryConfig => {
-  return countries[countryCode] || countries.US;
+  return countries[countryCode] || countries.PH;
 };
 
 export const getCountryByLanguage = (language: string): CountryConfig => {

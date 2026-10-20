@@ -62,6 +62,8 @@
 
   html {
     -webkit-text-size-adjust: 100%;
+    /* Nothing may push the page wider than the screen. clip, unlike hidden, keeps the sticky header working. */
+    overflow-x: clip;
   }
 
   body {

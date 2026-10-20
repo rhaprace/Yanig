@@ -20,7 +20,8 @@
     "source": "Source: {{name}}",
     "updates": "Yanig checks for new data every 10 minutes.",
     "link": "See all earthquakes on the tracker",
-    "kickerNear": "Latest 5 · Near the Philippines"
+    "kickerNear": "Latest 5 · Near the Philippines",
+    "offline": "You are offline. Yanig shows earthquakes when you are online again."
   },
   "during": {
     "kicker": "Guide · During",

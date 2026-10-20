@@ -1,4 +1,4 @@
-import type { Page } from '@playwright/test';
+import type { BrowserContext, Page, Route } from '@playwright/test';
 
 const now = Date.now();
 const min = 60_000;
@@ -35,14 +35,65 @@ export const GEONET = {
 export const BMKG_AUTO = { Infogempa: { gempa: { Tanggal: '', Jam: '', DateTime: new Date(now - 300 * min).toISOString(), Coordinates: '-8.40,116.20', Lintang: '8.40 LS', Bujur: '116.20 BT', Magnitude: '4.8', Kedalaman: '10 km', Wilayah: 'Lombok', Potensi: 'Tidak berpotensi tsunami' } } };
 export const BMKG_RECENT = { Infogempa: { gempa: [] } };
 
-/** Answer the earthquake, news and map tile requests with fixed data, or fail them all. */
-export const mockApis = async (page: Page, mode: 'ok' | 'down' = 'ok') => {
+export type Source = 'usgs' | 'geonet' | 'bmkg' | 'news';
+export type Mode = 'ok' | 'down' | 'hang' | 'junk' | 'http500';
+
+/** How many requests each source got. The tests check these numbers to catch request spam. */
+export type Counts = Record<Source, number>;
+
+/**
+ * Answer the earthquake, news and map tile requests. Each source can be set apart:
+ * ok = fixed data, down = network error, hang = never answers, junk = 200 with HTML, http500 = server error.
+ */
+export const mockApis = async (page: Page | BrowserContext, modes: Partial<Record<Source, Mode>> | Mode = 'ok'): Promise<Counts> => {
+  const mode = (source: Source): Mode => (typeof modes === 'string' ? modes : (modes[source] ?? 'ok'));
+  const counts: Counts = { usgs: 0, geonet: 0, bmkg: 0, news: 0 };
   const json = (body: unknown) => ({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: JSON.stringify(body) });
-  await page.route('https://earthquake.usgs.gov/**', (r) => (mode === 'down' ? r.abort() : r.fulfill(json(USGS))));
-  await page.route('https://api.geonet.org.nz/**', (r) => (mode === 'down' ? r.abort() : r.fulfill(json(GEONET))));
-  await page.route('https://data.bmkg.go.id/**', (r) =>
-    mode === 'down' ? r.abort() : r.fulfill(json(r.request().url().includes('autogempa') ? BMKG_AUTO : BMKG_RECENT))
+  const answer = (source: Source, body: () => unknown) => async (route: Route) => {
+    counts[source] += 1;
+    switch (mode(source)) {
+      case 'down':
+        return route.abort('internetdisconnected');
+      case 'hang':
+        return; // never answers
+      case 'junk':
+        return route.fulfill({ status: 200, contentType: 'text/html', headers: { 'access-control-allow-origin': '*' }, body: '<html>Service unavailable</html>' });
+      case 'http500':
+        return route.fulfill({ status: 500, headers: { 'access-control-allow-origin': '*' }, body: 'error' });
+      default:
+        return route.fulfill(json(body()));
+    }
+  };
+  await page.route('https://earthquake.usgs.gov/**', answer('usgs', () => USGS));
+  await page.route('https://api.geonet.org.nz/**', answer('geonet', () => GEONET));
+  await page.route('https://data.bmkg.go.id/**', async (route) =>
+    answer('bmkg', () => (route.request().url().includes('autogempa') ? BMKG_AUTO : BMKG_RECENT))(route)
   );
-  await page.route('**/api/news**', (r) => r.fulfill({ status: 500, body: '' }));
+  await page.route('**/api/news**', answer('news', () => NEWS));
   await page.route('https://*.tile.openstreetmap.org/**', (r) => r.fulfill({ status: 204, body: '' }));
+  return counts;
+};
+
+/** One NewsAPI-shaped answer with one good article and one unsafe link. */
+export const NEWS = {
+  success: true,
+  totalResults: 2,
+  articles: [
+    { source: { id: null, name: 'Example News' }, author: null, title: 'Magnitude 5 earthquake felt in Mindanao', description: 'Residents felt shaking.', url: 'https://example.com/quake', urlToImage: null, publishedAt: new Date().toISOString(), content: 'Residents felt shaking.' },
+    { source: { id: null, name: 'Bad' }, author: null, title: 'Unsafe link article', description: 'x', url: 'javascript:alert(1)', urlToImage: null, publishedAt: new Date().toISOString(), content: 'x' },
+  ],
+};
+
+/** One full round of earthquake requests: the USGS 30-day feed, GeoNet, BMKG latest + BMKG recent. */
+export const ROUND = { usgs: 1, geonet: 1, bmkg: 2 };
+
+/**
+ * Move the page clock forward in small steps. Network answers are real (not on the page clock), so give each
+ * step a moment of real time for them to arrive before the next timers run.
+ */
+export const advance = async (page: Page, ms: number, step = 1000) => {
+  for (let done = 0; done < ms; done += step) {
+    await page.clock.runFor(Math.min(step, ms - done));
+    await page.waitForTimeout(15);
+  }
 };

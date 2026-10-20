@@ -10,11 +10,13 @@ interface StatusBarProps {
   /** True when the last check failed but older data is still on screen. */
   staleError: boolean;
   onRefresh: () => void;
+  /** False right after new data arrived: the button waits a minute. */
+  canRefresh: boolean;
 }
 
 const SOURCES = Object.values(SOURCE_LABELS).join(' · ');
 
-export const StatusBar = ({ updatedAt, isFetching, staleError, onRefresh }: StatusBarProps) => {
+export const StatusBar = ({ updatedAt, isFetching, staleError, onRefresh, canRefresh }: StatusBarProps) => {
   const { t, i18n } = useTranslation('tracker');
   const time = updatedAt ? formatDateTime(updatedAt, i18n.language) : '';
 
@@ -43,9 +45,9 @@ export const StatusBar = ({ updatedAt, isFetching, staleError, onRefresh }: Stat
           </span>{' '}
           <span className="font-semibold">{SOURCES}</span>
         </p>
-        <Button variant="outline" onClick={onRefresh} disabled={isFetching} className="text-base">
+        <Button variant="outline" onClick={onRefresh} disabled={isFetching || !canRefresh} className="text-base">
           <RefreshCw aria-hidden="true" />
-          {t('status.refresh')}
+          {canRefresh || isFetching ? t('status.refresh') : t('status.upToDate')}
         </Button>
       </div>
     </section>

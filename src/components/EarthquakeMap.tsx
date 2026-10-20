@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef } from 'react';
+import TouchScrollGuard from '@/components/map/TouchScrollGuard';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import { DivIcon, LatLngBounds, type Marker as LeafletMarker } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -129,6 +130,7 @@ const EarthquakeMap = ({
         className="z-0"
         aria-label={t('map.label')}
       >
+        <TouchScrollGuard />
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

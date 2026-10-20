@@ -53,5 +53,15 @@
     "dark": "Use dark colours",
     "light": "Use light colours",
     "place": "Country and language"
+  },
+  "map": {
+    "twoFingers": "Use two fingers to move the map"
+  },
+  "notFound": {
+    "title": "This page does not exist",
+    "body": "Check the address. Or go to a page below.",
+    "home": "Go to the home page",
+    "tracker": "See recent earthquakes",
+    "hotlines": "See emergency numbers"
   }
 }

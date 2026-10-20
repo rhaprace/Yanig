@@ -29,9 +29,12 @@ export const useNews = (pageSize: number = 20) => {
   const { i18n } = useTranslation();
   const language = i18n.resolvedLanguage ?? i18n.language ?? 'en';
 
+  // NewsAPI articles are in English for every language, so the language is not part of the key:
+  // switching language does not ask the server again. Only the sample notes follow the language.
   return useQuery<NewsFeed, Error>({
-    queryKey: ['earthquake-news', pageSize, language],
-    queryFn: () => loadNewsFeed(() => newsAPI.getEarthquakeNews(pageSize), language),
+    queryKey: ['earthquake-news', pageSize],
+    queryFn: () => loadNewsFeed(() => newsAPI.getEarthquakeNews(pageSize), 'en'),
+    select: (feed) => (feed.isSample ? { articles: getSampleArticles(language), isSample: true } : feed),
     staleTime: 10 * 60 * 1000,
     gcTime: 30 * 60 * 1000,
     refetchOnMount: false,
