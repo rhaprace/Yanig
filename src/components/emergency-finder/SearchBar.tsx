@@ -1,41 +1,52 @@
 import { Search, X } from 'lucide-react';
 
 interface SearchBarProps {
+  id: string;
+  label: string;
   value: string;
   onChange: (value: string) => void;
   onClear: () => void;
   placeholder?: string;
-  className?: string;
+  clearLabel: string;
+  describedBy?: string;
 }
 
-export const SearchBar: React.FC<SearchBarProps> = ({
-  value,
-  onChange,
-  onClear,
-  placeholder = 'Search...',
-  className = '',
-}) => {
-  return (
-    <div className={`relative ${className}`}>
-      <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+/** A labelled search box in the poster style. */
+export const SearchBar: React.FC<SearchBarProps> = ({ id, label, value, onChange, onClear, placeholder, clearLabel, describedBy }) => (
+  <div>
+    <label htmlFor={id} className="mb-1 block text-base font-bold">
+      {label}
+    </label>
+    <div className="relative">
+      <Search className="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-primary" aria-hidden="true" />
       <input
-        type="text"
+        id={id}
+        type="search"
+        autoComplete="off"
         placeholder={placeholder}
         value={value}
+        aria-describedby={describedBy}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full pl-11 pr-11 py-2.5 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all shadow-sm bg-background/95 backdrop-blur"
+        onKeyDown={(e) => {
+          if (e.key === 'Escape' && value) {
+            e.preventDefault();
+            onClear();
+          }
+        }}
+        className="min-h-12 w-full rounded-sm border-[3px] border-primary bg-card py-2 pl-11 pr-12 text-base placeholder:text-muted-foreground [&::-webkit-search-cancel-button]:hidden"
       />
       {value && (
         <button
+          type="button"
           onClick={onClear}
-          className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+          aria-label={clearLabel}
+          className="absolute right-1 top-1/2 grid h-10 w-10 -translate-y-1/2 place-items-center text-primary hover:text-riso-text"
         >
-          <X className="h-4 w-4" />
+          <X className="h-5 w-5" aria-hidden="true" />
         </button>
       )}
     </div>
-  );
-};
+  </div>
+);
 
 export default SearchBar;
-

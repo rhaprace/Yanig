@@ -1,43 +1,26 @@
-const BASE_URL = 'https://yanig.vercel.app';
+import { AUTHOR_NAME, BASE_URL, SITE_NAME } from './site';
 
+const author = { '@type': 'Person', name: AUTHOR_NAME };
+
+/** Yanig as a free web app. No ratings, no review counts, no claims the app does not back. */
 export const getWebApplicationSchema = () => ({
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
-  name: 'QuakeSafe',
+  name: SITE_NAME,
   url: BASE_URL,
-  description: 'Real-time earthquake monitoring, safety guides, and emergency resources for earthquake preparedness and disaster response.',
+  description:
+    'Recent earthquakes near the Philippines from USGS, GeoNet and BMKG, checked every 10 minutes. Safety steps and emergency hotlines. Free, no account.',
   applicationCategory: 'UtilityApplication',
   operatingSystem: 'Any',
+  inLanguage: ['en', 'tl', 'es', 'ja'],
+  isAccessibleForFree: true,
   offers: {
     '@type': 'Offer',
     price: '0',
-    priceCurrency: 'USD',
+    priceCurrency: 'PHP',
   },
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.8',
-    ratingCount: '1250',
-  },
-  author: {
-    '@type': 'Organization',
-    name: 'QuakeSafe',
-    url: BASE_URL,
-  },
-  browserRequirements: 'Requires JavaScript. Requires HTML5.',
-  softwareVersion: '1.0.0',
-  screenshot: `${BASE_URL}/web-app-manifest-512x512.png`,
-});
-
-export const getOrganizationSchema = () => ({
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: 'QuakeSafe',
-  url: BASE_URL,
-  logo: `${BASE_URL}/web-app-manifest-512x512.png`,
-  description: 'Earthquake safety and preparedness platform providing real-time monitoring and emergency resources.',
-  sameAs: [
-    // Add social media links when available
-  ],
+  author,
+  browserRequirements: 'Requires JavaScript.',
 });
 
 export const getBreadcrumbSchema = (items: Array<{ name: string; url: string }>) => ({
@@ -81,63 +64,23 @@ export const getHowToSchema = (guide: {
   })),
 });
 
-export const getLocalBusinessSchema = (business: {
-  name: string;
-  type: string;
-  telephone: string;
-  address?: string;
-  city: string;
-  province: string;
-}) => ({
-  '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
-  name: business.name,
-  '@id': `${BASE_URL}/emergency-finder#${business.name.replace(/\s+/g, '-').toLowerCase()}`,
-  telephone: business.telephone,
-  address: business.address
-    ? {
-        '@type': 'PostalAddress',
-        addressLocality: business.city,
-        addressRegion: business.province,
-        addressCountry: 'PH',
-        streetAddress: business.address,
-      }
-    : {
-        '@type': 'PostalAddress',
-        addressLocality: business.city,
-        addressRegion: business.province,
-        addressCountry: 'PH',
-      },
-  areaServed: {
-    '@type': 'City',
-    name: business.city,
-  },
-});
-
+/** A page written for Yanig. Dates are only added when they are known. */
 export const getArticleSchema = (article: {
   headline: string;
   description: string;
   datePublished?: string;
   dateModified?: string;
-  author?: string;
 }) => ({
   '@context': 'https://schema.org',
   '@type': 'Article',
   headline: article.headline,
   description: article.description,
-  datePublished: article.datePublished || new Date().toISOString(),
-  dateModified: article.dateModified || new Date().toISOString(),
-  author: {
-    '@type': 'Organization',
-    name: article.author || 'QuakeSafe',
-  },
+  ...(article.datePublished ? { datePublished: article.datePublished } : {}),
+  ...(article.dateModified ? { dateModified: article.dateModified } : {}),
+  author,
   publisher: {
-    '@type': 'Organization',
-    name: 'QuakeSafe',
-    logo: {
-      '@type': 'ImageObject',
-      url: `${BASE_URL}/web-app-manifest-512x512.png`,
-    },
+    '@type': 'Person',
+    name: AUTHOR_NAME,
   },
 });
 
@@ -152,22 +95,3 @@ export const getItemListSchema = (items: Array<{ name: string; description: stri
     url: item.url,
   })),
 });
-
-export const getEarthquakeEventSchema = (earthquake: {
-  magnitude: number;
-  location: string;
-  time: number;
-  depth: number;
-}) => ({
-  '@context': 'https://schema.org',
-  '@type': 'Event',
-  name: `Magnitude ${earthquake.magnitude} Earthquake`,
-  description: `Earthquake detected near ${earthquake.location}`,
-  startDate: new Date(earthquake.time).toISOString(),
-  location: {
-    '@type': 'Place',
-    name: earthquake.location,
-  },
-  eventStatus: 'https://schema.org/EventScheduled',
-});
-

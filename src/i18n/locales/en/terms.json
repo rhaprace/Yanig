@@ -1,86 +1,107 @@
 {
-  "title": "Terms of Service",
-  "lastUpdated": "Last Updated",
-  "date": "January 2025",
-  "sections": {
-    "introduction": {
-      "title": "Introduction",
-      "content": "Welcome to QuakeSafe. These Terms of Service ('Terms') govern your use of the QuakeSafe application. By accessing or using QuakeSafe, you agree to be bound by these Terms."
-    },
-    "acceptance": {
-      "title": "Acceptance of Terms",
-      "content": "By using QuakeSafe, you acknowledge that you have read, understood, and agree to be bound by these Terms and our Privacy Policy. If you do not agree to these Terms, please do not use the application."
-    },
-    "service": {
-      "title": "Service Description",
-      "content": "QuakeSafe is a free, open-source Progressive Web Application (PWA) that provides:",
-      "features": [
-        "Real-time earthquake monitoring from multiple authoritative sources",
-        "Interactive maps showing recent seismic activity",
-        "Safety guides and emergency preparedness information",
-        "Emergency resource locators for specific regions",
-        "Offline functionality for critical safety information",
-        "Multi-language support"
-      ]
-    },
-    "disclaimer": {
-      "title": "Important Disclaimer",
-      "warning": "QUAKESAFE IS AN INFORMATIONAL TOOL ONLY AND SHOULD NOT BE YOUR SOLE SOURCE FOR EMERGENCY INFORMATION.",
+  "kicker": "Terms",
+  "title": "Terms of use",
+  "intro": "These terms apply when you use Yanig. If you do not agree with them, do not use Yanig.",
+  "lastUpdated": "Last updated",
+  "date": "20 October 2026",
+  "contents": "On this page",
+  "sections": [
+    {
+      "id": "service",
+      "title": "What Yanig is",
+      "paragraphs": [
+        "Yanig is a free website about earthquake safety in the Philippines."
+      ],
       "items": [
-        "QuakeSafe is NOT an official emergency alert system",
-        "Data may be delayed, incomplete, or inaccurate",
-        "Always follow official emergency services and local authorities",
-        "We are not responsible for any decisions made based on information from this app",
-        "In case of emergency, contact local emergency services immediately (911, 112, etc.)",
-        "This app does not replace official earthquake early warning systems"
+        "It shows recent earthquakes from USGS, GeoNet and BMKG. It checks for new data every 10 minutes.",
+        "It gives safety steps for before, during and after an earthquake.",
+        "It lists emergency hotlines.",
+        "It shows earthquake news from NewsAPI."
       ]
     },
-    "responsibilities": {
-      "title": "User Responsibilities",
+    {
+      "id": "warning",
+      "title": "Yanig is not an alert system",
+      "warning": true,
       "items": [
-        "Use QuakeSafe as a supplementary information tool only",
-        "Verify critical information with official sources",
-        "Follow guidance from local emergency management authorities",
-        "Maintain your own emergency preparedness plans",
-        "Ensure you have access to official emergency alert systems",
-        "Use the app responsibly and not for malicious purposes"
+        "Yanig does not send alerts, notifications or warnings.",
+        "Yanig cannot predict earthquakes. No one can.",
+        "Yanig is not official. For official earthquake reports, go to PHIVOLCS.",
+        "In an emergency in the Philippines, call 911."
+      ],
+      "link": {
+        "label": "PHIVOLCS",
+        "href": "https://www.phivolcs.dost.gov.ph/"
+      }
+    },
+    {
+      "id": "accuracy",
+      "title": "Data can be late or wrong",
+      "paragraphs": [
+        "Earthquake data comes from other agencies. It can be late, missing or wrong.",
+        "The first magnitude and place of an earthquake are estimates. The agencies can change them later.",
+        "Emergency numbers can change. Check them with your local government."
       ]
     },
-    "intellectual": {
-      "title": "Intellectual Property",
-      "content": "QuakeSafe is open-source software. The application code is available under an open-source license. Earthquake data is provided by third-party sources (USGS, GeoNet, BMKG, PHIVOLCS) and remains the property of those organizations. Map data is provided by OpenStreetMap contributors."
-    },
-    "thirdPartyData": {
-      "title": "Third-Party Data Sources",
-      "content": "QuakeSafe aggregates data from multiple authoritative sources:",
-      "sources": [
-        "USGS (United States Geological Survey) - Subject to USGS terms",
-        "GeoNet (New Zealand) - Subject to GeoNet terms",
-        "BMKG (Indonesia) - Subject to BMKG terms",
-        "PHIVOLCS (Philippines) - Subject to PHIVOLCS terms",
-        "OpenStreetMap - Subject to ODbL license"
+    {
+      "id": "responsibilities",
+      "title": "Your part",
+      "items": [
+        "Use Yanig as extra information only.",
+        "Follow your local government and emergency officials.",
+        "Make your own emergency plan."
       ]
     },
-    "liability": {
-      "title": "Limitation of Liability",
-      "content": "TO THE MAXIMUM EXTENT PERMITTED BY LAW, QUAKESAFE AND ITS DEVELOPERS SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, WHETHER INCURRED DIRECTLY OR INDIRECTLY, OR ANY LOSS OF DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES RESULTING FROM YOUR USE OF THE SERVICE."
+    {
+      "id": "content",
+      "title": "Content from others",
+      "items": [
+        "USGS, GeoNet and BMKG own their data. Their own terms apply.",
+        "Map data is © OpenStreetMap contributors, under the Open Database License.",
+        "News articles belong to their publishers. Yanig shows only the start of each article and links to the full article."
+      ]
     },
-    "availability": {
-      "title": "Service Availability",
-      "content": "We strive to keep QuakeSafe available 24/7, but we do not guarantee uninterrupted access. The service may be temporarily unavailable due to maintenance, updates, or factors beyond our control. Third-party data sources may also experience outages."
+    {
+      "id": "code",
+      "title": "Source code",
+      "paragraphs": [
+        "The Yanig source code is open source under the MIT License."
+      ]
     },
-    "modifications": {
-      "title": "Modifications to Service and Terms",
-      "content": "We reserve the right to modify or discontinue QuakeSafe at any time without notice. We may also update these Terms from time to time. Continued use of the service after changes constitutes acceptance of the modified Terms."
+    {
+      "id": "warranty",
+      "title": "No warranty",
+      "paragraphs": [
+        "Yanig is given \"as is\", with no warranty.",
+        "As far as the law allows, the maker of Yanig is not responsible for loss or damage that comes from using Yanig."
+      ]
     },
-    "law": {
-      "title": "Governing Law",
-      "content": "These Terms shall be governed by and construed in accordance with applicable laws. Any disputes arising from these Terms or your use of QuakeSafe shall be resolved in accordance with the laws of your jurisdiction."
+    {
+      "id": "availability",
+      "title": "Availability",
+      "paragraphs": [
+        "Yanig can stop working at any time. For example, a data source can be down.",
+        "Yanig can change or stop without notice."
+      ]
     },
-    "contact": {
-      "title": "Contact Information",
-      "content": "For questions about these Terms of Service, please visit our About page or contact us through our GitHub repository."
+    {
+      "id": "changes",
+      "title": "Changes to these terms",
+      "paragraphs": [
+        "These terms can change. The date at the top of this page shows the last change.",
+        "If you use Yanig after a change, you accept the new terms."
+      ]
+    },
+    {
+      "id": "contact",
+      "title": "Contact",
+      "paragraphs": [
+        "Rafael Race made Yanig. For questions, open an issue on the Yanig page on GitHub."
+      ],
+      "link": {
+        "label": "Yanig on GitHub",
+        "href": "https://github.com/rhaprace/quakeSafe/issues"
+      }
     }
-  }
+  ]
 }
-

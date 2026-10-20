@@ -18,12 +18,21 @@ export interface CountryConfig {
   language: string;
   emergencyNumbers: EmergencyContact[];
   agencies: GovernmentAgency[];
+  /** Where Yanig gets its earthquake data. This is the same for every country. */
   dataSource: {
     name: string;
     url: string;
-    apiEndpoint?: string;
   };
 }
+
+/**
+ * Yanig gets earthquake data from USGS, GeoNet (New Zealand) and BMKG (Indonesia) for every country.
+ * The agencies below are official contacts. They are not data sources unless the type says so.
+ */
+const YANIG_DATA_SOURCE: CountryConfig['dataSource'] = {
+  name: 'USGS, GeoNet and BMKG',
+  url: 'https://earthquake.usgs.gov/',
+};
 
 export const countries: Record<string, CountryConfig> = {
   US: {
@@ -59,9 +68,9 @@ export const countries: Record<string, CountryConfig> = {
     agencies: [
       {
         name: 'U.S. Geological Survey (USGS)',
-        description: 'Real-time earthquake data and scientific monitoring',
+        description: 'Earthquake monitoring and science. Yanig uses USGS earthquake data.',
         url: 'https://www.usgs.gov/programs/earthquake-hazards',
-        type: 'PRIMARY DATA SOURCE',
+        type: 'DATA SOURCE',
       },
       {
         name: 'Federal Emergency Management Agency (FEMA)',
@@ -76,11 +85,7 @@ export const countries: Record<string, CountryConfig> = {
         type: 'EDUCATIONAL CONTENT',
       },
     ],
-    dataSource: {
-      name: 'USGS Earthquake API',
-      url: 'https://earthquake.usgs.gov/earthquakes/feed/',
-      apiEndpoint: 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson',
-    },
+    dataSource: YANIG_DATA_SOURCE,
   },
   JP: {
     code: 'JP',
@@ -111,7 +116,7 @@ export const countries: Record<string, CountryConfig> = {
         name: '気象庁 (Japan Meteorological Agency)',
         description: '地震情報と津波警報の発表',
         url: 'https://www.jma.go.jp/jma/indexe.html',
-        type: '主要データソース',
+        type: '政府機関',
       },
       {
         name: '防災科学技術研究所 (NIED)',
@@ -126,10 +131,7 @@ export const countries: Record<string, CountryConfig> = {
         type: '政府機関',
       },
     ],
-    dataSource: {
-      name: 'Japan Meteorological Agency',
-      url: 'https://www.jma.go.jp/jma/indexe.html',
-    },
+    dataSource: YANIG_DATA_SOURCE,
   },
   MX: {
     code: 'MX',
@@ -158,9 +160,9 @@ export const countries: Record<string, CountryConfig> = {
     agencies: [
       {
         name: 'Servicio Sismológico Nacional (SSN)',
-        description: 'Monitoreo sísmico y datos en tiempo real',
+        description: 'Monitoreo sísmico de México',
         url: 'http://www.ssn.unam.mx/',
-        type: 'FUENTE DE DATOS PRIMARIA',
+        type: 'MONITOREO SÍSMICO',
       },
       {
         name: 'CENAPRED',
@@ -175,10 +177,7 @@ export const countries: Record<string, CountryConfig> = {
         type: 'GOBIERNO',
       },
     ],
-    dataSource: {
-      name: 'Servicio Sismológico Nacional',
-      url: 'http://www.ssn.unam.mx/',
-    },
+    dataSource: YANIG_DATA_SOURCE,
   },
   CL: {
     code: 'CL',
@@ -209,12 +208,12 @@ export const countries: Record<string, CountryConfig> = {
         name: 'Centro Sismológico Nacional',
         description: 'Monitoreo sísmico de Chile',
         url: 'https://www.sismologia.cl/',
-        type: 'FUENTE DE DATOS PRIMARIA',
+        type: 'MONITOREO SÍSMICO',
       },
       {
-        name: 'ONEMI',
-        description: 'Oficina Nacional de Emergencia',
-        url: 'https://www.onemi.gov.cl/',
+        name: 'SENAPRED',
+        description: 'Servicio Nacional de Prevención y Respuesta ante Desastres (antes ONEMI)',
+        url: 'https://senapred.cl/',
         type: 'GOBIERNO',
       },
       {
@@ -224,10 +223,7 @@ export const countries: Record<string, CountryConfig> = {
         type: 'ALERTA DE TSUNAMI',
       },
     ],
-    dataSource: {
-      name: 'Centro Sismológico Nacional',
-      url: 'https://www.sismologia.cl/',
-    },
+    dataSource: YANIG_DATA_SOURCE,
   },
   ID: {
     code: 'ID',
@@ -256,9 +252,9 @@ export const countries: Record<string, CountryConfig> = {
     agencies: [
       {
         name: 'BMKG (Meteorology Agency)',
-        description: 'Earthquake and tsunami monitoring',
+        description: 'Earthquake and tsunami monitoring. Yanig uses BMKG earthquake data.',
         url: 'https://www.bmkg.go.id/',
-        type: 'PRIMARY DATA SOURCE',
+        type: 'DATA SOURCE',
       },
       {
         name: 'BNPB',
@@ -273,10 +269,7 @@ export const countries: Record<string, CountryConfig> = {
         type: 'RELIEF',
       },
     ],
-    dataSource: {
-      name: 'BMKG Indonesia',
-      url: 'https://www.bmkg.go.id/',
-    },
+    dataSource: YANIG_DATA_SOURCE,
   },
   PH: {
     code: 'PH',
@@ -311,9 +304,10 @@ export const countries: Record<string, CountryConfig> = {
     agencies: [
       {
         name: 'PHIVOLCS',
-        description: 'Philippine Institute of Volcanology and Seismology - Earthquake monitoring and tsunami warnings',
-        url: 'https://www.phivolcs.dost.gov.ph/',
-        type: 'PRIMARY DATA SOURCE',
+        description:
+          'Philippine Institute of Volcanology and Seismology. The official Philippine agency for earthquakes, volcanoes and tsunami warnings.',
+        url: 'https://www.phivolcs.dost.gov.ph',
+        type: 'OFFICIAL AGENCY',
       },
       {
         name: 'NDRRMC',
@@ -334,10 +328,7 @@ export const countries: Record<string, CountryConfig> = {
         type: 'RELIEF',
       },
     ],
-    dataSource: {
-      name: 'PHIVOLCS',
-      url: 'https://www.phivolcs.dost.gov.ph/',
-    },
+    dataSource: YANIG_DATA_SOURCE,
   },
 };
 

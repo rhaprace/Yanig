@@ -1,91 +1,34 @@
-### Installation
+# Yanig
 
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd quakesafe
-   ```
+Yanig ("tremor" in Tagalog) is a free earthquake safety website for the Philippines. It is in English, Tagalog, Spanish and Japanese, and you can install it like an app.
 
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+Live site: https://yanig.vercel.app
 
-3. Start the development server:
-   ```bash
-   npm run dev
-   ```
+## What it does
 
-4. Open your browser and visit `http://localhost:5173`
+- **Tracker**: recent earthquakes on a map and in a list, from USGS, GeoNet (New Zealand) and BMKG (Indonesia). Yanig checks for new data every 10 minutes. Filter by region (near the Philippines or all) and magnitude, and sort by time or strength.
+- **Guides**: what to do before, during and after an earthquake, with a go-bag checklist that stays on your device.
+- **Emergency numbers**: national hotlines for the selected country, and hotlines, hospitals and evacuation centres for 31 major Philippine cities (sample data).
+- **News**: earthquake news through NewsAPI, with sample safety notes when the news service is not available.
+- **Offline**: pages you opened before work without internet.
 
-### Available Scripts
+Yanig does not use PHIVOLCS data, does not send alerts, and cannot predict earthquakes. For official reports in the Philippines, go to https://www.phivolcs.dost.gov.ph.
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build locally
-- `npm run lint` - Run ESLint
+## Development
 
-## Data Sources
-
-- **USGS Earthquake Hazards Program**: Real-time earthquake data
-- **FEMA**: Emergency preparedness guidelines
-- **Ready.gov**: National preparedness resources
-
-## Features
-
-### Real-time Earthquake Monitoring
-- Fetches live data from USGS every 10 minutes
-- Displays earthquakes with magnitude 2.5+
-- Shows location, magnitude, depth, and timestamp
-- Automatic data refresh with error handling
-
-### Interactive Map
-- Built with Leaflet and React Leaflet
-- Color-coded markers by earthquake magnitude
-- Clickable markers with detailed information
-- Responsive map controls
-
-### Comprehensive Guides
-- Before earthquake preparedness
-- During earthquake safety (Drop, Cover, Hold On)
-- After earthquake response
-- Emergency kit essentials
-- Building safety tips
-- Community preparedness
-
-### Emergency Resources
-- Emergency hotline numbers
-- Government agency links
-- Local resource information
-- Volunteer organization contacts
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## Disclaimer
-
-This application provides earthquake information for educational and preparedness purposes. In case of emergency, always contact local emergency services first. The data is sourced from USGS and may have delays or inaccuracies.
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments
-
-- U.S. Geological Survey for earthquake data
-- FEMA for preparedness guidelines
-- OpenStreetMap contributors for map tiles
-- The React and open source community
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev          # http://localhost:5173
+npm run lint
+npm test             # Vitest unit and component tests
+npm run test:e2e     # Playwright browser tests (builds the app, uses installed Chrome locally)
+npm run build
 ```
+
+The news page needs `NEWS_API_KEY` on the server (Vercel). Without it, the page shows the sample notes.
+
+## Stack
+
+React 19, TypeScript, Vite, Tailwind CSS, TanStack Query, i18next, Leaflet with OpenStreetMap, and vite-plugin-pwa. Deployed on Vercel.
+
+Made by Rafael Race. MIT License.

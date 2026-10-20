@@ -1,62 +1,60 @@
 import type { ExternalLink, ResourceCategory } from '@/types/common';
 import type { TFunction } from 'i18next';
 
-export const getLocalResources = (t: TFunction): ResourceCategory[] => [
-  {
-    category: t('sections.local.shelters.category'),
-    description: t('sections.local.shelters.description'),
-    items: [
-      t('sections.local.shelters.items.community'),
-      t('sections.local.shelters.items.schools'),
-      t('sections.local.shelters.items.religious'),
-      t('sections.local.shelters.items.redcross'),
-    ],
-  },
-  {
-    category: t('sections.local.healthcare.category'),
-    description: t('sections.local.healthcare.description'),
-    items: [
-      t('sections.local.healthcare.items.hospitals'),
-      t('sections.local.healthcare.items.urgent'),
-      t('sections.local.healthcare.items.fire'),
-      t('sections.local.healthcare.items.community'),
-    ],
-  },
-  {
-    category: t('sections.local.supply.category'),
-    description: t('sections.local.supply.description'),
-    items: [
-      t('sections.local.supply.items.eoc'),
-      t('sections.local.supply.items.fema'),
-      t('sections.local.supply.items.foodbanks'),
-      t('sections.local.supply.items.distribution'),
-    ],
-  },
-];
+/**
+ * Turns a printed phone number such as "(02) 8911-1406" into a tel: link ("tel:0289111406").
+ * Keeps a leading "+". Returns null when the text has fewer than 3 digits.
+ */
+export const toTelHref = (number: string): string | null => {
+  const trimmed = number.trim();
+  const digits = trimmed.replace(/\D/g, '');
+  if (digits.length < 3) return null;
+  return `tel:${trimmed.startsWith('+') ? '+' : ''}${digits}`;
+};
 
-export const getVolunteerOrganizations = (t: TFunction): ExternalLink[] => [
-  {
-    name: t('sections.volunteer.cert.name'),
-    description: t('sections.volunteer.cert.description'),
-    url: 'https://www.fema.gov/emergency-managers/individuals-communities/cert',
-    type: t('sections.volunteer.cert.type'),
+/** Where to go for help. Only the US and the Philippines have a list. Other countries get none. */
+const LOCAL_RESOURCES: Record<string, Record<string, string[]>> = {
+  US: {
+    shelters: ['community', 'schools', 'religious', 'redcross'],
+    healthcare: ['hospitals', 'urgent', 'fire', 'community'],
+    supply: ['eoc', 'fema', 'foodbanks', 'distribution'],
   },
-  {
-    name: t('sections.volunteer.redcross.name'),
-    description: t('sections.volunteer.redcross.description'),
-    url: 'https://www.redcross.org/volunteer',
-    type: t('sections.volunteer.redcross.type'),
+  PH: {
+    shelters: ['evacuation', 'schools', 'courts'],
+    healthcare: ['hospitals', 'healthStation', 'rhu'],
+    supply: ['drrmo', 'dswd', 'barangayHall'],
   },
-  {
-    name: t('sections.volunteer.salvation.name'),
-    description: t('sections.volunteer.salvation.description'),
-    url: 'https://www.salvationarmyusa.org/usn/disaster-relief/',
-    type: t('sections.volunteer.salvation.type'),
-  },
-  {
-    name: t('sections.volunteer.radio.name'),
-    description: t('sections.volunteer.radio.description'),
-    url: 'http://www.arrl.org/ares',
-    type: t('sections.volunteer.radio.type'),
-  },
-];
+};
+
+export const getLocalResources = (t: TFunction, countryCode: string): ResourceCategory[] => {
+  const groups = LOCAL_RESOURCES[countryCode];
+  if (!groups) return [];
+  const base = `sections.local.${countryCode}`;
+  return Object.entries(groups).map(([group, items]) => ({
+    category: t(`${base}.${group}.category`),
+    description: t(`${base}.${group}.description`),
+    items: items.map((item) => t(`${base}.${group}.items.${item}`)),
+  }));
+};
+
+/** Volunteer programmes. Each one is a real organisation in that country. */
+const VOLUNTEER_ORGANIZATIONS: Record<string, { key: string; url: string }[]> = {
+  US: [
+    { key: 'cert', url: 'https://www.fema.gov/emergency-managers/individuals-communities/cert' },
+    { key: 'redcross', url: 'https://www.redcross.org/volunteer' },
+    { key: 'salvation', url: 'https://www.salvationarmyusa.org/usn/disaster-relief/' },
+    { key: 'radio', url: 'https://www.arrl.org/ares' },
+  ],
+  PH: [
+    { key: 'redcross143', url: 'https://redcross.org.ph/volunteer/' },
+    { key: 'ocdVolunteers', url: 'https://ocd.gov.ph/' },
+  ],
+};
+
+export const getVolunteerOrganizations = (t: TFunction, countryCode: string): ExternalLink[] =>
+  (VOLUNTEER_ORGANIZATIONS[countryCode] ?? []).map(({ key, url }) => ({
+    name: t(`sections.volunteer.${countryCode}.${key}.name`),
+    description: t(`sections.volunteer.${countryCode}.${key}.description`),
+    type: t(`sections.volunteer.${countryCode}.${key}.type`),
+    url,
+  }));

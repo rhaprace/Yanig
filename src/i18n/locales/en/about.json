@@ -1,56 +1,144 @@
 {
-  "title": "About QuakeSafe",
-  "subtitle": "Empowering communities with real-time earthquake information and comprehensive preparedness resources to build resilience against seismic hazards.",
-  "mission": {
-    "title": "Our Mission",
-    "text": "QuakeSafe aims to reduce the impact of earthquakes by providing accessible, real-time seismic information and evidence-based preparedness resources. We believe that informed communities are safer communities."
+  "kicker": "About Yanig",
+  "title": "A public notice for earthquake safety",
+  "intro": "Yanig means \"tremor\" in Tagalog. Yanig is a free website about earthquake safety in the Philippines.",
+  "stamp": "Free",
+  "stampSub": "No account",
+  "does": {
+    "title": "What Yanig does",
+    "items": [
+      "It shows recent earthquakes near the Philippines on a map and in a list.",
+      "It gives safety steps for before, during and after an earthquake.",
+      "It lists emergency hotlines for cities in the Philippines.",
+      "It shows earthquake news from news sites.",
+      "It has a checklist for your emergency kit."
+    ]
   },
-  "features": {
-    "title": "What We Provide",
-    "subtitle": "Core features and capabilities",
-    "realtime": {
-      "title": "Real-time Data",
-      "description": "Live earthquake information from the U.S. Geological Survey (USGS)"
-    },
-    "safety": {
-      "title": "Safety First",
-      "description": "Comprehensive preparedness guides and safety information"
-    },
-    "community": {
-      "title": "Community Focus",
-      "description": "Resources for individuals, families, and communities"
-    },
-    "reliable": {
-      "title": "Reliable Sources",
-      "description": "Information from trusted government agencies and experts"
+  "doesNot": {
+    "title": "What Yanig does not do",
+    "items": [
+      "Yanig does not send alerts, notifications or warnings.",
+      "Yanig cannot predict earthquakes. No one can.",
+      "Yanig is not an official source of earthquake information."
+    ]
+  },
+  "data": {
+    "kicker": "Data",
+    "title": "Where the data comes from",
+    "intro": "Your browser gets earthquake data directly from three agencies. Yanig checks for new data every 10 minutes.",
+    "estimate": "The first magnitude and place of an earthquake are estimates. The agencies can change them later.",
+    "visit": "Go to {{name}}",
+    "sources": {
+      "usgs": {
+        "name": "USGS",
+        "full": "United States Geological Survey",
+        "text": "Earthquakes around the world."
+      },
+      "geonet": {
+        "name": "GeoNet",
+        "full": "New Zealand",
+        "text": "Earthquakes in and near New Zealand."
+      },
+      "bmkg": {
+        "name": "BMKG",
+        "full": "Indonesia",
+        "text": "Recent large earthquakes in and near Indonesia."
+      }
     }
   },
-  "dataSources": {
-    "title": "Data Sources & Acknowledgments",
-    "subtitle": "Information sources and partnerships"
+  "official": {
+    "kicker": "Official source",
+    "title": "For official reports, go to PHIVOLCS",
+    "text1": "PHIVOLCS is the official Philippine agency for earthquakes and volcanoes.",
+    "text2": "Yanig does not use PHIVOLCS data. For official earthquake reports in the Philippines, use PHIVOLCS.",
+    "link": "Go to PHIVOLCS"
   },
-  "technical": {
-    "title": "Technical Information",
-    "subtitle": "Data specifications and accuracy details",
-    "updateFrequency": "Update Frequency",
-    "updateFrequencyValue": "Every 10 minutes",
-    "dataSource": "Data Source",
-    "dataSourceValue": "USGS Earthquake API",
-    "coverage": "Coverage",
-    "coverageValue": "Global seismic activity",
-    "accuracy": "Accuracy",
-    "accuracyValue": "Preliminary data subject to review"
+  "offline": {
+    "title": "Without internet",
+    "items": [
+      "Pages you opened before work without internet.",
+      "The earthquake list and news can be old until you are online again.",
+      "You can add Yanig to the home screen of your phone. Then it opens like an app."
+    ]
   },
-  "disclaimer": {
-    "title": "Important Disclaimer",
-    "text1": "QuakeSafe is an informational resource and should not be used as the sole source for emergency decision-making. Always follow official guidance from local authorities and emergency management agencies.",
-    "text2": "Earthquake data is provided by third-party sources and may contain delays or inaccuracies. For the most current and authoritative information, consult official government sources.",
-    "text3": "This application is not affiliated with or endorsed by any government agency. All data is publicly available and used for educational and informational purposes."
+  "languages": {
+    "title": "Languages",
+    "text": "Yanig is in English, Tagalog, Spanish and Japanese. The privacy notice and the terms are in English and Tagalog only."
   },
-  "contact": {
-    "title": "Stay Connected",
-    "text": "QuakeSafe is committed to improving earthquake preparedness for everyone. Your feedback helps us serve the community better.",
-    "footer": "For technical issues or feedback, please contact your local emergency management office or visit the USGS website for the most up-to-date information."
+  "maker": {
+    "title": "Who made Yanig",
+    "items": [
+      "Rafael Race made Yanig.",
+      "Yanig is free. You do not need an account.",
+      "The source code is on GitHub under the MIT License."
+    ],
+    "link": "See the code on GitHub"
+  },
+  "opensNewTab": "(opens in a new tab)",
+  "news": {
+    "kicker": "Notice board",
+    "title": "Earthquake news",
+    "intro": "News about earthquakes from news sites around the world, in English. Yanig gets the list from NewsAPI.",
+    "sourceNote": "Other news sites write these articles. Yanig does not write or check them.",
+    "refresh": "Refresh",
+    "refreshing": "Refreshing",
+    "loading": "Loading news",
+    "empty": "There are no articles in this category.",
+    "sampleStamp": "Sample articles",
+    "sampleNote": "Yanig cannot get news now. These sample articles are safety notes written for Yanig. They are not news reports.",
+    "categoryLabel": "News categories",
+    "categories": {
+      "all": "All",
+      "safety": "Safety",
+      "research": "Science",
+      "preparedness": "Preparedness",
+      "technology": "Technology",
+      "community": "Community"
+    },
+    "read": "Read",
+    "readFull": "Read the full article on {{source}}",
+    "readFullNoSource": "Read the full article",
+    "truncated": "This is only the start of the article.",
+    "back": "Back to news",
+    "minRead": "{{count}} min read",
+    "by": "By {{author}}"
+  },
+  "offlinePage": {
+    "kicker": "No connection",
+    "title": "You are offline",
+    "intro": "Your device has no internet connection now.",
+    "worksTitle": "What still works",
+    "works": [
+      "Pages you opened before",
+      "Safety steps and hotlines on those pages",
+      "Your settings and your kit checklist"
+    ],
+    "needsTitle": "What needs internet",
+    "needs": [
+      "New earthquake data",
+      "News articles",
+      "Map areas you did not open before"
+    ],
+    "tryAgain": "Try again",
+    "guides": "Safety guides",
+    "hotlines": "Emergency hotlines"
+  },
+  "prompts": {
+    "install": {
+      "title": "Add Yanig to your home screen",
+      "text": "Then Yanig opens like an app. Pages you opened before work without internet.",
+      "install": "Install",
+      "dismiss": "Not now"
+    },
+    "update": {
+      "title": "New version of Yanig",
+      "text": "Reload the page to use the new version.",
+      "reload": "Reload",
+      "later": "Later"
+    },
+    "status": {
+      "offline": "You are offline. Pages you opened before still work.",
+      "online": "You are back online."
+    }
   }
 }
-

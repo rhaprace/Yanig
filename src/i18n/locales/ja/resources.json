@@ -1,77 +1,158 @@
 {
-  "title": "緊急リソース",
-  "subtitle": "地震への備えと緊急対応のための必須の連絡先、組織、リソース。この情報を簡単にアクセスできるようにしてください。",
+  "kicker": "緊急情報",
+  "title": "緊急連絡先",
+  "subtitle": "番号を押すと電話をかけられます。今のうちに電話に登録してください。",
   "sections": {
     "hotlines": {
-      "title": "緊急ホットライン",
-      "subtitle": "即座の支援のための重要な連絡先番号"
+      "title": "緊急ダイヤル",
+      "subtitle": "国: {{country}}",
+      "call": "{{name}}に電話: {{number}}"
+    },
+    "cityFinder": {
+      "title": "あなたの市の番号",
+      "text": "フィリピンの主要{{count}}都市の緊急ダイヤル、病院、避難所を確認できます。",
+      "link": "市を探す"
     },
     "agencies": {
       "title": "政府機関",
-      "subtitle": "災害対応と監視のための連邦リソース"
+      "subtitle": "地震と災害の公式機関です。",
+      "opens": "（新しいタブで開きます）"
     },
     "local": {
-      "title": "地域コミュニティリソース",
-      "subtitle": "特定の場所については、地元の緊急管理事務所にお問い合わせください",
-      "shelters": {
-        "category": "緊急避難所",
-        "description": "避難所の場所については、地元の緊急管理事務所にお問い合わせください",
-        "items": {
-          "community": "コミュニティセンター",
-          "schools": "学校（避難所として指定）",
-          "religious": "宗教団体",
-          "redcross": "赤十字避難所"
+      "title": "助けを求める場所",
+      "subtitle": "近くの正確な場所は自治体に確認してください。",
+      "US": {
+        "shelters": {
+          "category": "避難所",
+          "description": "避難所の場所は地域の危機管理事務所に確認してください。",
+          "items": {
+            "community": "コミュニティセンター",
+            "schools": "避難所になる学校",
+            "religious": "宗教施設",
+            "redcross": "赤十字の避難所"
+          }
+        },
+        "healthcare": {
+          "category": "医療",
+          "description": "近くの医療機関の場所を知っておきます。",
+          "items": {
+            "hospitals": "病院",
+            "urgent": "救急診療所",
+            "fire": "救急隊のいる消防署",
+            "community": "地域の保健センター"
+          }
+        },
+        "supply": {
+          "category": "物資",
+          "description": "災害の後に物資を配る場所です。",
+          "items": {
+            "eoc": "緊急対策本部",
+            "fema": "FEMA災害復旧センター",
+            "foodbanks": "地域のフードバンク",
+            "distribution": "地域の配布所"
+          }
         }
       },
-      "healthcare": {
-        "category": "医療施設",
-        "description": "近くの医療施設の場所を知る",
-        "items": {
-          "hospitals": "病院",
-          "urgent": "緊急医療センター",
-          "fire": "消防署（EMTサービス）",
-          "community": "コミュニティヘルスセンター"
-        }
-      },
-      "supply": {
-        "category": "物資配布",
-        "description": "災害時の緊急物資の場所",
-        "items": {
-          "eoc": "緊急オペレーションセンター",
-          "fema": "FEMA災害救援センター",
-          "foodbanks": "地元のフードバンク",
-          "distribution": "コミュニティ配布ポイント"
+      "PH": {
+        "shelters": {
+          "category": "避難",
+          "description": "近くの避難場所はバランガイ（地区）が知っています。",
+          "items": {
+            "evacuation": "バランガイの避難場所",
+            "schools": "公立学校",
+            "courts": "屋根付きコートと体育館"
+          }
+        },
+        "healthcare": {
+          "category": "医療",
+          "description": "近くの医療機関の場所を知っておきます。",
+          "items": {
+            "hospitals": "病院",
+            "healthStation": "バランガイの保健所",
+            "rhu": "地方保健所と市の保健局"
+          }
+        },
+        "supply": {
+          "category": "支援と物資",
+          "description": "災害の後に家族を助ける事務所です。",
+          "items": {
+            "drrmo": "市町村の災害対策事務所（DRRMO）",
+            "dswd": "DSWDの救援物資の配布",
+            "barangayHall": "バランガイの役場"
+          }
         }
       }
     },
     "volunteer": {
-      "title": "ボランティア組織",
-      "subtitle": "コミュニティサポートと緊急対応トレーニングプログラム",
-      "cert": {
-        "name": "コミュニティ緊急対応チーム（CERT）",
-        "description": "緊急時にコミュニティを支援するためのトレーニング",
-        "type": "トレーニング"
+      "title": "ボランティア",
+      "subtitle": "訓練を受けて地域を助けます。",
+      "US": {
+        "cert": {
+          "name": "Community Emergency Response Team (CERT)",
+          "description": "緊急時に地域を助けるための訓練を受けます。",
+          "type": "訓練"
+        },
+        "redcross": {
+          "name": "アメリカ赤十字のボランティア",
+          "description": "災害救援と緊急支援。",
+          "type": "救援"
+        },
+        "salvation": {
+          "name": "Salvation Army Emergency Disaster Services",
+          "description": "災害対応と地域支援。",
+          "type": "救援"
+        },
+        "radio": {
+          "name": "Amateur Radio Emergency Service (ARES)",
+          "description": "緊急時の無線通信の支援。",
+          "type": "通信"
+        }
       },
-      "redcross": {
-        "name": "アメリカ赤十字ボランティア",
-        "description": "災害救援と緊急支援のボランティア",
-        "type": "救援"
-      },
-      "salvation": {
-        "name": "救世軍緊急災害サービス",
-        "description": "災害対応とコミュニティサポートサービス",
-        "type": "救援"
-      },
-      "radio": {
-        "name": "地元のアマチュア無線緊急サービス",
-        "description": "緊急時の通信サポート",
-        "type": "通信"
+      "PH": {
+        "redcross143": {
+          "name": "フィリピン赤十字のボランティア",
+          "description": "Red Cross 143 または地域の支部に参加します。ボランティアは訓練を受け、災害時に助けます。",
+          "type": "救援"
+        },
+        "ocdVolunteers": {
+          "name": "Office of Civil Defense (OCD)",
+          "description": "OCDは地域の災害ボランティア団体を認定しています。OCDの地方事務所に問い合わせてください。",
+          "type": "政府"
+        }
       }
     }
   },
   "disclaimer": {
-    "title": "重要な情報",
-    "text": "このリストは一般的なリソースと緊急連絡先を提供します。場所固有の情報については、地元の緊急管理事務所、市役所、または郡政府にお問い合わせください。地元の緊急番号を簡単にアクセスできるようにし、電話にプログラムすることを検討してください。"
+    "title": "番号を確認してください",
+    "text": "番号は変わることがあります。緊急時の前に自治体で確認し、電話に登録してください。"
+  },
+  "emergencyFinder": {
+    "kicker": "フィリピン · サンプルデータ",
+    "title": "都市別の緊急連絡先",
+    "intro": "リストか地図から市を選びます。その市の緊急ダイヤル、病院、避難所が表示されます。",
+    "note": "このリストには主要な{{count}}都市だけがあります。サンプルデータです。番号は変わることがあります。",
+    "call911": "緊急時は911に電話してください",
+    "searchLabel": "市または州を検索",
+    "searchPlaceholder": "例: Cebu",
+    "clear": "検索を消す",
+    "resultCount_one": "{{count}} 都市",
+    "resultCount_other": "{{count}} 都市",
+    "noResults": "「{{query}}」に合う市はリストにありません。緊急時は911に電話してください。",
+    "cityList": "リストの都市",
+    "back": "すべての都市",
+    "localGovernment": "地方自治体",
+    "contacts": "緊急ダイヤル",
+    "hospitals": "病院",
+    "evacuationCenters": "避難所",
+    "evacuationNote": "名前だけです。正確な場所はバランガイに確認してください。",
+    "mapLabel": "リストの都市の地図",
+    "types": {
+      "EMERGENCY": "緊急",
+      "HOSPITAL": "病院",
+      "FIRE": "消防",
+      "POLICE": "警察",
+      "DISASTER": "災害対策事務所",
+      "EVACUATION": "避難"
+    }
   }
 }
-

@@ -1,135 +1,185 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
-import { Icon, LatLngBounds } from 'leaflet';
+import { DivIcon, LatLngBounds, type Marker as LeafletMarker } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import type { EarthquakeFeature } from '@/hooks/useEarthquakeData';
-import { formatDate } from '@/utils/formatDate';
-
-
-import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
-import markerIcon from 'leaflet/dist/images/marker-icon.png';
-import markerShadow from 'leaflet/dist/images/marker-shadow.png';
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-delete (Icon.Default.prototype as any)._getIconUrl;
-Icon.Default.mergeOptions({
-  iconUrl: markerIcon,
-  iconRetinaUrl: markerIcon2x,
-  shadowUrl: markerShadow,
-});
+import '@/components/tracker/tracker-map.css';
+import { useTranslation } from 'react-i18next';
+import type { EarthquakeFeature } from '@/types/common';
+import {
+  PH_BOUNDS,
+  SOURCE_LABELS,
+  formatDateTime,
+  formatMagnitude,
+  getSource,
+  magnitudeStep,
+  type MagnitudeStep,
+  type RegionFilter,
+} from '@/utils/tracker';
 
 interface EarthquakeMapProps {
   earthquakes: EarthquakeFeature[];
-  selectedEarthquake?: EarthquakeFeature | null;
-  height?: string;
+  selectedId?: string | null;
+  onSelect?: (quake: EarthquakeFeature) => void;
+  /** The map fits its view again when this changes (for example when a filter changes). */
+  region?: RegionFilter;
+  fitKey?: string;
+  className?: string;
 }
-const MapBoundsHandler = ({ earthquakes, selectedEarthquake }: { earthquakes: EarthquakeFeature[], selectedEarthquake?: EarthquakeFeature | null }) => {
+
+const iconCache = new Map<string, DivIcon>();
+const markerIcon = (step: MagnitudeStep, selected: boolean): DivIcon => {
+  const key = `${step}-${selected}`;
+  let icon = iconCache.get(key);
+  if (!icon) {
+    const size = [12, 16, 22, 30][step] + (selected ? 12 : 0);
+    icon = new DivIcon({
+      className: `yq-marker${selected ? ' is-selected' : ''}`,
+      html: `<span class="yq-dot yq-step-${step}"></span>`,
+      iconSize: [size, size],
+      iconAnchor: [size / 2, size / 2],
+      popupAnchor: [0, -size / 2],
+    });
+    iconCache.set(key, icon);
+  }
+  return icon;
+};
+
+const PH_LATLNG_BOUNDS = new LatLngBounds([PH_BOUNDS.minLat, PH_BOUNDS.minLon], [PH_BOUNDS.maxLat, PH_BOUNDS.maxLon]);
+
+/** Fits the view, follows the selection, and keeps the map sized to its frame. */
+const MapController = ({
+  earthquakes,
+  selectedId,
+  region,
+  fitKey,
+  markers,
+}: {
+  earthquakes: EarthquakeFeature[];
+  selectedId?: string | null;
+  region?: RegionFilter;
+  fitKey?: string;
+  markers: React.MutableRefObject<Map<string, LeafletMarker>>;
+}) => {
   const map = useMap();
+  const lastFit = useRef<string | null>(null);
+  const handledSelection = useRef<string | null>(null);
 
   useEffect(() => {
-    if (selectedEarthquake) {
-      const { coordinates } = selectedEarthquake.geometry;
-      const [lng, lat] = coordinates;
-      map.setView([lat, lng], 8, { animate: true });
-    } else if (earthquakes.length > 0) {
-      const bounds = new LatLngBounds([]);
-      earthquakes.forEach(earthquake => {
-        const [lng, lat] = earthquake.geometry.coordinates;
-        bounds.extend([lat, lng]);
-      });
-      
-      if (bounds.isValid()) {
-        map.fitBounds(bounds, { padding: [20, 20] });
-      }
+    const observer = new ResizeObserver(() => map.invalidateSize());
+    observer.observe(map.getContainer());
+    return () => observer.disconnect();
+  }, [map]);
+
+  // Fit the view when the filters change, or when the first data arrives. Not on every refresh.
+  useEffect(() => {
+    const key = `${fitKey}|${earthquakes.length > 0}`;
+    if (lastFit.current === key) return;
+    lastFit.current = key;
+    if (region === 'ph') {
+      map.fitBounds(PH_LATLNG_BOUNDS, { padding: [8, 8] });
+      return;
     }
-  }, [earthquakes, selectedEarthquake, map]);
+    const bounds = new LatLngBounds([]);
+    earthquakes.forEach((q) => bounds.extend([q.geometry.coordinates[1], q.geometry.coordinates[0]]));
+    if (bounds.isValid()) map.fitBounds(bounds, { padding: [24, 24], maxZoom: 6 });
+    else map.setView([12, 122], 4);
+  }, [map, fitKey, region, earthquakes]);
+
+  // Zoom to the selected earthquake and open its popup. Only once per selection, not on every refresh.
+  useEffect(() => {
+    if (!selectedId) {
+      handledSelection.current = null;
+      return;
+    }
+    if (handledSelection.current === selectedId) return;
+    const quake = earthquakes.find((q) => q.id === selectedId);
+    const marker = markers.current.get(selectedId);
+    if (!quake || !marker) return;
+    handledSelection.current = selectedId;
+    if (marker.isPopupOpen()) return; // The person clicked the marker itself. Do not move the map.
+    const [lng, lat] = quake.geometry.coordinates;
+    map.setView([lat, lng], Math.max(map.getZoom(), 7), { animate: true });
+    marker.openPopup();
+  }, [map, selectedId, earthquakes, markers]);
 
   return null;
 };
 
-const getMarkerIcon = (magnitude: number) => {
-  const size = Math.max(8, Math.min(magnitude * 4, 24));
-  let color = '#22c55e';
-  
-  if (magnitude >= 6) {
-    color = '#dc2626';
-  } else if (magnitude >= 5) {
-    color = '#ea580c';
-  } else if (magnitude >= 4) {
-    color = '#eab308';
-  }
+const EarthquakeMap = ({
+  earthquakes,
+  selectedId = null,
+  onSelect,
+  region,
+  fitKey,
+  className = 'h-[400px]',
+}: EarthquakeMapProps) => {
+  const { t, i18n } = useTranslation('tracker');
+  const markers = useRef(new Map<string, LeafletMarker>());
 
-  return new Icon({
-    iconUrl: `data:image/svg+xml;base64,${btoa(`
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="${size}" height="${size}">
-        <circle cx="12" cy="12" r="10" fill="${color}" stroke="#fff" stroke-width="2"/>
-        <text x="12" y="16" text-anchor="middle" fill="white" font-size="10" font-weight="bold">
-          ${magnitude.toFixed(1)}
-        </text>
-      </svg>
-    `)}`,
-    iconSize: [size, size],
-    iconAnchor: [size / 2, size / 2],
-    popupAnchor: [0, -size / 2],
-  });
-};
-
-const EarthquakeMap = ({ earthquakes, selectedEarthquake, height = '400px' }: EarthquakeMapProps) => {
-  const mapRef = useRef<L.Map>(null);
+  // Draw small earthquakes first, so big ones sit on top.
+  const ordered = useMemo(() => [...earthquakes].sort((a, b) => a.properties.mag - b.properties.mag), [earthquakes]);
 
   return (
-    <div className="w-full rounded-lg overflow-hidden border" style={{ height }}>
+    <div className={`yq-map relative w-full border-4 border-primary bg-card ${className}`}>
       <MapContainer
-        ref={mapRef}
-        center={[20, 0]}
-        zoom={2}
+        center={[12, 122]}
+        zoom={5}
+        worldCopyJump
         style={{ height: '100%', width: '100%' }}
         className="z-0"
+        aria-label={t('map.label')}
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
-        
-        <MapBoundsHandler earthquakes={earthquakes} selectedEarthquake={selectedEarthquake} />
-        
-        {earthquakes.map((earthquake) => {
-          const { coordinates } = earthquake.geometry;
-          const [lng, lat] = coordinates;
-          const { properties } = earthquake;
-          
+        <MapController
+          earthquakes={earthquakes}
+          selectedId={selectedId}
+          region={region}
+          fitKey={fitKey}
+          markers={markers}
+        />
+        {ordered.map((quake) => {
+          const [lng, lat, depth] = quake.geometry.coordinates;
+          const { mag, place, time, url } = quake.properties;
+          const selected = quake.id === selectedId;
+          const source = SOURCE_LABELS[getSource(quake)];
           return (
             <Marker
-              key={earthquake.id}
+              key={quake.id}
               position={[lat, lng]}
-              icon={getMarkerIcon(properties.mag)}
+              icon={markerIcon(magnitudeStep(mag), selected)}
+              title={`M${formatMagnitude(mag)} ${place}`}
+              alt={`M${formatMagnitude(mag)} ${place}`}
+              zIndexOffset={selected ? 1000 : magnitudeStep(mag) * 100}
+              ref={(marker) => {
+                if (marker) markers.current.set(quake.id, marker);
+                else markers.current.delete(quake.id);
+              }}
+              eventHandlers={{ click: () => onSelect?.(quake) }}
             >
               <Popup>
-                <div className="p-2 min-w-[200px]">
-                  <h3 className="font-semibold text-sm mb-2">
-                    Magnitude {properties.mag} Earthquake
-                  </h3>
-                  <p className="text-sm text-gray-600 mb-1">
-                    <strong>Location:</strong> {properties.place}
-                  </p>
-                  <p className="text-sm text-gray-600 mb-1">
-                    <strong>Time:</strong> {formatDate(properties.time)}
-                  </p>
-                  <p className="text-sm text-gray-600 mb-1">
-                    <strong>Depth:</strong> {coordinates[2]?.toFixed(1)} km
-                  </p>
-                  {properties.tsunami === 1 && (
-                    <p className="text-sm text-red-600 font-semibold">
-                      ⚠️ Tsunami Warning
-                    </p>
-                  )}
-                  <button
-                    onClick={() => window.open(properties.url, '_blank')}
-                    className="mt-2 text-xs bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600 transition-colors"
-                  >
-                    View Details
-                  </button>
+                <div className="m-0 font-display text-3xl font-black uppercase leading-none text-primary">
+                  M {formatMagnitude(mag)}
                 </div>
+                <div className="m-0 mt-2 font-semibold">{place}</div>
+                <dl className="m-0 mt-2 grid grid-cols-[auto_1fr] gap-x-3 gap-y-0.5 text-[15px]">
+                  <dt className="font-semibold">{t('map.time')}</dt>
+                  <dd className="m-0">{formatDateTime(time, i18n.language)}</dd>
+                  <dt className="font-semibold">{t('map.depth')}</dt>
+                  <dd className="m-0">{Math.round(depth)} km</dd>
+                  <dt className="font-semibold">{t('map.source')}</dt>
+                  <dd className="m-0">{source}</dd>
+                </dl>
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-flex min-h-11 items-center font-semibold text-primary underline underline-offset-4"
+                >
+                  {t('map.details', { source })}
+                </a>
               </Popup>
             </Marker>
           );

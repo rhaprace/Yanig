@@ -1,56 +1,144 @@
 {
-  "title": "Acerca de QuakeSafe",
-  "subtitle": "Empoderando comunidades con información sísmica en tiempo real y recursos completos de preparación para construir resiliencia contra peligros sísmicos.",
-  "mission": {
-    "title": "Nuestra Misión",
-    "text": "QuakeSafe tiene como objetivo reducir el impacto de los terremotos proporcionando información sísmica accesible en tiempo real y recursos de preparación basados en evidencia. Creemos que las comunidades informadas son comunidades más seguras."
+  "kicker": "Acerca de Yanig",
+  "title": "Un aviso público sobre seguridad ante sismos",
+  "intro": "Yanig significa \"temblor\" en tagalo. Yanig es un sitio web gratuito sobre seguridad ante sismos en Filipinas.",
+  "stamp": "Gratis",
+  "stampSub": "Sin cuenta",
+  "does": {
+    "title": "Lo que hace Yanig",
+    "items": [
+      "Muestra los sismos recientes cerca de Filipinas en un mapa y en una lista.",
+      "Da pasos de seguridad para antes, durante y después de un sismo.",
+      "Muestra los teléfonos de emergencia de ciudades de Filipinas.",
+      "Muestra noticias sobre sismos de sitios de noticias.",
+      "Tiene una lista para su kit de emergencia."
+    ]
   },
-  "features": {
-    "title": "Lo Que Proporcionamos",
-    "subtitle": "Características y capacidades principales",
-    "realtime": {
-      "title": "Datos en Tiempo Real",
-      "description": "Información de terremotos en vivo del Servicio Geológico de EE. UU. (USGS)"
-    },
-    "safety": {
-      "title": "Seguridad Primero",
-      "description": "Guías completas de preparación e información de seguridad"
-    },
-    "community": {
-      "title": "Enfoque Comunitario",
-      "description": "Recursos para individuos, familias y comunidades"
-    },
-    "reliable": {
-      "title": "Fuentes Confiables",
-      "description": "Información de agencias gubernamentales y expertos de confianza"
+  "doesNot": {
+    "title": "Lo que Yanig no hace",
+    "items": [
+      "Yanig no envía alertas, notificaciones ni avisos.",
+      "Yanig no puede predecir sismos. Nadie puede.",
+      "Yanig no es una fuente oficial de información sobre sismos."
+    ]
+  },
+  "data": {
+    "kicker": "Datos",
+    "title": "De dónde vienen los datos",
+    "intro": "Su navegador obtiene los datos de sismos directamente de tres agencias. Yanig busca datos nuevos cada 10 minutos.",
+    "estimate": "La primera magnitud y el primer lugar de un sismo son estimaciones. Las agencias pueden cambiarlos después.",
+    "visit": "Ir a {{name}}",
+    "sources": {
+      "usgs": {
+        "name": "USGS",
+        "full": "Servicio Geológico de Estados Unidos",
+        "text": "Sismos en todo el mundo."
+      },
+      "geonet": {
+        "name": "GeoNet",
+        "full": "Nueva Zelanda",
+        "text": "Sismos en Nueva Zelanda y cerca de ella."
+      },
+      "bmkg": {
+        "name": "BMKG",
+        "full": "Indonesia",
+        "text": "Sismos fuertes recientes en Indonesia y cerca de ella."
+      }
     }
   },
-  "dataSources": {
-    "title": "Fuentes de Datos y Reconocimientos",
-    "subtitle": "Fuentes de información y asociaciones"
+  "official": {
+    "kicker": "Fuente oficial",
+    "title": "Para informes oficiales, vaya a PHIVOLCS",
+    "text1": "PHIVOLCS es la agencia oficial de Filipinas para sismos y volcanes.",
+    "text2": "Yanig no usa datos de PHIVOLCS. Para informes oficiales de sismos en Filipinas, use PHIVOLCS.",
+    "link": "Ir a PHIVOLCS"
   },
-  "technical": {
-    "title": "Información Técnica",
-    "subtitle": "Especificaciones de datos y detalles de precisión",
-    "updateFrequency": "Frecuencia de Actualización",
-    "updateFrequencyValue": "Cada 10 minutos",
-    "dataSource": "Fuente de Datos",
-    "dataSourceValue": "API de Terremotos USGS",
-    "coverage": "Cobertura",
-    "coverageValue": "Actividad sísmica global",
-    "accuracy": "Precisión",
-    "accuracyValue": "Datos preliminares sujetos a revisión"
+  "offline": {
+    "title": "Sin internet",
+    "items": [
+      "Las páginas que abrió antes funcionan sin internet.",
+      "La lista de sismos y las noticias pueden ser antiguas hasta que vuelva a tener conexión.",
+      "Puede añadir Yanig a la pantalla de inicio de su teléfono. Así se abre como una app."
+    ]
   },
-  "disclaimer": {
-    "title": "Descargo de Responsabilidad Importante",
-    "text1": "QuakeSafe es un recurso informativo y no debe usarse como la única fuente para la toma de decisiones de emergencia. Siempre siga la orientación oficial de las autoridades locales y las agencias de gestión de emergencias.",
-    "text2": "Los datos de terremotos son proporcionados por fuentes de terceros y pueden contener retrasos o inexactitudes. Para obtener la información más actual y autorizada, consulte fuentes gubernamentales oficiales.",
-    "text3": "Esta aplicación no está afiliada ni respaldada por ninguna agencia gubernamental. Todos los datos están disponibles públicamente y se utilizan con fines educativos e informativos."
+  "languages": {
+    "title": "Idiomas",
+    "text": "Yanig está en inglés, tagalo, español y japonés. El aviso de privacidad y los términos solo están en inglés y tagalo."
   },
-  "contact": {
-    "title": "Manténgase Conectado",
-    "text": "QuakeSafe está comprometido a mejorar la preparación ante terremotos para todos. Sus comentarios nos ayudan a servir mejor a la comunidad.",
-    "footer": "Para problemas técnicos o comentarios, comuníquese con su oficina local de gestión de emergencias o visite el sitio web de USGS para obtener la información más actualizada."
+  "maker": {
+    "title": "Quién hizo Yanig",
+    "items": [
+      "Rafael Race hizo Yanig.",
+      "Yanig es gratis. No necesita una cuenta.",
+      "El código fuente está en GitHub con la licencia MIT."
+    ],
+    "link": "Ver el código en GitHub"
+  },
+  "opensNewTab": "(se abre en una pestaña nueva)",
+  "news": {
+    "kicker": "Tablón de avisos",
+    "title": "Noticias de sismos",
+    "intro": "Noticias sobre sismos de sitios de noticias de todo el mundo, en inglés. Yanig obtiene la lista de NewsAPI.",
+    "sourceNote": "Otros sitios de noticias escriben estos artículos. Yanig no los escribe ni los revisa.",
+    "refresh": "Actualizar",
+    "refreshing": "Actualizando",
+    "loading": "Cargando noticias",
+    "empty": "No hay artículos en esta categoría.",
+    "sampleStamp": "Artículos de ejemplo",
+    "sampleNote": "Yanig no puede obtener noticias ahora. Estos artículos de ejemplo son notas de seguridad escritas para Yanig. No son noticias.",
+    "categoryLabel": "Categorías de noticias",
+    "categories": {
+      "all": "Todas",
+      "safety": "Seguridad",
+      "research": "Ciencia",
+      "preparedness": "Preparación",
+      "technology": "Tecnología",
+      "community": "Comunidad"
+    },
+    "read": "Leer",
+    "readFull": "Leer el artículo completo en {{source}}",
+    "readFullNoSource": "Leer el artículo completo",
+    "truncated": "Esto es solo el inicio del artículo.",
+    "back": "Volver a noticias",
+    "minRead": "{{count}} min de lectura",
+    "by": "Por {{author}}"
+  },
+  "offlinePage": {
+    "kicker": "Sin conexión",
+    "title": "No tiene conexión",
+    "intro": "Su dispositivo no tiene conexión a internet ahora.",
+    "worksTitle": "Lo que funciona",
+    "works": [
+      "Las páginas que abrió antes",
+      "Los pasos de seguridad y los teléfonos de esas páginas",
+      "Su configuración y la lista de su kit"
+    ],
+    "needsTitle": "Lo que necesita internet",
+    "needs": [
+      "Datos nuevos de sismos",
+      "Artículos de noticias",
+      "Zonas del mapa que no abrió antes"
+    ],
+    "tryAgain": "Intentar de nuevo",
+    "guides": "Guías de seguridad",
+    "hotlines": "Teléfonos de emergencia"
+  },
+  "prompts": {
+    "install": {
+      "title": "Añada Yanig a su pantalla de inicio",
+      "text": "Así Yanig se abre como una app. Las páginas que abrió antes funcionan sin internet.",
+      "install": "Instalar",
+      "dismiss": "Ahora no"
+    },
+    "update": {
+      "title": "Nueva versión de Yanig",
+      "text": "Recargue la página para usar la nueva versión.",
+      "reload": "Recargar",
+      "later": "Después"
+    },
+    "status": {
+      "offline": "No tiene conexión. Las páginas que abrió antes siguen funcionando.",
+      "online": "Vuelve a tener conexión."
+    }
   }
 }
-

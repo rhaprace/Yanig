@@ -1,52 +1,44 @@
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { newsAPI } from '@/services/newsAPI';
-import { newsArticles } from '@/data/news';
-import type { NewsArticle } from '@/types/news';
+import { getSampleArticles } from '@/data/news';
+import type { NewsArticle, NewsFeed } from '@/types/news';
 
-interface UseNewsOptions {
-  useRealAPI?: boolean;
-  pageSize?: number;
-}
-export const useNews = (options: UseNewsOptions = {}) => {
-  const {
-    useRealAPI = true,
-    pageSize = 20,
-  } = options;
+/**
+ * Get real articles. When the request fails or returns nothing, use the sample articles
+ * and mark the feed as a sample so the page can say so.
+ */
+export const loadNewsFeed = async (
+  fetchArticles: () => Promise<NewsArticle[]>,
+  language: string,
+): Promise<NewsFeed> => {
+  try {
+    const articles = await fetchArticles();
+    if (articles.length > 0) {
+      return { articles, isSample: false };
+    }
+  } catch (error) {
+    if (import.meta.env.DEV) {
+      console.warn('News request failed. Showing sample articles.', error);
+    }
+  }
+  return { articles: getSampleArticles(language), isSample: true };
+};
 
-  return useQuery<NewsArticle[], Error>({
-    queryKey: ['earthquake-news', useRealAPI, pageSize],
-    queryFn: async () => {
-      if (!useRealAPI) {
-        return newsArticles;
-      }
+export const useNews = (pageSize: number = 20) => {
+  const { i18n } = useTranslation();
+  const language = i18n.resolvedLanguage ?? i18n.language ?? 'en';
 
-      try {
-        const articles = await newsAPI.getEarthquakeNews(pageSize);
-
-        if (articles.length === 0) {
-          return newsArticles;
-        }
-
-        return articles;
-      } catch (error) {
-        if (import.meta.env.DEV) {
-          console.error('Error fetching news, using fallback data:', error);
-        }
-        return newsArticles;
-      }
-    },
+  return useQuery<NewsFeed, Error>({
+    queryKey: ['earthquake-news', pageSize, language],
+    queryFn: () => loadNewsFeed(() => newsAPI.getEarthquakeNews(pageSize), language),
     staleTime: 10 * 60 * 1000,
     gcTime: 30 * 60 * 1000,
-
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     refetchOnReconnect: true,
-    refetchInterval: false,
-
-    retry: 2,
-    retryDelay: attemptIndex => Math.min(1000 * 2 ** attemptIndex, 10000),
-
-    networkMode: 'online',
+    // loadNewsFeed never throws: it falls back to the sample articles.
+    retry: false,
   });
 };
 

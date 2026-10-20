@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { BASE_URL, SITE_NAME, buildFullTitle, serializeJsonLd } from '@/utils/seo/site';
 
 export interface SEOProps {
   title: string;
@@ -14,17 +15,15 @@ export interface SEOProps {
 }
 
 const DEFAULT_KEYWORDS = [
+  'Yanig',
   'earthquake safety',
   'earthquake preparedness',
-  'seismic activity',
-  'disaster preparedness',
-  'emergency resources',
-  'earthquake tracker',
-  'earthquake alerts',
+  'Philippines',
+  'lindol',
+  'emergency hotlines',
   'safety guides',
 ];
 
-const BASE_URL = 'https://yanig.vercel.app';
 const DEFAULT_OG_IMAGE = `${BASE_URL}/web-app-manifest-512x512.png`;
 
 export const SEO: React.FC<SEOProps> = ({
@@ -39,7 +38,7 @@ export const SEO: React.FC<SEOProps> = ({
   nofollow = false,
   structuredData,
 }) => {
-  const fullTitle = title.includes('QuakeSafe') ? title : `${title} | QuakeSafe`;
+  const fullTitle = buildFullTitle(title);
   const allKeywords = [...DEFAULT_KEYWORDS, ...keywords].join(', ');
   const canonical = canonicalUrl || `${BASE_URL}${window.location.pathname}`;
   const fullOgImage = ogImage.startsWith('http') ? ogImage : `${BASE_URL}${ogImage}`;
@@ -63,7 +62,7 @@ export const SEO: React.FC<SEOProps> = ({
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={fullOgImage} />
-      <meta property="og:site_name" content="QuakeSafe" />
+      <meta property="og:site_name" content={SITE_NAME} />
       <meta property="og:locale" content="en_US" />
 
       <meta name="twitter:card" content={twitterCard} />
@@ -74,7 +73,7 @@ export const SEO: React.FC<SEOProps> = ({
 
       {structuredData && (
         <script type="application/ld+json">
-          {JSON.stringify(Array.isArray(structuredData) ? structuredData : [structuredData])}
+          {serializeJsonLd(Array.isArray(structuredData) ? structuredData : [structuredData])}
         </script>
       )}
     </Helmet>

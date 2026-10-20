@@ -3,27 +3,10 @@
  * Organized by Region, Province, and City
  */
 
-export interface LocalEmergencyContact {
-  name: string;
-  number: string;
-  type: 'EMERGENCY' | 'HOSPITAL' | 'FIRE' | 'POLICE' | 'DISASTER' | 'EVACUATION';
-  address?: string;
-}
+import type { CityEmergencyData } from '@/types/emergency-finder';
+import { filterCities } from '@/utils/emergency-finder/search';
 
-export interface CityEmergencyData {
-  city: string;
-  province: string;
-  region: string;
-  coordinates: [number, number]; // [latitude, longitude]
-  contacts: LocalEmergencyContact[];
-  evacuationCenters: string[];
-  hospitals: string[];
-  localGovernment: {
-    name: string;
-    hotline?: string;
-    address?: string;
-  };
-}
+export type { CityEmergencyData, LocalEmergencyContact } from '@/types/emergency-finder';
 
 export const philippinesRegions = [
   { code: 'NCR', name: 'National Capital Region (Metro Manila)' },
@@ -45,7 +28,7 @@ export const philippinesRegions = [
   { code: 'BARMM', name: 'Bangsamoro Autonomous Region in Muslim Mindanao' },
 ];
 
-// Sample data for major cities (can be expanded)
+// Sample data for 31 major cities. The numbers are not checked one by one. The page says so.
 export const philippinesCities: CityEmergencyData[] = [
   // Metro Manila
   {
@@ -1331,22 +1314,4 @@ export const philippinesCities: CityEmergencyData[] = [
   },
 ];
 
-export const getCitiesByRegion = (regionCode: string): CityEmergencyData[] => {
-  return philippinesCities.filter((city) => city.region === regionCode);
-};
-
-export const searchCities = (query: string): CityEmergencyData[] => {
-  const lowerQuery = query.toLowerCase();
-  return philippinesCities.filter(
-    (city) =>
-      city.city.toLowerCase().includes(lowerQuery) ||
-      city.province.toLowerCase().includes(lowerQuery)
-  );
-};
-
-export const getCityData = (cityName: string): CityEmergencyData | undefined => {
-  return philippinesCities.find(
-    (city) => city.city.toLowerCase() === cityName.toLowerCase()
-  );
-};
-
+export const searchCities = (query: string): CityEmergencyData[] => filterCities(philippinesCities, query);

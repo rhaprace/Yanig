@@ -1,55 +1,144 @@
 {
-  "title": "Tungkol sa QuakeSafe",
-  "subtitle": "Pagbibigay ng kapangyarihan sa mga komunidad gamit ang real-time na impormasyon sa lindol at komprehensibong resources sa paghahanda upang bumuo ng resilience laban sa seismic hazards.",
-  "mission": {
-    "title": "Ang Aming Misyon",
-    "text": "Ang QuakeSafe ay naglalayong bawasan ang epekto ng mga lindol sa pamamagitan ng pagbibigay ng accessible, real-time na seismic information at evidence-based na resources sa paghahanda. Naniniwala kami na ang mga informed na komunidad ay mas ligtas na komunidad."
+  "kicker": "Tungkol sa Yanig",
+  "title": "Pabatid sa publiko para sa kaligtasan sa lindol",
+  "intro": "Ang ibig sabihin ng \"yanig\" ay pagyanig ng lupa. Ang Yanig ay libreng website tungkol sa kaligtasan sa lindol sa Pilipinas.",
+  "stamp": "Libre",
+  "stampSub": "Walang account",
+  "does": {
+    "title": "Ang ginagawa ng Yanig",
+    "items": [
+      "Ipinapakita nito ang mga bagong lindol malapit sa Pilipinas sa mapa at sa listahan.",
+      "Nagbibigay ito ng mga hakbang pangkaligtasan bago, habang at pagkatapos ng lindol.",
+      "Inililista nito ang mga emergency hotline ng mga lungsod sa Pilipinas.",
+      "Ipinapakita nito ang mga balita tungkol sa lindol mula sa mga news site.",
+      "May checklist ito para sa iyong emergency kit."
+    ]
   },
-  "features": {
-    "title": "Ano ang Aming Inaalok",
-    "subtitle": "Mga pangunahing features at kakayahan",
-    "realtime": {
-      "title": "Real-time na Data",
-      "description": "Live na impormasyon sa lindol mula sa PHIVOLCS at iba pang opisyal na sanggunian"
-    },
-    "safety": {
-      "title": "Kaligtasan Muna",
-      "description": "Komprehensibong gabay sa paghahanda at impormasyon sa kaligtasan"
-    },
-    "community": {
-      "title": "Nakatuon sa Komunidad",
-      "description": "Mga resources para sa mga indibidwal, pamilya, at komunidad"
-    },
-    "reliable": {
-      "title": "Maaasahang Sanggunian",
-      "description": "Impormasyon mula sa pinagkakatiwalaang ahensya ng gobyerno at mga eksperto"
+  "doesNot": {
+    "title": "Ang hindi ginagawa ng Yanig",
+    "items": [
+      "Hindi nagpapadala ang Yanig ng alerto, notification o babala.",
+      "Hindi kayang hulaan ng Yanig ang lindol. Walang makagagawa nito.",
+      "Hindi opisyal na sanggunian ng impormasyon sa lindol ang Yanig."
+    ]
+  },
+  "data": {
+    "kicker": "Data",
+    "title": "Saan galing ang data",
+    "intro": "Kinukuha ng iyong browser ang data ng lindol nang direkta mula sa tatlong ahensya. Tumitingin ang Yanig ng bagong data tuwing 10 minuto.",
+    "estimate": "Tantiya lamang ang unang magnitude at lugar ng lindol. Maaari itong baguhin ng mga ahensya pagkatapos.",
+    "visit": "Pumunta sa {{name}}",
+    "sources": {
+      "usgs": {
+        "name": "USGS",
+        "full": "United States Geological Survey",
+        "text": "Mga lindol sa buong mundo."
+      },
+      "geonet": {
+        "name": "GeoNet",
+        "full": "New Zealand",
+        "text": "Mga lindol sa New Zealand at malapit dito."
+      },
+      "bmkg": {
+        "name": "BMKG",
+        "full": "Indonesia",
+        "text": "Mga bagong malalakas na lindol sa Indonesia at malapit dito."
+      }
     }
   },
-  "dataSources": {
-    "title": "Mga Sanggunian ng Data at Pagkilala",
-    "subtitle": "Mga sanggunian ng impormasyon at partnerships"
+  "official": {
+    "kicker": "Opisyal na sanggunian",
+    "title": "Para sa opisyal na ulat, pumunta sa PHIVOLCS",
+    "text1": "Ang PHIVOLCS ang opisyal na ahensya ng Pilipinas para sa lindol at bulkan.",
+    "text2": "Hindi gumagamit ang Yanig ng data ng PHIVOLCS. Para sa opisyal na ulat ng lindol sa Pilipinas, gamitin ang PHIVOLCS.",
+    "link": "Pumunta sa PHIVOLCS"
   },
-  "technical": {
-    "title": "Teknikal na Impormasyon",
-    "subtitle": "Mga detalye ng data specifications at accuracy",
-    "updateFrequency": "Update Frequency",
-    "updateFrequencyValue": "Bawat 10 minuto",
-    "dataSource": "Sanggunian ng Data",
-    "coverage": "Saklaw",
-    "coverageValue": "Pandaigdigang pagsubaybay",
-    "accuracy": "Katumpakan",
-    "accuracyValue": "Nakadepende sa network"
+  "offline": {
+    "title": "Kapag walang internet",
+    "items": [
+      "Gumagana nang walang internet ang mga pahinang nabuksan mo na.",
+      "Maaaring luma ang listahan ng lindol at ang balita hanggang mag-online ka ulit.",
+      "Maaari mong idagdag ang Yanig sa home screen ng iyong telepono. Pagkatapos, bubukas ito na parang app."
+    ]
   },
-  "disclaimer": {
-    "title": "Mahalagang Paalala",
-    "text1": "Sa mga emergency situations, tawagan kaagad ang inyong lokal na emergency services. Huwag umasa lamang sa website na ito para sa emergency response.",
-    "text2": "Ang earthquake data ay ibinibigay as-is mula sa mga opisyal na sanggunian. Bagaman nagsusumikap kami para sa katumpakan, maaaring may pagkaantala, pagkakamali, o nawawalang impormasyon.",
-    "text3": "Ang mga safety guides ay batay sa mga established best practices ngunit maaaring hindi sumasaklaw sa lahat ng sitwasyon. Kumonsulta sa inyong lokal na emergency management authorities para sa region-specific na gabay."
+  "languages": {
+    "title": "Mga wika",
+    "text": "Nasa English, Tagalog, Spanish at Japanese ang Yanig. Nasa English at Tagalog lamang ang privacy notice at ang mga tuntunin."
   },
-  "contact": {
-    "title": "Manatiling Konektado",
-    "text": "Ang QuakeSafe ay nakatuon sa pagpapabuti ng earthquake preparedness para sa lahat. Ang inyong feedback ay tumutulong sa amin na mas mapaglingkuran ang komunidad.",
-    "footer": "Para sa mga teknikal na isyu o feedback, mangyaring makipag-ugnayan sa inyong lokal na emergency management office o bisitahin ang website ng PHIVOLCS para sa pinaka-updated na impormasyon."
+  "maker": {
+    "title": "Sino ang gumawa ng Yanig",
+    "items": [
+      "Si Rafael Race ang gumawa ng Yanig.",
+      "Libre ang Yanig. Hindi mo kailangan ng account.",
+      "Nasa GitHub ang source code sa ilalim ng MIT License."
+    ],
+    "link": "Tingnan ang code sa GitHub"
+  },
+  "opensNewTab": "(bubukas sa bagong tab)",
+  "news": {
+    "kicker": "Pisara ng pabatid",
+    "title": "Balita sa lindol",
+    "intro": "Mga balita tungkol sa lindol mula sa mga news site sa buong mundo, sa English. Kinukuha ng Yanig ang listahan mula sa NewsAPI.",
+    "sourceNote": "Ibang news site ang sumusulat ng mga artikulong ito. Hindi ito isinusulat o sinusuri ng Yanig.",
+    "refresh": "I-refresh",
+    "refreshing": "Nire-refresh",
+    "loading": "Kinukuha ang balita",
+    "empty": "Walang artikulo sa kategoryang ito.",
+    "sampleStamp": "Halimbawang artikulo",
+    "sampleNote": "Hindi makakuha ng balita ang Yanig ngayon. Ang mga halimbawang artikulong ito ay mga paalala pangkaligtasan na isinulat para sa Yanig. Hindi ito mga ulat ng balita.",
+    "categoryLabel": "Mga kategorya ng balita",
+    "categories": {
+      "all": "Lahat",
+      "safety": "Kaligtasan",
+      "research": "Agham",
+      "preparedness": "Paghahanda",
+      "technology": "Teknolohiya",
+      "community": "Komunidad"
+    },
+    "read": "Basahin",
+    "readFull": "Basahin ang buong artikulo sa {{source}}",
+    "readFullNoSource": "Basahin ang buong artikulo",
+    "truncated": "Simula lamang ito ng artikulo.",
+    "back": "Bumalik sa balita",
+    "minRead": "{{count}} minutong basa",
+    "by": "Ni {{author}}"
+  },
+  "offlinePage": {
+    "kicker": "Walang koneksyon",
+    "title": "Offline ka",
+    "intro": "Walang koneksyon sa internet ang iyong device ngayon.",
+    "worksTitle": "Ang gumagana pa rin",
+    "works": [
+      "Mga pahinang nabuksan mo na",
+      "Mga hakbang pangkaligtasan at hotline sa mga pahinang iyon",
+      "Ang iyong mga setting at kit checklist"
+    ],
+    "needsTitle": "Ang kailangan ng internet",
+    "needs": [
+      "Bagong data ng lindol",
+      "Mga artikulo ng balita",
+      "Mga bahagi ng mapa na hindi mo pa nabubuksan"
+    ],
+    "tryAgain": "Subukan ulit",
+    "guides": "Gabay pangkaligtasan",
+    "hotlines": "Emergency hotline"
+  },
+  "prompts": {
+    "install": {
+      "title": "Idagdag ang Yanig sa home screen",
+      "text": "Pagkatapos, bubukas ang Yanig na parang app. Gumagana nang walang internet ang mga pahinang nabuksan mo na.",
+      "install": "I-install",
+      "dismiss": "Hindi muna"
+    },
+    "update": {
+      "title": "May bagong bersyon ng Yanig",
+      "text": "I-reload ang pahina para gamitin ang bagong bersyon.",
+      "reload": "I-reload",
+      "later": "Mamaya"
+    },
+    "status": {
+      "offline": "Offline ka. Gumagana pa rin ang mga pahinang nabuksan mo na.",
+      "online": "Online ka na ulit."
+    }
   }
 }
-

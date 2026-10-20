@@ -1,0 +1,107 @@
+/* Yanig tracker map: poster markers and popups on top of Leaflet. */
+
+/* Markers sit on light OpenStreetMap tiles in both themes, so they use fixed poster inks. */
+.yq-dot {
+  display: block;
+  box-sizing: border-box;
+  border-radius: 9999px;
+}
+.yq-step-0 { width: 12px; height: 12px; background: #f2ead8; border: 3px solid #1d3b8b; }
+.yq-step-1 { width: 16px; height: 16px; background: #1d3b8b; border: 2px solid #f2ead8; }
+.yq-step-2 { width: 22px; height: 22px; background: #ff4d2e; border: 3px solid #1d3b8b; }
+.yq-step-3 {
+  width: 30px;
+  height: 30px;
+  border: 3px solid #1d3b8b;
+  background-color: #ff4d2e;
+  background-image: radial-gradient(circle, #1d3b8b 30%, transparent 34%);
+  background-size: 6px 6px;
+}
+
+/* The selected marker gets a thick ring. */
+.yq-marker.is-selected .yq-dot {
+  outline: 3px solid #1d3b8b;
+  outline-offset: 3px;
+}
+.yq-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+}
+.yq-marker:focus-visible {
+  outline: 3px solid #ff4d2e;
+  outline-offset: 2px;
+}
+
+/* Popups: square paper notice with a blue border. */
+.yq-map .leaflet-popup-content-wrapper {
+  border-radius: 2px;
+  border: 3px solid hsl(var(--primary));
+  background: hsl(var(--card));
+  color: hsl(var(--card-foreground));
+  box-shadow: none;
+}
+.yq-map .leaflet-popup-content {
+  margin: 12px 14px;
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1.4;
+  min-width: 200px;
+}
+.yq-map .leaflet-popup-tip {
+  background: hsl(var(--primary));
+  box-shadow: none;
+}
+.yq-map .leaflet-popup-close-button {
+  width: 32px !important;
+  height: 32px !important;
+  font: 700 22px/32px system-ui, sans-serif !important;
+  color: hsl(var(--primary)) !important;
+}
+.yq-map .leaflet-control-zoom a {
+  width: 40px;
+  height: 40px;
+  line-height: 38px;
+  border-radius: 0 !important;
+  color: #1d3b8b;
+  font-weight: 700;
+}
+.yq-map .leaflet-bar {
+  border: 2px solid #1d3b8b;
+  border-radius: 2px;
+}
+.yq-map .leaflet-control-attribution {
+  font-size: 12px;
+}
+
+/*
+ * Dots outside the map (legend and list) sit on the page colours, not on map tiles.
+ * Where the background is dark blue (dark mode, or a selected list row in light mode),
+ * swap the blue ink for paper so the dot stays visible.
+ */
+.dark .yq-ink:not([aria-pressed='true']) .yq-step-0,
+:root:not(.dark) .yq-ink[aria-pressed='true'] .yq-step-0 {
+  background: transparent;
+  border-color: #f2ead8;
+}
+.dark .yq-ink:not([aria-pressed='true']) .yq-step-1,
+:root:not(.dark) .yq-ink[aria-pressed='true'] .yq-step-1 {
+  background: #f2ead8;
+  border-color: #f2ead8;
+}
+.dark .yq-ink:not([aria-pressed='true']) .yq-step-2,
+:root:not(.dark) .yq-ink[aria-pressed='true'] .yq-step-2,
+.dark .yq-ink:not([aria-pressed='true']) .yq-step-3,
+:root:not(.dark) .yq-ink[aria-pressed='true'] .yq-step-3 {
+  border-color: #f2ead8;
+}
+.dark .yq-ink:not([aria-pressed='true']) .yq-step-3,
+:root:not(.dark) .yq-ink[aria-pressed='true'] .yq-step-3 {
+  background-image: radial-gradient(circle, #f2ead8 30%, transparent 34%);
+}
+
+.yq-map .leaflet-popup-content a {
+  color: hsl(var(--primary));
+}

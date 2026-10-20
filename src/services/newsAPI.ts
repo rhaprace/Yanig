@@ -1,182 +1,115 @@
-import { API_ENDPOINTS } from './api';
 import type { NewsArticle } from '@/types/news';
 
-interface NewsAPIArticle {
-  source: {
-    id: string | null;
-    name: string;
-  };
-  author: string | null;
-  title: string;
-  description: string;
-  url: string;
-  urlToImage: string | null;
-  publishedAt: string;
-  content: string;
+/** One article as NewsAPI sends it (our /api/news passes it through). */
+export interface NewsAPIArticle {
+  source?: { id: string | null; name: string | null } | null;
+  author?: string | null;
+  title?: string | null;
+  description?: string | null;
+  url?: string | null;
+  urlToImage?: string | null;
+  publishedAt?: string | null;
+  content?: string | null;
 }
 
-interface NewsAPIResponse {
-  status: string;
-  totalResults: number;
-  articles: NewsAPIArticle[];
-}
-
-class RateLimiter {
-  private lastCallTime: number = 0;
-  private minInterval: number = 1000;
-
-  async throttle(): Promise<void> {
-    const now = Date.now();
-    const timeSinceLastCall = now - this.lastCallTime;
-
-    if (timeSinceLastCall < this.minInterval) {
-      const waitTime = this.minInterval - timeSinceLastCall;
-      console.log(`Rate limiting: waiting ${waitTime}ms before next API call`);
-      await new Promise(resolve => setTimeout(resolve, waitTime));
-    }
-
-    this.lastCallTime = Date.now();
+/** Return the URL only when it is an absolute http(s) link. Blocks javascript:, data: and other schemes. */
+export const safeHttpUrl = (value: unknown): string | undefined => {
+  if (typeof value !== 'string' || value.trim() === '') return undefined;
+  try {
+    const parsed = new URL(value.trim());
+    return parsed.protocol === 'https:' || parsed.protocol === 'http:' ? parsed.href : undefined;
+  } catch {
+    return undefined;
   }
-
-  canMakeRequest(): boolean {
-    const now = Date.now();
-    return (now - this.lastCallTime) >= this.minInterval;
-  }
-}
-
-const rateLimiter = new RateLimiter();
-
-export const newsAPI = {
-
-  getEarthquakeNews: async (
-    pageSize: number = 20
-  ): Promise<NewsArticle[]> => {
-    try {
-      await rateLimiter.throttle();
-
-      const response = await fetch(`/api/news?pageSize=${pageSize}`);
-
-      if (!response.ok) {
-        throw new Error(`API Error: ${response.status} ${response.statusText}`);
-      }
-
-      const data = await response.json();
-
-      if (!data.success) {
-        throw new Error(data.error || 'Failed to fetch news');
-      }
-
-      return data.articles.map((article: NewsAPIArticle, index: number) =>
-        transformNewsAPIArticle(article, index)
-      );
-    } catch (error) {
-      if (import.meta.env.DEV) {
-        console.error('Error fetching earthquake news:', error);
-      }
-      throw error;
-    }
-  },
-
-  getTopHeadlines: async (
-    apiKey: string,
-    country: string = 'us',
-    pageSize: number = 10
-  ): Promise<NewsArticle[]> => {
-    if (!apiKey || apiKey === 'YOUR_NEWS_API_KEY') {
-      console.warn('NewsAPI key not configured. Using fallback data.');
-      return [];
-    }
-
-    try {
-      await rateLimiter.throttle();
-
-      const params = new URLSearchParams({
-        q: 'earthquake',
-        country: country,
-        category: 'science',
-        pageSize: String(pageSize),
-        apiKey: apiKey,
-      });
-
-      console.log('Fetching top headlines from NewsAPI...');
-      const response = await fetch(`${API_ENDPOINTS.NEWS_API}/top-headlines?${params}`);
-
-      if (!response.ok) {
-        throw new Error(`NewsAPI Error: ${response.status}`);
-      }
-
-      const data: NewsAPIResponse = await response.json();
-      console.log(`Successfully fetched ${data.articles.length} headlines from NewsAPI`);
-
-      return data.articles.map((article, index) =>
-        transformNewsAPIArticle(article, index)
-      );
-    } catch (error) {
-      console.error('Error fetching top headlines:', error);
-      throw error;
-    }
-  },
 };
 
-function transformNewsAPIArticle(article: NewsAPIArticle, index: number): NewsArticle {
-  const category = categorizeArticle(article.title, article.description);
+/** Clean article text from NewsAPI: remove the "[+1234 chars]" marker, HTML tags and extra spaces. */
+export const cleanNewsText = (value: unknown): string => {
+  if (typeof value !== 'string') return '';
+  return value
+    .replace(/\s*(…|\.\.\.)?\s*\[\+\d+ chars\]\s*$/, '…')
+    .replace(/<[^>]*>/g, '')
+    .replace(/[ \t]+/g, ' ')
+    .trim();
+};
 
-  const tags = extractTags(article.title, article.description);
-  const wordCount = article.content ? article.content.split(' ').length : 300;
-  const readTime = Math.max(1, Math.ceil(wordCount / 200));
+/** True when NewsAPI cut the article text short. */
+export const isTruncated = (value: unknown): boolean =>
+  typeof value === 'string' && /\[\+\d+ chars\]\s*$/.test(value);
+
+export const categorizeArticle = (title: string, description: string): NewsArticle['category'] => {
+  const text = `${title} ${description}`.toLowerCase();
+
+  if (/\b(research|study|scientists?)\b/.test(text)) return 'research';
+  if (/\b(technology|sensors?|detection)\b/.test(text)) return 'technology';
+  if (/\b(prepare|preparedness|kit|drill)\b/.test(text)) return 'preparedness';
+  if (/\b(community|volunteers?|relief)\b/.test(text)) return 'community';
+  return 'safety';
+};
+
+const TAG_KEYWORDS = [
+  'earthquake', 'seismic', 'tremor', 'magnitude', 'aftershock',
+  'tsunami', 'fault', 'tectonic', 'preparedness', 'safety',
+  'emergency', 'disaster', 'relief',
+];
+
+const extractTags = (text: string): string[] => {
+  const lower = text.toLowerCase();
+  return TAG_KEYWORDS.filter((keyword) => lower.includes(keyword)).slice(0, 5);
+};
+
+/**
+ * Turn one NewsAPI article into a Yanig article.
+ * Returns null when the article has no title, was removed by NewsAPI, or has no safe link.
+ */
+export const transformNewsAPIArticle = (article: NewsAPIArticle, index: number): NewsArticle | null => {
+  const title = cleanNewsText(article.title);
+  const url = safeHttpUrl(article.url);
+  if (!title || title === '[Removed]' || !url) return null;
+
+  const excerpt = cleanNewsText(article.description);
+  const content = cleanNewsText(article.content) || excerpt;
+  const source = cleanNewsText(article.source?.name) || undefined;
+  const wordCount = content ? content.split(/\s+/).length : 0;
+  const published = typeof article.publishedAt === 'string' && !Number.isNaN(Date.parse(article.publishedAt))
+    ? article.publishedAt
+    : '';
 
   return {
-    id: `news-${Date.now()}-${index}`,
-    title: article.title,
-    excerpt: article.description || 'Read more about this earthquake-related news.',
-    content: article.content || article.description || '',
-    author: article.author || article.source.name || 'News Source',
-    datePublished: article.publishedAt,
-    dateModified: article.publishedAt,
-    category: category,
-    imageUrl: article.urlToImage || undefined,
-    url: article.url,
-    tags: tags,
-    readTime: readTime,
+    id: `news-${index}-${url}`,
+    title,
+    excerpt,
+    content,
+    author: cleanNewsText(article.author) || source || '',
+    source,
+    datePublished: published,
+    dateModified: published || undefined,
+    category: categorizeArticle(title, excerpt),
+    imageUrl: safeHttpUrl(article.urlToImage),
+    url,
+    tags: extractTags(`${title} ${excerpt}`),
+    readTime: Math.max(1, Math.ceil(wordCount / 200)),
   };
-}
+};
 
-function categorizeArticle(title: string, description: string): NewsArticle['category'] {
-  const text = `${title} ${description}`.toLowerCase();
+export const newsAPI = {
+  /** Ask the app's own server (/api/news). The server asks NewsAPI, so the key never reaches the browser. */
+  getEarthquakeNews: async (pageSize: number = 20): Promise<NewsArticle[]> => {
+    const response = await fetch(`/api/news?pageSize=${encodeURIComponent(String(pageSize))}`);
 
-  if (text.includes('research') || text.includes('study') || text.includes('scientist')) {
-    return 'research';
-  }
-  if (text.includes('technology') || text.includes('sensor') || text.includes('detection') || text.includes('warning')) {
-    return 'technology';
-  }
-  if (text.includes('prepare') || text.includes('kit') || text.includes('emergency')) {
-    return 'preparedness';
-  }
-  if (text.includes('community') || text.includes('volunteer') || text.includes('relief')) {
-    return 'community';
-  }
-
-  return 'safety';
-}
-
-function extractTags(title: string, description: string): string[] {
-  const text = `${title} ${description}`.toLowerCase();
-  const tags: string[] = [];
-
-  const keywords = [
-    'earthquake', 'seismic', 'tremor', 'magnitude', 'aftershock',
-    'tsunami', 'fault', 'tectonic', 'preparedness', 'safety',
-    'warning', 'alert', 'emergency', 'disaster', 'relief'
-  ];
-
-  keywords.forEach(keyword => {
-    if (text.includes(keyword)) {
-      tags.push(keyword);
+    if (!response.ok) {
+      throw new Error(`News API error: ${response.status}`);
     }
-  });
 
-  return tags.slice(0, 5);
-}
+    const data = await response.json();
+    if (!data?.success || !Array.isArray(data.articles)) {
+      throw new Error(typeof data?.error === 'string' ? data.error : 'Failed to fetch news');
+    }
+
+    return (data.articles as NewsAPIArticle[])
+      .map((article, index) => transformNewsAPIArticle(article, index))
+      .filter((article): article is NewsArticle => article !== null);
+  },
+};
 
 export default newsAPI;

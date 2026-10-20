@@ -1,206 +1,122 @@
 import type { SEOProps } from '@/components/SEO';
 import type { NewsArticle } from '@/types/news';
-import {
-  getWebApplicationSchema,
-  getOrganizationSchema,
-  getBreadcrumbSchema,
-  getArticleSchema,
-} from './structured-data';
+import { getWebApplicationSchema, getBreadcrumbSchema } from './structured-data';
+import { BASE_URL } from './site';
+
+const SOURCES = 'USGS, GeoNet and BMKG';
 
 export const getHomeSEO = (): SEOProps => ({
-  title: 'QuakeSafe - Earthquake Monitoring & Preparedness Platform',
-  description: 'Real-time earthquake monitoring, safety guides, and emergency resources. Stay prepared and informed with QuakeSafe - your comprehensive earthquake safety platform.',
-  keywords: [
-    'earthquake monitoring',
-    'real-time earthquake data',
-    'earthquake preparedness Philippines',
-    'seismic activity tracker',
-    'disaster response',
-    'emergency preparedness',
-  ],
-  canonicalUrl: 'https://yanig.vercel.app/',
-  structuredData: [
-    getWebApplicationSchema(),
-    getOrganizationSchema(),
-  ],
+  title: 'Yanig: Earthquake safety for the Philippines',
+  description: `See recent earthquakes near the Philippines from ${SOURCES}. Learn Drop, Cover, Hold on. Find emergency hotlines. Free, in English and Tagalog.`,
+  keywords: ['recent earthquakes Philippines', 'earthquake preparedness Philippines', 'Drop Cover Hold on'],
+  canonicalUrl: `${BASE_URL}/`,
+  structuredData: [getWebApplicationSchema()],
 });
 
 export const getTrackerSEO = (): SEOProps => ({
-  title: 'Earthquake Tracker - Real-Time Seismic Activity Monitor',
-  description: 'Track earthquakes worldwide in real-time. View magnitude, location, depth, and time of recent seismic events on an interactive map with multi-source data.',
-  keywords: [
-    'earthquake tracker',
-    'real-time earthquake map',
-    'seismic activity monitor',
-    'earthquake data',
-    'USGS earthquake',
-    'global earthquake tracking',
-    'earthquake alerts',
-  ],
-  canonicalUrl: 'https://yanig.vercel.app/tracker',
+  title: 'Recent earthquakes: map and list',
+  description: `A map and list of recent earthquakes from ${SOURCES}. Yanig checks for new data every 10 minutes. Magnitudes are first estimates.`,
+  keywords: ['earthquake map', 'recent earthquakes', 'earthquake list', 'USGS', 'GeoNet', 'BMKG'],
+  canonicalUrl: `${BASE_URL}/tracker`,
   structuredData: [
     getBreadcrumbSchema([
       { name: 'Home', url: '/' },
-      { name: 'Earthquake Tracker', url: '/tracker' },
+      { name: 'Recent earthquakes', url: '/tracker' },
     ]),
-    getWebApplicationSchema(),
   ],
 });
 
 export const getGuidesSEO = (): SEOProps => ({
-  title: 'Earthquake Safety Guides - Before, During & After Preparedness',
-  description: 'Comprehensive earthquake safety guides covering preparation, response during earthquakes, and recovery. Learn essential safety measures and emergency procedures.',
-  keywords: [
-    'earthquake safety guide',
-    'earthquake preparedness tips',
-    'what to do during earthquake',
-    'earthquake survival guide',
-    'emergency procedures',
-    'disaster preparedness checklist',
-    'earthquake safety measures',
-  ],
-  canonicalUrl: 'https://yanig.vercel.app/guides',
+  title: 'Earthquake safety steps: before, during and after',
+  description: 'What to do before, during and after an earthquake. Drop, Cover, Hold on, and a checklist for your emergency kit.',
+  keywords: ['earthquake safety guide', 'what to do during an earthquake', 'emergency kit checklist', 'go-bag'],
+  canonicalUrl: `${BASE_URL}/guides`,
   structuredData: [
     getBreadcrumbSchema([
       { name: 'Home', url: '/' },
-      { name: 'Safety Guides', url: '/guides' },
+      { name: 'Safety guides', url: '/guides' },
     ]),
-    getArticleSchema({
-      headline: 'Comprehensive Earthquake Safety Guides',
-      description: 'Essential earthquake preparedness and safety information for before, during, and after seismic events.',
-    }),
   ],
 });
 
 export const getResourcesSEO = (): SEOProps => ({
-  title: 'Emergency Resources - Earthquake Preparedness Organizations & Tools',
-  description: 'Access emergency resources, volunteer organizations, and preparedness tools. Connect with disaster response agencies and find essential earthquake safety resources.',
-  keywords: [
-    'emergency resources',
-    'disaster preparedness organizations',
-    'earthquake relief organizations',
-    'volunteer disaster response',
-    'emergency contact numbers',
-    'disaster response agencies',
-  ],
-  canonicalUrl: 'https://yanig.vercel.app/resources',
+  title: 'Emergency numbers and agencies',
+  description: 'National emergency numbers, government agencies for earthquakes and disasters, and ways to volunteer.',
+  keywords: ['emergency resources', 'emergency hotlines', 'disaster preparedness'],
+  canonicalUrl: `${BASE_URL}/resources`,
   structuredData: [
     getBreadcrumbSchema([
       { name: 'Home', url: '/' },
       { name: 'Resources', url: '/resources' },
     ]),
-    getArticleSchema({
-      headline: 'Emergency Resources and Organizations',
-      description: 'Comprehensive directory of emergency resources, volunteer organizations, and disaster preparedness tools.',
-    }),
   ],
 });
 
 export const getEmergencyFinderSEO = (): SEOProps => ({
-  title: 'Regional Emergency Finder - Philippines Emergency Contacts & Resources',
-  description: 'Find local emergency contacts, hospitals, evacuation centers, and government hotlines across Philippine cities. Quick access to regional disaster response resources.',
-  keywords: [
-    'Philippines emergency contacts',
-    'regional emergency finder',
-    'local emergency numbers Philippines',
-    'evacuation centers Philippines',
-    'hospital emergency hotline',
-    'disaster response Philippines',
-    'emergency services locator',
-    'Philippine emergency resources',
-  ],
-  canonicalUrl: 'https://yanig.vercel.app/emergency-finder',
+  title: 'Emergency hotlines for Philippine cities',
+  description: 'Find emergency hotlines, hospitals and disaster offices for cities in the Philippines. Check numbers with your local government.',
+  keywords: ['Philippines emergency hotlines', 'local emergency numbers Philippines', 'disaster office hotline'],
+  canonicalUrl: `${BASE_URL}/emergency-finder`,
   structuredData: [
     getBreadcrumbSchema([
       { name: 'Home', url: '/' },
-      { name: 'Emergency Finder', url: '/emergency-finder' },
+      { name: 'Emergency hotlines', url: '/emergency-finder' },
     ]),
   ],
 });
 
 export const getAboutSEO = (): SEOProps => ({
-  title: 'About QuakeSafe - Earthquake Safety & Preparedness Mission',
-  description: 'Learn about QuakeSafe\'s mission to provide accessible earthquake safety information, real-time monitoring, and emergency resources to communities worldwide.',
-  keywords: [
-    'earthquake safety platform',
-    'disaster preparedness mission',
-    'earthquake monitoring service',
-    'community safety',
-    'earthquake data sources',
-  ],
-  canonicalUrl: 'https://yanig.vercel.app/about',
+  title: 'About Yanig',
+  description: `What Yanig does and does not do. Earthquake data from ${SOURCES}, checked every 10 minutes. No alerts. Made by Rafael Race.`,
+  keywords: ['about Yanig', 'earthquake data sources'],
+  canonicalUrl: `${BASE_URL}/about`,
   structuredData: [
     getBreadcrumbSchema([
       { name: 'Home', url: '/' },
       { name: 'About', url: '/about' },
     ]),
-    getOrganizationSchema(),
-    getArticleSchema({
-      headline: 'About QuakeSafe - Our Mission and Vision',
-      description: 'QuakeSafe provides comprehensive earthquake safety information and real-time monitoring to help communities prepare for and respond to seismic events.',
-    }),
+    getWebApplicationSchema(),
   ],
 });
 
 export const getPrivacySEO = (): SEOProps => ({
-  title: 'Privacy Policy - QuakeSafe Data Protection & Privacy',
-  description: 'QuakeSafe privacy policy explaining how we collect, use, and protect your data. Learn about our commitment to user privacy and data security.',
-  keywords: [
-    'privacy policy',
-    'data protection',
-    'user privacy',
-    'data security',
-  ],
-  canonicalUrl: 'https://yanig.vercel.app/privacy',
-  noindex: false, // Keep indexed for transparency
+  title: 'Privacy notice',
+  description: 'Yanig has no accounts, cookies or trackers. Your settings stay in your browser. See which services your browser contacts.',
+  keywords: ['privacy notice'],
+  canonicalUrl: `${BASE_URL}/privacy`,
   structuredData: [
     getBreadcrumbSchema([
       { name: 'Home', url: '/' },
-      { name: 'Privacy Policy', url: '/privacy' },
+      { name: 'Privacy', url: '/privacy' },
     ]),
   ],
 });
 
 export const getTermsSEO = (): SEOProps => ({
-  title: 'Terms of Service - QuakeSafe Usage Terms & Conditions',
-  description: 'QuakeSafe terms of service outlining user responsibilities, service usage guidelines, and legal disclaimers for earthquake monitoring and safety information.',
-  keywords: [
-    'terms of service',
-    'usage terms',
-    'service agreement',
-    'legal disclaimer',
-  ],
-  canonicalUrl: 'https://yanig.vercel.app/terms',
-  noindex: false, // Keep indexed for transparency
+  title: 'Terms of use',
+  description: 'Yanig is a free information website. It is not an alert system and cannot predict earthquakes. Data can be late or wrong.',
+  keywords: ['terms of use'],
+  canonicalUrl: `${BASE_URL}/terms`,
   structuredData: [
     getBreadcrumbSchema([
       { name: 'Home', url: '/' },
-      { name: 'Terms of Service', url: '/terms' },
+      { name: 'Terms', url: '/terms' },
     ]),
   ],
 });
 
 export const getOfflineSEO = (): SEOProps => ({
-  title: 'Offline - QuakeSafe',
-  description: 'You are currently offline. QuakeSafe works offline with cached data for emergency access.',
-  noindex: true, // Don't index offline page
+  title: 'You are offline',
+  description: 'Your device has no internet connection. Pages you opened before work without internet.',
+  noindex: true,
   nofollow: true,
 });
 
 export const getNewsSEO = (): SEOProps => ({
-  title: 'Earthquake News & Updates - Latest Safety Information & Research',
-  description: 'Stay informed with the latest earthquake news, safety tips, research findings, and community stories. Expert insights on earthquake preparedness and seismic activity.',
-  keywords: [
-    'earthquake news',
-    'seismic activity updates',
-    'earthquake safety news',
-    'earthquake research',
-    'disaster preparedness news',
-    'earthquake technology',
-    'community earthquake stories',
-  ],
-  canonicalUrl: 'https://yanig.vercel.app/news',
-  ogType: 'website',
+  title: 'Earthquake news',
+  description: 'Earthquake news from news sites around the world, through NewsAPI. Yanig does not write or check these articles.',
+  keywords: ['earthquake news'],
+  canonicalUrl: `${BASE_URL}/news`,
   structuredData: [
     getBreadcrumbSchema([
       { name: 'Home', url: '/' },
@@ -209,30 +125,14 @@ export const getNewsSEO = (): SEOProps => ({
   ],
 });
 
+/**
+ * An article opened on the news page. It has no URL of its own in Yanig, so the canonical
+ * URL stays /news and the page is not indexed. Other sites publish the articles, so no Article schema.
+ */
 export const getNewsArticleSEO = (article: NewsArticle): SEOProps => ({
-  title: `${article.title} - QuakeSafe News`,
-  description: article.excerpt,
-  keywords: [
-    ...article.tags,
-    'earthquake news',
-    'earthquake safety',
-    'seismic activity',
-  ],
-  canonicalUrl: `https://yanig.vercel.app/news/${article.id}`,
+  title: article.title,
+  description: article.excerpt || 'Earthquake news on Yanig.',
+  canonicalUrl: `${BASE_URL}/news`,
   ogType: 'article',
-  structuredData: [
-    getBreadcrumbSchema([
-      { name: 'Home', url: '/' },
-      { name: 'News', url: '/news' },
-      { name: article.title, url: `/news/${article.id}` },
-    ]),
-    getArticleSchema({
-      headline: article.title,
-      description: article.excerpt,
-      datePublished: article.datePublished,
-      dateModified: article.dateModified || article.datePublished,
-      author: article.author,
-    }),
-  ],
+  noindex: true,
 });
-

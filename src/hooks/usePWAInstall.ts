@@ -5,13 +5,33 @@ interface BeforeInstallPromptEvent extends Event {
   userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>;
 }
 
+export const DISMISS_KEY = 'pwa-install-dismissed';
+const DISMISS_DAYS = 7;
+const DAY_MS = 1000 * 60 * 60 * 24;
+
+/** True when the person closed the install message less than 7 days ago. */
+export const wasDismissedRecently = (dismissedAt: string | null, now: number = Date.now()): boolean => {
+  if (!dismissedAt) return false;
+  const time = parseInt(dismissedAt, 10);
+  if (!Number.isFinite(time)) return false;
+  return now - time >= 0 && (now - time) / DAY_MS < DISMISS_DAYS;
+};
+
+const readDismissed = (): string | null => {
+  try {
+    return localStorage.getItem(DISMISS_KEY);
+  } catch {
+    return null;
+  }
+};
+
 export const usePWAInstall = () => {
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
-  const [isInstallable, setIsInstallable] = useState(false);
   const [isInstalled, setIsInstalled] = useState(false);
+  const [dismissed, setDismissed] = useState(() => wasDismissedRecently(readDismissed()));
 
   useEffect(() => {
-    if (window.matchMedia('(display-mode: standalone)').matches) {
+    if (window.matchMedia?.('(display-mode: standalone)').matches) {
       setIsInstalled(true);
       return;
     }
@@ -19,18 +39,14 @@ export const usePWAInstall = () => {
     const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault();
       setDeferredPrompt(e as BeforeInstallPromptEvent);
-      setIsInstallable(true);
     };
-
     const handleAppInstalled = () => {
       setIsInstalled(true);
-      setIsInstallable(false);
       setDeferredPrompt(null);
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
     window.addEventListener('appinstalled', handleAppInstalled);
-
     return () => {
       window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
       window.removeEventListener('appinstalled', handleAppInstalled);
@@ -38,47 +54,29 @@ export const usePWAInstall = () => {
   }, []);
 
   const promptInstall = async () => {
-    if (!deferredPrompt) {
-      return false;
-    }
-
+    if (!deferredPrompt) return false;
     await deferredPrompt.prompt();
-
     const { outcome } = await deferredPrompt.userChoice;
-
     setDeferredPrompt(null);
-    setIsInstallable(false);
-
     return outcome === 'accepted';
   };
 
   const dismissPrompt = () => {
-    setIsInstallable(false);
-    localStorage.setItem('pwa-install-dismissed', Date.now().toString());
-  };
-
-  const shouldShowPrompt = () => {
-    if (!isInstallable || isInstalled) {
-      return false;
+    setDismissed(true);
+    setDeferredPrompt(null);
+    try {
+      localStorage.setItem(DISMISS_KEY, Date.now().toString());
+    } catch {
+      // Storage can be blocked. The message still closes for this visit.
     }
-
-    const dismissedAt = localStorage.getItem('pwa-install-dismissed');
-    if (dismissedAt) {
-      const daysSinceDismissal = (Date.now() - parseInt(dismissedAt)) / (1000 * 60 * 60 * 24);
-      if (daysSinceDismissal < 7) {
-        return false;
-      }
-    }
-
-    return true;
   };
 
   return {
-    isInstallable,
+    isInstallable: deferredPrompt !== null,
     isInstalled,
     promptInstall,
     dismissPrompt,
-    shouldShowPrompt: shouldShowPrompt(),
+    shouldShowPrompt: deferredPrompt !== null && !isInstalled && !dismissed,
   };
 };
 

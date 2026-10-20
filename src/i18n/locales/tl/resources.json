@@ -1,77 +1,158 @@
 {
-  "title": "Mga Emergency Resources",
-  "subtitle": "Mahahalagang contact numbers, organisasyon, at resources para sa paghahanda at pagtugon sa lindol",
+  "kicker": "Mga sanggunian · Resources",
+  "title": "Mga emergency number",
+  "subtitle": "Pindutin ang numero para tumawag. I-save na ngayon ang mga numerong ito sa iyong telepono.",
   "sections": {
     "hotlines": {
-      "title": "Mga Emergency Hotline",
-      "subtitle": "Kritikal na contact numbers para sa agarang tulong"
+      "title": "Mga hotline",
+      "subtitle": "Bansa: {{country}}",
+      "call": "Tawagan ang {{name}}: {{number}}"
+    },
+    "cityFinder": {
+      "title": "Mga numero ng iyong lungsod",
+      "text": "Tingnan ang mga lokal na hotline, ospital at evacuation center ng {{count}} malalaking lungsod.",
+      "link": "Hanapin ang iyong lungsod"
     },
     "agencies": {
-      "title": "Mga Ahensya ng Gobyerno",
-      "subtitle": "Mga pambansang resources para sa disaster response at pagsubaybay"
+      "title": "Mga ahensiya ng gobyerno",
+      "subtitle": "Mga opisyal na ahensiya para sa lindol at sakuna.",
+      "opens": "(bubukas sa bagong tab)"
     },
     "local": {
-      "title": "Mga Lokal na Community Resources",
-      "subtitle": "Makipag-ugnayan sa inyong lokal na emergency management office para sa mga tiyak na lokasyon",
-      "shelters": {
-        "category": "Mga Emergency Shelter",
-        "description": "Makipag-ugnayan sa inyong lokal na emergency management office para sa mga lokasyon ng shelter",
-        "items": {
-          "community": "Mga Community Center",
-          "schools": "Mga Paaralan (itinalagang shelter)",
-          "religious": "Mga Relihiyosong Organisasyon",
-          "redcross": "Mga Red Cross Shelter"
+      "title": "Saan hihingi ng tulong",
+      "subtitle": "Magtanong sa lokal na pamahalaan para sa eksaktong lugar na malapit sa iyo.",
+      "US": {
+        "shelters": {
+          "category": "Mga emergency shelter",
+          "description": "Magtanong sa lokal na emergency management office kung nasaan ang mga shelter.",
+          "items": {
+            "community": "Mga community center",
+            "schools": "Mga paaralang ginagamit na shelter",
+            "religious": "Mga simbahan at bahay-dalanginan",
+            "redcross": "Mga Red Cross shelter"
+          }
+        },
+        "healthcare": {
+          "category": "Kalusugan",
+          "description": "Alamin kung nasaan ang pinakamalapit na tulong medikal.",
+          "items": {
+            "hospitals": "Mga ospital",
+            "urgent": "Mga urgent care center",
+            "fire": "Mga istasyon ng bumbero na may EMT",
+            "community": "Mga community health center"
+          }
+        },
+        "supply": {
+          "category": "Mga supply",
+          "description": "Mga lugar na namimigay ng supply pagkatapos ng sakuna.",
+          "items": {
+            "eoc": "Mga emergency operations center",
+            "fema": "Mga FEMA disaster recovery center",
+            "foodbanks": "Mga lokal na food bank",
+            "distribution": "Mga community distribution point"
+          }
         }
       },
-      "healthcare": {
-        "category": "Mga Healthcare Facility",
-        "description": "Alamin ang lokasyon ng malapit na medical facilities",
-        "items": {
-          "hospitals": "Mga Ospital",
-          "urgent": "Mga Urgent Care Center",
-          "fire": "Mga Fire Station (EMT services)",
-          "community": "Mga Community Health Center"
-        }
-      },
-      "supply": {
-        "category": "Pamamahagi ng Supply",
-        "description": "Mga lokasyon para sa emergency supplies sa panahon ng sakuna",
-        "items": {
-          "eoc": "Mga Emergency Operations Center",
-          "fema": "Mga NDRRMC Disaster Relief Center",
-          "foodbanks": "Mga Lokal na Food Bank",
-          "distribution": "Mga Community Distribution Point"
+      "PH": {
+        "shelters": {
+          "category": "Paglikas",
+          "description": "Alam ng inyong barangay ang mga evacuation area na malapit sa iyo.",
+          "items": {
+            "evacuation": "Mga evacuation area ng barangay",
+            "schools": "Mga pampublikong paaralan",
+            "courts": "Mga covered court at gym"
+          }
+        },
+        "healthcare": {
+          "category": "Kalusugan",
+          "description": "Alamin kung nasaan ang pinakamalapit na tulong medikal.",
+          "items": {
+            "hospitals": "Mga ospital",
+            "healthStation": "Mga barangay health station",
+            "rhu": "Mga rural health unit at city health office"
+          }
+        },
+        "supply": {
+          "category": "Tulong at supply",
+          "description": "Mga opisinang tumutulong sa mga pamilya pagkatapos ng sakuna.",
+          "items": {
+            "drrmo": "Ang disaster office (DRRMO) ng iyong lungsod o bayan",
+            "dswd": "Pamimigay ng relief ng DSWD",
+            "barangayHall": "Ang inyong barangay hall"
+          }
         }
       }
     },
     "volunteer": {
-      "title": "Mga Volunteer Organizations",
-      "subtitle": "Mga non-profit na tumutulong sa disaster relief at community preparedness",
-      "cert": {
-        "name": "Community Emergency Response Team (CERT)",
-        "description": "Mag-training upang makatulong sa inyong komunidad sa panahon ng emergency",
-        "type": "training"
+      "title": "Mag-volunteer",
+      "subtitle": "Magsanay at tumulong sa inyong komunidad.",
+      "US": {
+        "cert": {
+          "name": "Community Emergency Response Team (CERT)",
+          "description": "Magsanay para makatulong sa komunidad sa oras ng emergency.",
+          "type": "Pagsasanay"
+        },
+        "redcross": {
+          "name": "American Red Cross volunteers",
+          "description": "Tulong sa sakuna at emergency.",
+          "type": "Relief"
+        },
+        "salvation": {
+          "name": "Salvation Army Emergency Disaster Services",
+          "description": "Pagtugon sa sakuna at suporta sa komunidad.",
+          "type": "Relief"
+        },
+        "radio": {
+          "name": "Amateur Radio Emergency Service (ARES)",
+          "description": "Tulong sa komunikasyon gamit ang radyo sa oras ng emergency.",
+          "type": "Komunikasyon"
+        }
       },
-      "redcross": {
-        "name": "Philippine Red Cross Volunteers",
-        "description": "Mga volunteer para sa disaster relief at emergency assistance",
-        "type": "relief"
-      },
-      "salvation": {
-        "name": "Salvation Army Emergency Disaster Services",
-        "description": "Disaster response at community support services",
-        "type": "relief"
-      },
-      "radio": {
-        "name": "Local Amateur Radio Emergency Services",
-        "description": "Communication support sa panahon ng emergency",
-        "type": "communication"
+      "PH": {
+        "redcross143": {
+          "name": "Mga volunteer ng Philippine Red Cross",
+          "description": "Sumali sa Red Cross 143 o sa lokal na chapter. Nagsasanay at tumutulong sa sakuna ang mga volunteer.",
+          "type": "Relief"
+        },
+        "ocdVolunteers": {
+          "name": "Office of Civil Defense (OCD)",
+          "description": "Nag-a-accredit ang OCD ng mga grupo ng community disaster volunteer. Magtanong sa regional office ng OCD.",
+          "type": "Gobyerno"
+        }
       }
     }
   },
   "disclaimer": {
-    "title": "Mahalagang Paalala",
-    "text": "Sa emergency, tawagan kaagad ang inyong lokal na emergency services. Huwag umasa lamang sa website na ito para sa emergency response. Ang data ay ibinibigay as-is at maaaring may pagkaantala o pagkakamali."
+    "title": "Suriin ang mga numerong ito",
+    "text": "Maaaring magbago ang mga numero. Suriin ang mga ito sa lokal na pamahalaan bago magka-emergency. I-save ang mga ito sa telepono."
+  },
+  "emergencyFinder": {
+    "kicker": "Pilipinas · Halimbawang datos",
+    "title": "Mga emergency number ng lungsod",
+    "intro": "Pumili ng lungsod sa listahan o sa mapa. Makikita mo ang mga hotline, ospital at evacuation center nito.",
+    "note": "{{count}} malalaking lungsod lang ang nasa listahang ito. Halimbawang datos ito. Maaaring magbago ang mga numero.",
+    "call911": "Kapag emergency, tumawag sa 911",
+    "searchLabel": "Hanapin ang lungsod o probinsiya",
+    "searchPlaceholder": "Halimbawa, Cebu",
+    "clear": "Burahin ang hinahanap",
+    "resultCount_one": "{{count}} lungsod",
+    "resultCount_other": "{{count}} lungsod",
+    "noResults": "Walang lungsod sa listahan na tugma sa “{{query}}”. Kapag emergency, tumawag sa 911.",
+    "cityList": "Mga lungsod sa listahan",
+    "back": "Lahat ng lungsod",
+    "localGovernment": "Lokal na pamahalaan",
+    "contacts": "Mga hotline",
+    "hospitals": "Mga ospital",
+    "evacuationCenters": "Mga evacuation center",
+    "evacuationNote": "Mga pangalan lang ito. Itanong sa barangay ang eksaktong lugar.",
+    "mapLabel": "Mapa ng mga lungsod sa listahan",
+    "types": {
+      "EMERGENCY": "Emergency",
+      "HOSPITAL": "Ospital",
+      "FIRE": "Bumbero",
+      "POLICE": "Pulis",
+      "DISASTER": "Disaster office",
+      "EVACUATION": "Paglikas"
+    }
   }
 }
-

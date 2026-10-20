@@ -1,77 +1,158 @@
 {
-  "title": "Emergency Resources",
-  "subtitle": "Essential contacts, organizations, and resources for earthquake preparedness and emergency response. Keep this information easily accessible.",
+  "kicker": "Resources · Mga sanggunian",
+  "title": "Emergency numbers",
+  "subtitle": "Tap a number to call it. Save these numbers in your phone now.",
   "sections": {
     "hotlines": {
-      "title": "Emergency Hotlines",
-      "subtitle": "Critical contact numbers for immediate assistance"
+      "title": "Hotlines",
+      "subtitle": "Country: {{country}}",
+      "call": "Call {{name}}: {{number}}"
+    },
+    "cityFinder": {
+      "title": "Numbers for your city",
+      "text": "See local hotlines, hospitals and evacuation centres for {{count}} major cities.",
+      "link": "Find your city"
     },
     "agencies": {
-      "title": "Government Agencies",
-      "subtitle": "Federal resources for disaster response and monitoring"
+      "title": "Government agencies",
+      "subtitle": "Official agencies for earthquakes and disasters.",
+      "opens": "(opens in a new tab)"
     },
     "local": {
-      "title": "Local Community Resources",
-      "subtitle": "Contact your local emergency management office for specific locations",
-      "shelters": {
-        "category": "Emergency Shelters",
-        "description": "Contact your local emergency management office for shelter locations",
-        "items": {
-          "community": "Community Centers",
-          "schools": "Schools (designated as shelters)",
-          "religious": "Religious Organizations",
-          "redcross": "Red Cross Shelters"
+      "title": "Where to go for help",
+      "subtitle": "Ask your local government for the exact places near you.",
+      "US": {
+        "shelters": {
+          "category": "Emergency shelters",
+          "description": "Ask your local emergency management office for shelter locations.",
+          "items": {
+            "community": "Community centres",
+            "schools": "Schools that are shelters",
+            "religious": "Places of worship",
+            "redcross": "Red Cross shelters"
+          }
+        },
+        "healthcare": {
+          "category": "Health care",
+          "description": "Know where the nearest medical help is.",
+          "items": {
+            "hospitals": "Hospitals",
+            "urgent": "Urgent care centres",
+            "fire": "Fire stations with EMT services",
+            "community": "Community health centres"
+          }
+        },
+        "supply": {
+          "category": "Supplies",
+          "description": "Places that give out supplies after a disaster.",
+          "items": {
+            "eoc": "Emergency operations centres",
+            "fema": "FEMA disaster recovery centres",
+            "foodbanks": "Local food banks",
+            "distribution": "Community distribution points"
+          }
         }
       },
-      "healthcare": {
-        "category": "Healthcare Facilities",
-        "description": "Know the location of nearby medical facilities",
-        "items": {
-          "hospitals": "Hospitals",
-          "urgent": "Urgent Care Centers",
-          "fire": "Fire Stations (EMT services)",
-          "community": "Community Health Centers"
-        }
-      },
-      "supply": {
-        "category": "Supply Distribution",
-        "description": "Locations for emergency supplies during disasters",
-        "items": {
-          "eoc": "Emergency Operations Centers",
-          "fema": "FEMA Disaster Relief Centers",
-          "foodbanks": "Local Food Banks",
-          "distribution": "Community Distribution Points"
+      "PH": {
+        "shelters": {
+          "category": "Evacuation",
+          "description": "Your barangay knows the evacuation areas near you.",
+          "items": {
+            "evacuation": "Barangay evacuation areas",
+            "schools": "Public schools",
+            "courts": "Covered courts and gyms"
+          }
+        },
+        "healthcare": {
+          "category": "Health care",
+          "description": "Know where the nearest medical help is.",
+          "items": {
+            "hospitals": "Hospitals",
+            "healthStation": "Barangay health stations",
+            "rhu": "Rural health units and city health offices"
+          }
+        },
+        "supply": {
+          "category": "Help and supplies",
+          "description": "Offices that help families after a disaster.",
+          "items": {
+            "drrmo": "The disaster office (DRRMO) of your city or municipality",
+            "dswd": "DSWD relief distribution",
+            "barangayHall": "Your barangay hall"
+          }
         }
       }
     },
     "volunteer": {
-      "title": "Volunteer Organizations",
-      "subtitle": "Community support and emergency response training programs",
-      "cert": {
-        "name": "Community Emergency Response Team (CERT)",
-        "description": "Train to help your community during emergencies",
-        "type": "training"
+      "title": "Volunteer",
+      "subtitle": "Get training and help your community.",
+      "US": {
+        "cert": {
+          "name": "Community Emergency Response Team (CERT)",
+          "description": "Train to help your community in an emergency.",
+          "type": "Training"
+        },
+        "redcross": {
+          "name": "American Red Cross volunteers",
+          "description": "Disaster relief and emergency help.",
+          "type": "Relief"
+        },
+        "salvation": {
+          "name": "Salvation Army Emergency Disaster Services",
+          "description": "Disaster response and community support.",
+          "type": "Relief"
+        },
+        "radio": {
+          "name": "Amateur Radio Emergency Service (ARES)",
+          "description": "Radio communication support in emergencies.",
+          "type": "Communication"
+        }
       },
-      "redcross": {
-        "name": "American Red Cross Volunteers",
-        "description": "Disaster relief and emergency assistance volunteers",
-        "type": "relief"
-      },
-      "salvation": {
-        "name": "Salvation Army Emergency Disaster Services",
-        "description": "Disaster response and community support services",
-        "type": "relief"
-      },
-      "radio": {
-        "name": "Local Amateur Radio Emergency Services",
-        "description": "Communication support during emergencies",
-        "type": "communication"
+      "PH": {
+        "redcross143": {
+          "name": "Philippine Red Cross volunteers",
+          "description": "Join the Red Cross 143 programme or a local chapter. Volunteers get training and help in disasters.",
+          "type": "Relief"
+        },
+        "ocdVolunteers": {
+          "name": "Office of Civil Defense (OCD)",
+          "description": "OCD accredits community disaster volunteer groups. Ask your regional OCD office.",
+          "type": "Government"
+        }
       }
     }
   },
   "disclaimer": {
-    "title": "Important Information",
-    "text": "This list provides general resources and emergency contacts. For location-specific information, contact your local emergency management office, city hall, or county government. Keep local emergency numbers easily accessible and consider programming them into your phone."
+    "title": "Check these numbers",
+    "text": "Numbers can change. Check them with your local government before an emergency. Save them in your phone."
+  },
+  "emergencyFinder": {
+    "kicker": "Philippines · Sample data",
+    "title": "City emergency numbers",
+    "intro": "Choose a city from the list or the map. You see its hotlines, hospitals and evacuation centres.",
+    "note": "This list has {{count}} major cities only. It is sample data. Numbers can change.",
+    "call911": "In an emergency, call 911",
+    "searchLabel": "Search city or province",
+    "searchPlaceholder": "For example, Cebu",
+    "clear": "Clear search",
+    "resultCount_one": "{{count}} city",
+    "resultCount_other": "{{count}} cities",
+    "noResults": "No city on the list matches “{{query}}”. In an emergency, call 911.",
+    "cityList": "Cities on the list",
+    "back": "All cities",
+    "localGovernment": "Local government",
+    "contacts": "Hotlines",
+    "hospitals": "Hospitals",
+    "evacuationCenters": "Evacuation centres",
+    "evacuationNote": "Names only. Ask your barangay for the exact place.",
+    "mapLabel": "Map of the cities on the list",
+    "types": {
+      "EMERGENCY": "Emergency",
+      "HOSPITAL": "Hospital",
+      "FIRE": "Fire",
+      "POLICE": "Police",
+      "DISASTER": "Disaster office",
+      "EVACUATION": "Evacuation"
+    }
   }
 }
-

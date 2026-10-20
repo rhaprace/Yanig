@@ -1,86 +1,107 @@
 {
-  "title": "Mga Tuntunin ng Serbisyo",
-  "lastUpdated": "Huling Na-update",
-  "date": "Enero 2025",
-  "sections": {
-    "introduction": {
-      "title": "Panimula",
-      "content": "Maligayang pagdating sa QuakeSafe. Ang Mga Tuntunin ng Serbisyo ('Tuntunin') na ito ay namamahala sa inyong paggamit ng QuakeSafe application. Sa pag-access o paggamit ng QuakeSafe, sumasang-ayon kayo na sumunod sa mga Tuntuning ito."
-    },
-    "acceptance": {
-      "title": "Pagtanggap ng mga Tuntunin",
-      "content": "Sa paggamit ng QuakeSafe, kinikilala ninyo na nabasa, naintindihan, at sumasang-ayon kayong sumunod sa mga Tuntuning ito at sa aming Patakaran sa Privacy. Kung hindi kayo sumasang-ayon sa mga Tuntuning ito, mangyaring huwag gamitin ang application."
-    },
-    "service": {
-      "title": "Paglalarawan ng Serbisyo",
-      "content": "Ang QuakeSafe ay isang libreng, open-source Progressive Web Application (PWA) na nagbibigay ng:",
-      "features": [
-        "Real-time earthquake monitoring mula sa maraming authoritative sources",
-        "Interactive maps na nagpapakita ng kamakailang seismic activity",
-        "Safety guides at emergency preparedness information",
-        "Emergency resource locators para sa mga partikular na rehiyon",
-        "Offline functionality para sa kritikal na safety information",
-        "Multi-language support"
-      ]
-    },
-    "disclaimer": {
-      "title": "Mahalagang Disclaimer",
-      "warning": "ANG QUAKESAFE AY ISANG INFORMATIONAL TOOL LAMANG AT HINDI DAPAT ANG INYONG TANGING PINAGKUKUNAN NG EMERGENCY INFORMATION.",
+  "kicker": "Mga tuntunin",
+  "title": "Mga tuntunin sa paggamit",
+  "intro": "Nalalapat ang mga tuntuning ito kapag ginamit mo ang Yanig. Kung hindi ka sang-ayon, huwag gamitin ang Yanig.",
+  "lastUpdated": "Huling binago",
+  "date": "20 Oktubre 2026",
+  "contents": "Nasa pahinang ito",
+  "sections": [
+    {
+      "id": "service",
+      "title": "Ano ang Yanig",
+      "paragraphs": [
+        "Ang Yanig ay libreng website tungkol sa kaligtasan sa lindol sa Pilipinas."
+      ],
       "items": [
-        "Ang QuakeSafe ay HINDI opisyal na emergency alert system",
-        "Ang data ay maaaring delayed, hindi kumpleto, o hindi tumpak",
-        "Laging sundin ang opisyal na emergency services at local authorities",
-        "Hindi kami responsable sa anumang desisyon na ginawa batay sa impormasyon mula sa app na ito",
-        "Sa kaso ng emergency, makipag-ugnayan kaagad sa local emergency services (911, 112, atbp.)",
-        "Ang app na ito ay hindi pumapalit sa opisyal na earthquake early warning systems"
+        "Ipinapakita nito ang mga bagong lindol mula sa USGS, GeoNet at BMKG. Tumitingin ito ng bagong data tuwing 10 minuto.",
+        "Nagbibigay ito ng mga hakbang pangkaligtasan bago, habang at pagkatapos ng lindol.",
+        "Inililista nito ang mga emergency hotline.",
+        "Ipinapakita nito ang mga balita sa lindol mula sa NewsAPI."
       ]
     },
-    "responsibilities": {
-      "title": "Mga Responsibilidad ng User",
+    {
+      "id": "warning",
+      "title": "Hindi alert system ang Yanig",
+      "warning": true,
       "items": [
-        "Gamitin ang QuakeSafe bilang supplementary information tool lamang",
-        "I-verify ang kritikal na impormasyon sa opisyal na sources",
-        "Sundin ang gabay mula sa local emergency management authorities",
-        "Panatilihin ang inyong sariling emergency preparedness plans",
-        "Siguraduhing mayroon kayong access sa opisyal na emergency alert systems",
-        "Gamitin ang app nang responsable at hindi para sa masasamang layunin"
+        "Hindi nagpapadala ang Yanig ng alerto, notification o babala.",
+        "Hindi kayang hulaan ng Yanig ang lindol. Walang makagagawa nito.",
+        "Hindi opisyal ang Yanig. Para sa opisyal na ulat ng lindol, pumunta sa PHIVOLCS.",
+        "Kapag may emergency sa Pilipinas, tumawag sa 911."
+      ],
+      "link": {
+        "label": "PHIVOLCS",
+        "href": "https://www.phivolcs.dost.gov.ph/"
+      }
+    },
+    {
+      "id": "accuracy",
+      "title": "Maaaring huli o mali ang data",
+      "paragraphs": [
+        "Galing sa ibang ahensya ang data ng lindol. Maaari itong huli, kulang o mali.",
+        "Tantiya lamang ang unang magnitude at lugar ng lindol. Maaari itong baguhin ng mga ahensya pagkatapos.",
+        "Maaaring magbago ang mga emergency number. Suriin ang mga ito sa inyong lokal na pamahalaan."
       ]
     },
-    "intellectual": {
-      "title": "Intellectual Property",
-      "content": "Ang QuakeSafe ay open-source software. Ang application code ay available sa ilalim ng open-source license. Ang earthquake data ay ibinibigay ng third-party sources (USGS, GeoNet, BMKG, PHIVOLCS) at nananatiling pag-aari ng mga organisasyong iyon. Ang map data ay ibinibigay ng OpenStreetMap contributors."
-    },
-    "thirdPartyData": {
-      "title": "Third-Party Data Sources",
-      "content": "Ang QuakeSafe ay nag-aggregate ng data mula sa maraming authoritative sources:",
-      "sources": [
-        "USGS (United States Geological Survey) - Saklaw ng USGS terms",
-        "GeoNet (New Zealand) - Saklaw ng GeoNet terms",
-        "BMKG (Indonesia) - Saklaw ng BMKG terms",
-        "PHIVOLCS (Philippines) - Saklaw ng PHIVOLCS terms",
-        "OpenStreetMap - Saklaw ng ODbL license"
+    {
+      "id": "responsibilities",
+      "title": "Ang iyong bahagi",
+      "items": [
+        "Gamitin ang Yanig bilang dagdag na impormasyon lamang.",
+        "Sundin ang inyong lokal na pamahalaan at mga opisyal sa emergency.",
+        "Gumawa ng sarili mong emergency plan."
       ]
     },
-    "liability": {
-      "title": "Limitasyon ng Pananagutan",
-      "content": "SA MAXIMUM EXTENT NA PINAPAYAGAN NG BATAS, ANG QUAKESAFE AT ANG MGA DEVELOPERS NITO AY HINDI MANANAGOT PARA SA ANUMANG INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, O PUNITIVE DAMAGES, O ANUMANG PAGKAWALA NG KITA O REVENUE, MAGING DIREKTA O HINDI DIREKTANG NATAMO, O ANUMANG PAGKAWALA NG DATA, PAGGAMIT, GOODWILL, O IBANG INTANGIBLE LOSSES NA RESULTA NG INYONG PAGGAMIT NG SERBISYO."
+    {
+      "id": "content",
+      "title": "Nilalaman mula sa iba",
+      "items": [
+        "Pag-aari ng USGS, GeoNet at BMKG ang kanilang data. Ang sarili nilang mga tuntunin ang nalalapat.",
+        "Ang data ng mapa ay © OpenStreetMap contributors, sa ilalim ng Open Database License.",
+        "Pag-aari ng mga naglathala ang mga artikulo ng balita. Simula lamang ng bawat artikulo ang ipinapakita ng Yanig, at may link ito sa buong artikulo."
+      ]
     },
-    "availability": {
-      "title": "Availability ng Serbisyo",
-      "content": "Nagsusumikap kaming panatilihing available ang QuakeSafe 24/7, ngunit hindi namin ginagarantiya ang walang tigil na access. Ang serbisyo ay maaaring pansamantalang hindi available dahil sa maintenance, updates, o mga kadahilanang lampas sa aming kontrol. Ang third-party data sources ay maaari ring makaranas ng outages."
+    {
+      "id": "code",
+      "title": "Source code",
+      "paragraphs": [
+        "Open source ang source code ng Yanig sa ilalim ng MIT License."
+      ]
     },
-    "modifications": {
-      "title": "Mga Pagbabago sa Serbisyo at Tuntunin",
-      "content": "Nakalaan sa amin ang karapatang baguhin o ihinto ang QuakeSafe anumang oras nang walang abiso. Maaari din naming i-update ang mga Tuntuning ito paminsan-minsan. Ang patuloy na paggamit ng serbisyo pagkatapos ng mga pagbabago ay nangangahulugang pagtanggap sa binagong Tuntunin."
+    {
+      "id": "warranty",
+      "title": "Walang garantiya",
+      "paragraphs": [
+        "Ibinibigay ang Yanig nang \"as is\", nang walang garantiya.",
+        "Hangga't pinapayagan ng batas, walang pananagutan ang gumawa ng Yanig sa anumang pagkawala o pinsala dahil sa paggamit ng Yanig."
+      ]
     },
-    "law": {
-      "title": "Governing Law",
-      "content": "Ang mga Tuntuning ito ay pamumunuan at bibigyang-kahulugan alinsunod sa naaangkop na mga batas. Ang anumang alitan na nagmumula sa mga Tuntuning ito o sa inyong paggamit ng QuakeSafe ay lulutasin alinsunod sa mga batas ng inyong hurisdiksyon."
+    {
+      "id": "availability",
+      "title": "Pagiging available",
+      "paragraphs": [
+        "Maaaring tumigil sa paggana ang Yanig anumang oras. Halimbawa, maaaring down ang isang pinagkukunan ng data.",
+        "Maaaring magbago o tumigil ang Yanig nang walang paunawa."
+      ]
     },
-    "contact": {
-      "title": "Impormasyon sa Pakikipag-ugnayan",
-      "content": "Para sa mga tanong tungkol sa Mga Tuntunin ng Serbisyo na ito, mangyaring bisitahin ang aming About page o makipag-ugnayan sa amin sa pamamagitan ng aming GitHub repository."
+    {
+      "id": "changes",
+      "title": "Pagbabago sa mga tuntunin",
+      "paragraphs": [
+        "Maaaring magbago ang mga tuntuning ito. Ipinapakita ng petsa sa itaas ng pahinang ito ang huling pagbabago.",
+        "Kung gagamitin mo ang Yanig pagkatapos ng pagbabago, tinatanggap mo ang mga bagong tuntunin."
+      ]
+    },
+    {
+      "id": "contact",
+      "title": "Makipag-ugnayan",
+      "paragraphs": [
+        "Si Rafael Race ang gumawa ng Yanig. Para sa mga tanong, magbukas ng issue sa pahina ng Yanig sa GitHub."
+      ],
+      "link": {
+        "label": "Yanig sa GitHub",
+        "href": "https://github.com/rhaprace/quakeSafe/issues"
+      }
     }
-  }
+  ]
 }
-

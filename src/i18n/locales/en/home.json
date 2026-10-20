@@ -1,67 +1,86 @@
 {
   "hero": {
-    "badge": "Live Earthquake Monitoring",
-    "title": "Earthquake Safety & Real-Time Monitoring",
-    "subtitle": "Real-time earthquake tracking and comprehensive preparedness resources to keep you and your community safe during seismic events."
+    "kicker": "Public notice · Pabatid sa publiko",
+    "title": "When the ground shakes, know what to do.",
+    "intro": "Yanig shows recent earthquakes near the Philippines and around the world. It also gives safety steps and emergency numbers.",
+    "ctaGuides": "Learn Drop, Cover, Hold on",
+    "ctaTracker": "See recent earthquakes",
+    "stamp": "Free",
+    "stampSmall": "No account"
   },
-  "features": {
-    "title": "Core Features",
-    "subtitle": "Essential tools for earthquake awareness",
-    "realtime": {
-      "title": "Real-Time Data",
-      "description": "Live earthquake tracking from authoritative sources with automatic updates every 10 minutes."
+  "quakes": {
+    "kicker": "Latest 5 · Worldwide",
+    "title": "Recent earthquakes",
+    "loading": "Loading recent earthquakes",
+    "error": "Yanig cannot get earthquake data now. Check your internet connection.",
+    "retry": "Try again",
+    "magnitude": "Magnitude {{mag}}",
+    "depth": "{{km}} km deep",
+    "depthUnknown": "Depth unknown",
+    "source": "Source: {{name}}",
+    "updates": "Yanig checks for new data every 10 minutes.",
+    "link": "See all earthquakes on the tracker",
+    "kickerNear": "Latest 5 · Near the Philippines"
+  },
+  "during": {
+    "kicker": "Guide · During",
+    "title": "During the shaking",
+    "intro": "Do these three steps when the ground shakes.",
+    "stripLabel": "Drop, Cover, Hold on. Use the arrow keys to change the step.",
+    "stepOf": "Step {{n}} of 3",
+    "steps": {
+      "drop": {
+        "name": "Drop",
+        "text": "Drop to your hands and knees immediately."
+      },
+      "cover": {
+        "name": "Cover",
+        "text": "Take cover under a strong desk or table. If there is no table, cover your head and neck with your arms."
+      },
+      "hold": {
+        "name": "Hold on",
+        "text": "Hold on to your shelter. Stay in this position until the shaking stops."
+      }
     },
-    "interactive": {
-      "title": "Interactive Map",
-      "description": "Visual earthquake locations with detailed magnitude, depth, and impact information."
+    "back": "Back",
+    "next": "Next step",
+    "door": "Do not stand in doorways.",
+    "guideLink": "Read all safety guides"
+  },
+  "hotlines": {
+    "kicker": "{{country}} · Tap a number to call",
+    "title": "Emergency hotlines",
+    "call": "Call"
+  },
+  "finder": {
+    "kicker": "Philippines",
+    "title": "Find your city",
+    "text": "Yanig lists hotlines, hospitals and evacuation centres for {{cities}} cities in {{regions}} regions.",
+    "link": "Open the emergency finder"
+  },
+  "offline": {
+    "title": "Install it. Use it without internet.",
+    "install": "Add Yanig to your home screen. It opens like an app.",
+    "before": "Pages you opened before work without internet.",
+    "needsInternet": "New earthquake data needs internet."
+  },
+  "faq": {
+    "title": "Questions",
+    "source": {
+      "q": "Where does the data come from?",
+      "a": "From USGS, GeoNet (New Zealand) and BMKG (Indonesia). Yanig checks for new data every 10 minutes."
     },
-    "preparedness": {
-      "title": "Preparedness Guides",
-      "description": "Evidence-based safety protocols and emergency response procedures for all scenarios."
+    "warn": {
+      "q": "Does it warn me before an earthquake?",
+      "a": "No. No one can predict earthquakes. Yanig shows earthquakes after they happen."
+    },
+    "offline": {
+      "q": "Does it work without internet?",
+      "a": "Partly. Pages you opened before work without internet. New earthquake data needs internet."
+    },
+    "free": {
+      "q": "Is it free?",
+      "a": "Yes. Yanig is free. You do not need an account."
     }
-  },
-  "preparedness": {
-    "title": "Earthquake Preparedness",
-    "subtitle": "Essential safety protocols",
-    "before": {
-      "title": "Before an Earthquake",
-      "description": "Prepare your home and family for potential earthquakes"
-    },
-    "during": {
-      "title": "During an Earthquake",
-      "description": "Know what to do when the ground starts shaking"
-    },
-    "after": {
-      "title": "After an Earthquake",
-      "description": "Steps to take once the shaking has stopped"
-    },
-    "kit": {
-      "title": "Emergency Kit",
-      "description": "Essential supplies every household should have"
-    }
-  },
-  "stats": {
-    "title": "Global Earthquake Activity",
-    "subtitle": "Understanding seismic patterns",
-    "daily": {
-      "value": "50+",
-      "label": "Daily Earthquakes",
-      "description": "Magnitude 3.0+"
-    },
-    "monitored": {
-      "value": "24/7",
-      "label": "Continuous Monitoring",
-      "description": "Real-time tracking"
-    },
-    "coverage": {
-      "value": "Global",
-      "label": "Worldwide Coverage",
-      "description": "All seismic regions"
-    }
-  },
-  "cta": {
-    "title": "Access Emergency Resources",
-    "subtitle": "Get real-time earthquake data, safety protocols, and emergency contact information to protect yourself and your community."
   }
 }
-

@@ -1,202 +1,241 @@
 {
-  "title": "Earthquake Safety Guides",
-  "subtitle": "Learn how to stay safe before, during, and after an earthquake.",
+  "kicker": "Safety guides · Mga gabay",
+  "title": "Know what to do",
+  "subtitle": "Read these guides before an earthquake. Practise the steps with your family. Pages you opened before work without internet.",
+  "tabsLabel": "Guide topics",
+  "topicCount": "Topic {{n}} of {{total}}",
+  "dch": {
+    "stepLabel": "Step {{n}}:",
+    "steps": {
+      "drop": {
+        "word": "Drop",
+        "text": "Go down on your hands and knees. Then the shaking cannot knock you down."
+      },
+      "cover": {
+        "word": "Cover",
+        "text": "Cover your head and neck. Go under a strong table if one is near."
+      },
+      "hold": {
+        "word": "Hold on",
+        "text": "Hold on to the table. If the table moves, move with it."
+      }
+    },
+    "noTable": "No table near you? Go down next to an inside wall. Cover your head and neck with your arms.",
+    "stay": "Stay in this position until the shaking stops."
+  },
+  "kitChecklist": {
+    "progress": "{{ready}} of {{total}} ready",
+    "progressLabel": "Items in your kit",
+    "saved": "Tick each item when it is in your kit. Your ticks stay on this device only.",
+    "reset": "Clear all ticks"
+  },
   "guides": {
     "before": {
-      "title": "Before an Earthquake",
-      "description": "Prepare your home and family for potential earthquakes",
+      "short": "Before",
+      "title": "Before an earthquake",
+      "description": "Make your home safer and make a plan with your family.",
       "sections": {
         "secureHome": {
-          "title": "Secure Your Home",
+          "title": "Make your home safer",
           "points": [
-            "Bolt bookcases, water heaters, and heavy furniture to walls",
-            "Install strong latches on cabinets to prevent contents from spilling",
-            "Move heavy items to lower shelves",
-            "Store breakable items in closed cabinets with latches",
-            "Hang heavy pictures and mirrors away from beds and seating areas"
+            "Attach tall cabinets, shelves and heavy furniture to the wall.",
+            "Put latches on cabinet doors. Then the contents cannot fall out.",
+            "Put heavy items on low shelves.",
+            "Keep glass and other items that can break in closed cabinets.",
+            "Do not hang heavy frames or mirrors above beds or seats."
           ]
         },
         "emergencyPlanning": {
-          "title": "Emergency Planning",
+          "title": "Make a family plan",
           "points": [
-            "Develop a family emergency plan with meeting locations",
-            "Identify safe spots in each room (under sturdy desks or against interior walls)",
-            "Practice 'Drop, Cover, and Hold On' drills regularly",
-            "Keep emergency contact information easily accessible",
-            "Plan evacuation routes and practice them"
+            "Choose a place where your family will meet after an earthquake.",
+            "Find a safe spot in each room, such as under a strong table.",
+            "Practise Drop, Cover, Hold on with your family.",
+            "Write down emergency numbers. Keep them near the phone and in your wallet.",
+            "Know the way to your barangay evacuation area. Walk it with your family."
           ]
         },
         "importantDocuments": {
-          "title": "Important Documents",
+          "title": "Keep your papers safe",
           "points": [
-            "Keep copies of important documents in a waterproof container",
-            "Store insurance policies, identification, and medical records",
-            "Take photos/video of your home and possessions for insurance",
-            "Keep some cash on hand in case ATMs are not working"
+            "Keep copies of important papers in a waterproof bag.",
+            "Include IDs, land titles, insurance papers and medical records.",
+            "Take photos of your home and your things.",
+            "Keep some cash. ATMs may not work after an earthquake."
           ]
         }
       }
     },
     "during": {
-      "title": "During an Earthquake",
-      "description": "Know what to do when the ground starts shaking",
+      "short": "During",
+      "title": "During the shaking",
+      "description": "Drop, Cover, Hold on. Do it at once when the ground shakes.",
       "sections": {
-        "dropCoverHold": {
-          "title": "Drop, Cover, and Hold On",
-          "points": [
-            "DROP to your hands and knees immediately",
-            "Take COVER under a sturdy desk or table if available",
-            "HOLD ON to your shelter and protect your head/neck with your arms",
-            "If no table, cover your head and neck with arms and hands",
-            "Stay in this position until shaking stops"
-          ]
-        },
         "indoors": {
-          "title": "If You Are Indoors",
+          "title": "If you are inside",
           "points": [
-            "Stay inside - do not run outside during shaking",
-            "Do not stand in doorways (not safer than other locations)",
-            "Stay away from windows, mirrors, and heavy objects that could fall",
-            "Do not use elevators",
-            "If in bed, stay there and cover your head with a pillow"
+            "Stay inside. Do not run outside while the ground shakes.",
+            "Do not stand in a doorway. It is not safer than other places.",
+            "Stay away from windows, glass and tall furniture.",
+            "Do not use the elevator.",
+            "If you are in bed, stay there. Cover your head with a pillow."
           ]
         },
         "outdoors": {
-          "title": "If You Are Outdoors",
+          "title": "If you are outside",
           "points": [
-            "Move away from buildings, power lines, and trees",
-            "Drop, cover, and hold on in an open area",
-            "If driving, pull over safely and stay in the vehicle",
-            "Do not stop under bridges, overpasses, or power lines"
+            "Move away from buildings, walls, trees and power lines.",
+            "Drop, Cover, Hold on in an open area.",
+            "If you drive, stop in a safe place. Stay in the vehicle.",
+            "Do not stop on or under bridges, overpasses or power lines."
+          ]
+        },
+        "nearCoast": {
+          "title": "If you are near the sea",
+          "points": [
+            "If the shaking is strong or long, go to high ground at once.",
+            "Do not wait for an official warning.",
+            "If the sea goes back far from the shore, go to high ground.",
+            "Stay away from the shore until officials say it is safe."
           ]
         }
       }
     },
     "after": {
-      "title": "After an Earthquake",
-      "description": "Steps to take once the shaking has stopped",
+      "short": "After",
+      "title": "After the shaking",
+      "description": "Check for injuries and danger. Expect aftershocks.",
       "sections": {
         "immediate": {
-          "title": "Immediate Actions",
+          "title": "First steps",
           "points": [
-            "Check yourself and others for injuries - provide first aid if trained",
-            "Check for hazards: gas leaks, electrical damage, structural damage",
-            "Turn off gas if you smell gas or suspect a leak",
-            "Use flashlights instead of candles or matches",
-            "Be prepared for aftershocks"
+            "Check yourself and others for injuries. Give first aid if you know how.",
+            "Look for danger: gas leaks, broken wires and damage to the building.",
+            "If you smell gas, close the LPG tank valve. Open the windows and go outside.",
+            "Use a flashlight. Do not use candles or matches.",
+            "Expect aftershocks. Drop, Cover, Hold on again when they come."
           ]
         },
         "communication": {
-          "title": "Communication and Information",
+          "title": "Get information",
           "points": [
-            "Listen to emergency broadcasts for information and instructions",
-            "Use text messages instead of phone calls when possible",
-            "Check on neighbors, especially elderly or disabled individuals",
-            "Stay off the roads unless absolutely necessary",
-            "Do not enter damaged buildings"
+            "Listen to the radio for official news and instructions.",
+            "Send text messages. Make calls only for emergencies.",
+            "Check on your neighbours. Help older people and people with disabilities first.",
+            "Stay off the roads. Leave them for emergency vehicles.",
+            "Do not go into damaged buildings."
           ]
         },
         "ongoingSafety": {
-          "title": "Ongoing Safety",
+          "title": "In the days after",
           "points": [
-            "Inspect your home for damage before re-entering",
-            "Document damage with photos for insurance claims",
-            "Be patient - emergency services may be overwhelmed",
-            "Conserve battery power and water",
-            "Help others if you are able to do so safely"
+            "Check your home for damage before you go back inside.",
+            "Take photos of the damage for insurance or aid claims.",
+            "Emergency services can be very busy. Be patient.",
+            "Save phone battery and water.",
+            "Help others if you can do it safely."
           ]
         }
       }
     },
     "kit": {
-      "title": "Emergency Kit Essentials",
-      "description": "Essential supplies every household should have",
+      "short": "Go bag",
+      "title": "Emergency go bag",
+      "description": "Pack supplies for at least 3 days. Keep the bag near the door.",
       "sections": {
         "waterFood": {
-          "title": "Water and Food (3-day supply minimum)",
-          "points": [
-            "1 gallon of water per person per day",
-            "Non-perishable food for each person",
-            "Manual can opener and utility knife",
-            "Paper plates, cups, and plastic utensils",
-            "Baby formula and food if needed"
-          ]
+          "title": "Water and food",
+          "items": {
+            "water": "About 4 litres of water for each person for each day",
+            "food": "Food that does not spoil, such as canned goods and biscuits",
+            "opener": "A manual can opener",
+            "utensils": "Plates, cups and spoons",
+            "babyFood": "Milk and food for babies, if you need them"
+          }
         },
-        "communication": {
-          "title": "Communication and Light",
-          "points": [
-            "Battery-powered or hand-crank radio",
-            "NOAA Weather Radio with tone alert",
-            "Flashlights (one per person)",
-            "Extra batteries for all devices",
-            "Cell phone chargers (solar or hand-crank)"
-          ]
+        "lightRadio": {
+          "title": "Light and radio",
+          "items": {
+            "radio": "A battery-powered or hand-crank radio",
+            "flashlight": "A flashlight for each person",
+            "batteries": "Extra batteries",
+            "powerBank": "A charged power bank and a phone cable",
+            "whistle": "A whistle to call for help"
+          }
         },
         "firstAid": {
-          "title": "First Aid and Safety",
-          "points": [
-            "Well-stocked first aid kit",
-            "Prescription medications (7-day supply)",
-            "Personal hygiene items",
-            "Emergency contact information",
-            "Local area maps",
-            "Whistle for signaling help"
-          ]
+          "title": "First aid and health",
+          "items": {
+            "firstAidKit": "A first aid kit",
+            "medicines": "Your medicines for 7 days",
+            "hygiene": "Soap, toothbrush, sanitary pads and tissue",
+            "dustMask": "Face masks to keep out dust"
+          }
+        },
+        "papersMoney": {
+          "title": "Papers, money and clothes",
+          "items": {
+            "documents": "Copies of IDs and important papers in a waterproof bag",
+            "contactList": "Emergency numbers written on paper",
+            "cash": "Cash in small bills and coins",
+            "map": "A map of your area",
+            "clothes": "A change of clothes and a blanket"
+          }
         }
       }
     },
     "building": {
-      "title": "Building Safety Tips",
-      "description": "Make your building more earthquake-resistant",
+      "short": "Building",
+      "title": "A safer building",
+      "description": "A strong building protects the people inside it.",
       "sections": {
         "foundation": {
-          "title": "Foundation and Structure",
+          "title": "Structure",
           "points": [
-            "Ensure your home is properly bolted to its foundation",
-            "Retrofit older buildings to current seismic standards",
-            "Identify and reinforce weak points in your structure",
-            "Consider professional seismic retrofitting",
-            "Regular maintenance of structural elements"
+            "Ask a licensed civil engineer to check older buildings.",
+            "Build and repair to the National Structural Code of the Philippines.",
+            "Hollow block walls must have steel bars inside.",
+            "Look for cracks in walls, posts and beams. Get them repaired.",
+            "Check the roof, posts and beams regularly."
           ]
         },
         "interior": {
-          "title": "Interior Safety Measures",
+          "title": "Inside the home",
           "points": [
-            "Install automatic gas shut-off valves",
-            "Use flexible connections for gas appliances",
-            "Secure ceiling fans and light fixtures",
-            "Install safety film on large windows",
-            "Use earthquake putty for securing small objects"
+            "Close the LPG tank valve when you do not use the stove.",
+            "Use a good gas hose and check it for cracks.",
+            "Attach ceiling fans and lights tightly.",
+            "Put safety film on large windows.",
+            "Fix small items in place with putty or straps."
           ]
         }
       }
     },
     "community": {
-      "title": "Community Preparedness",
-      "description": "Working together for earthquake readiness",
+      "short": "Community",
+      "title": "Your community",
+      "description": "Neighbours help each other first after a disaster.",
       "sections": {
         "neighborhood": {
-          "title": "Neighborhood Planning",
+          "title": "With your neighbours",
           "points": [
-            "Organize neighborhood emergency response teams",
-            "Identify neighbors with special skills (medical, engineering)",
-            "Plan for vulnerable community members (elderly, disabled)",
-            "Establish communication protocols with neighbors",
-            "Practice community emergency drills"
+            "Join the earthquake drills in your barangay, school or office.",
+            "Know which neighbours have medical or building skills.",
+            "Make a plan for older people and people with disabilities.",
+            "Agree how you will contact each other after an earthquake."
           ]
         },
         "resources": {
-          "title": "Community Resources",
+          "title": "Know your area",
           "points": [
-            "Know locations of emergency shelters and hospitals",
-            "Identify community emergency supply caches",
-            "Learn about local emergency response procedures",
-            "Participate in community preparedness programs",
-            "Advocate for improved building codes and safety measures"
+            "Know where your evacuation area, hospital and health centre are.",
+            "Ask your barangay hall about emergency supplies.",
+            "Learn the emergency plan of your barangay and city.",
+            "Take a first aid course, for example with the Philippine Red Cross.",
+            "Support safe building rules in your community."
           ]
         }
       }
     }
   }
 }
-

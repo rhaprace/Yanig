@@ -1,32 +1,58 @@
 {
-  "title": "ライブ地震トラッカー",
-  "subtitle": "リアルタイム地震活動監視",
-  "loading": "地震データを読み込んでいます...",
-  "error": "地震データの読み込みに失敗しました。もう一度お試しください。",
-  "noData": "地震データがありません。",
-  "filters": {
-    "timeRange": "時間範囲",
+  "seo": {
+    "title": "地震トラッカー：フィリピン周辺の最近の地震",
+    "description": "フィリピン周辺と世界の最近の地震を地図とリストで確認できます。データは USGS、GeoNet、BMKG から取得します。Yanig は 10 分ごとに新しいデータを確認します。"
+  },
+  "hero": {
+    "kicker": "最近の地震",
+    "title": "地震トラッカー",
+    "intro": "フィリピン周辺と世界の最近の地震を確認できます。リストの地震を選ぶと、地図に表示されます。"
+  },
+  "status": {
+    "interval": "Yanig は 10 分ごとに新しいデータを確認します。",
+    "lastUpdated": "最終更新：{{time}}",
+    "checking": "新しいデータを確認中",
+    "refresh": "更新",
+    "sources": "データ元",
+    "staleError": "新しいデータを取得できませんでした。リストは {{time}} のデータです。"
+  },
+  "controls": {
     "magnitude": "マグニチュード",
-    "all": "すべての地震",
-    "hour": "過去1時間",
-    "day": "過去1日",
-    "week": "過去1週間",
-    "month": "過去1ヶ月"
+    "magAll": "すべて",
+    "magMin": "M{{value}}+",
+    "magMinLabel": "マグニチュード {{value}} 以上",
+    "sort": "並べ替え",
+    "newest": "新しい順",
+    "strongest": "強い順",
+    "region": "地域",
+    "ph": "フィリピン周辺",
+    "all": "すべての地域",
+    "view": "表示",
+    "map": "地図",
+    "list": "リスト",
+    "both": "両方"
   },
-  "views": {
-    "map": "マップビュー",
-    "list": "リストビュー"
+  "list": {
+    "heading": "地震",
+    "count_one": "{{count}} 件の地震",
+    "count_other": "{{count}} 件の地震",
+    "magnitude": "マグニチュード {{mag}}",
+    "depth": "深さ {{depth}} km",
+    "source": "データ元：{{source}}"
   },
-  "card": {
-    "magnitude": "M",
-    "depth": "km深さ",
-    "tsunamiWarning": "津波警報",
-    "alert": "警報"
+  "empty": "条件に合う地震はありません。より低いマグニチュードか「すべての地域」を選んでください。",
+  "loading": "地震データを読み込み中",
+  "error": {
+    "title": "地震データを読み込めませんでした",
+    "body": "インターネット接続を確認してから、もう一度お試しください。",
+    "retry": "再試行"
   },
-  "stats": {
-    "total": "総イベント数",
-    "significant": "重要",
-    "recent": "過去1時間"
+  "map": {
+    "label": "リストの地震の地図",
+    "legend": "マグニチュード",
+    "time": "時刻",
+    "depth": "深さ",
+    "source": "データ元",
+    "details": "{{source}} のウェブサイトで詳細を見る"
   }
 }
-

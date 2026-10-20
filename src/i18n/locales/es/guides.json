@@ -1,12 +1,241 @@
 {
-  "title": "Guías de Preparación para Terremotos",
-  "subtitle": "Información de seguridad completa y procedimientos de emergencia",
-  "sections": {
-    "before": "Antes de un Terremoto",
-    "during": "Durante un Terremoto",
-    "after": "Después de un Terremoto",
-    "supplies": "Suministros de Emergencia",
-    "plan": "Plan de Emergencia Familiar"
+  "kicker": "Guías de seguridad",
+  "title": "Sepa qué hacer",
+  "subtitle": "Lea estas guías antes de un sismo. Practique los pasos con su familia. Las páginas que abrió antes funcionan sin internet.",
+  "tabsLabel": "Temas de la guía",
+  "topicCount": "Tema {{n}} de {{total}}",
+  "dch": {
+    "stepLabel": "Paso {{n}}:",
+    "steps": {
+      "drop": {
+        "word": "Agáchese",
+        "text": "Póngase en manos y rodillas. Así el movimiento no lo tira al suelo."
+      },
+      "cover": {
+        "word": "Cúbrase",
+        "text": "Cubra su cabeza y cuello. Métase bajo una mesa fuerte si hay una cerca."
+      },
+      "hold": {
+        "word": "Sujétese",
+        "text": "Sujétese a la mesa. Si la mesa se mueve, muévase con ella."
+      }
+    },
+    "noTable": "¿No hay una mesa cerca? Agáchese junto a una pared interior. Cubra su cabeza y cuello con los brazos.",
+    "stay": "Quédese en esta posición hasta que pare el movimiento."
+  },
+  "kitChecklist": {
+    "progress": "{{ready}} de {{total}} listos",
+    "progressLabel": "Artículos en su mochila",
+    "saved": "Marque cada artículo cuando esté en su mochila. Las marcas se guardan solo en este dispositivo.",
+    "reset": "Quitar todas las marcas"
+  },
+  "guides": {
+    "before": {
+      "short": "Antes",
+      "title": "Antes de un sismo",
+      "description": "Haga su casa más segura y haga un plan con su familia.",
+      "sections": {
+        "secureHome": {
+          "title": "Haga su casa más segura",
+          "points": [
+            "Fije a la pared los armarios altos, estantes y muebles pesados.",
+            "Ponga seguros en las puertas de los armarios. Así el contenido no se cae.",
+            "Ponga los objetos pesados en estantes bajos.",
+            "Guarde el vidrio y los objetos frágiles en armarios cerrados.",
+            "No cuelgue cuadros pesados ni espejos sobre camas o asientos."
+          ]
+        },
+        "emergencyPlanning": {
+          "title": "Haga un plan familiar",
+          "points": [
+            "Elija un lugar donde su familia se reúne después de un sismo.",
+            "Busque un lugar seguro en cada cuarto, como debajo de una mesa fuerte.",
+            "Practique Agáchese, Cúbrase, Sujétese con su familia.",
+            "Escriba los números de emergencia. Téngalos cerca del teléfono y en su cartera.",
+            "Conozca el camino a la zona de evacuación de su barrio. Recórralo con su familia."
+          ]
+        },
+        "importantDocuments": {
+          "title": "Proteja sus papeles",
+          "points": [
+            "Guarde copias de sus papeles importantes en una bolsa impermeable.",
+            "Incluya identificaciones, títulos de propiedad, pólizas de seguro y expedientes médicos.",
+            "Tome fotos de su casa y de sus cosas.",
+            "Tenga algo de efectivo. Los cajeros pueden no funcionar después de un sismo."
+          ]
+        }
+      }
+    },
+    "during": {
+      "short": "Durante",
+      "title": "Durante el sismo",
+      "description": "Agáchese, Cúbrase, Sujétese. Hágalo de inmediato cuando el suelo se mueve.",
+      "sections": {
+        "indoors": {
+          "title": "Si está adentro",
+          "points": [
+            "Quédese adentro. No corra afuera mientras el suelo se mueve.",
+            "No se ponga en el marco de una puerta. No es más seguro que otros lugares.",
+            "Aléjese de ventanas, vidrios y muebles altos.",
+            "No use el ascensor.",
+            "Si está en la cama, quédese ahí. Cubra su cabeza con una almohada."
+          ]
+        },
+        "outdoors": {
+          "title": "Si está afuera",
+          "points": [
+            "Aléjese de edificios, muros, árboles y cables eléctricos.",
+            "Agáchese, Cúbrase, Sujétese en un área abierta.",
+            "Si maneja, pare en un lugar seguro. Quédese en el vehículo.",
+            "No pare sobre o debajo de puentes, pasos elevados o cables eléctricos."
+          ]
+        },
+        "nearCoast": {
+          "title": "Si está cerca del mar",
+          "points": [
+            "Si el sismo es fuerte o largo, vaya a un lugar alto de inmediato.",
+            "No espere una alerta oficial.",
+            "Si el mar se retira lejos de la orilla, vaya a un lugar alto.",
+            "No vuelva a la orilla hasta que las autoridades digan que es seguro."
+          ]
+        }
+      }
+    },
+    "after": {
+      "short": "Después",
+      "title": "Después del sismo",
+      "description": "Revise si hay heridos y peligros. Espere réplicas.",
+      "sections": {
+        "immediate": {
+          "title": "Primeros pasos",
+          "points": [
+            "Revise si usted u otros tienen heridas. Dé primeros auxilios si sabe cómo.",
+            "Busque peligros: fugas de gas, cables rotos y daños en el edificio.",
+            "Si huele a gas, cierre la válvula del tanque. Abra las ventanas y salga.",
+            "Use una linterna. No use velas ni fósforos.",
+            "Espere réplicas. Agáchese, Cúbrase, Sujétese otra vez cuando lleguen."
+          ]
+        },
+        "communication": {
+          "title": "Busque información",
+          "points": [
+            "Escuche la radio para noticias e instrucciones oficiales.",
+            "Envíe mensajes de texto. Llame solo en emergencias.",
+            "Visite a sus vecinos. Ayude primero a personas mayores y con discapacidad.",
+            "No use las calles. Déjelas para los vehículos de emergencia.",
+            "No entre en edificios dañados."
+          ]
+        },
+        "ongoingSafety": {
+          "title": "En los días siguientes",
+          "points": [
+            "Revise su casa por daños antes de volver a entrar.",
+            "Tome fotos de los daños para el seguro o para pedir ayuda.",
+            "Los servicios de emergencia pueden estar muy ocupados. Tenga paciencia.",
+            "Ahorre batería del teléfono y agua.",
+            "Ayude a otros si puede hacerlo con seguridad."
+          ]
+        }
+      }
+    },
+    "kit": {
+      "short": "Mochila",
+      "title": "Mochila de emergencia",
+      "description": "Prepare provisiones para 3 días como mínimo. Deje la mochila cerca de la puerta.",
+      "sections": {
+        "waterFood": {
+          "title": "Agua y comida",
+          "items": {
+            "water": "Unos 4 litros de agua por persona por día",
+            "food": "Comida que no se echa a perder, como latas y galletas",
+            "opener": "Un abrelatas manual",
+            "utensils": "Platos, vasos y cucharas",
+            "babyFood": "Leche y comida para bebés, si las necesita"
+          }
+        },
+        "lightRadio": {
+          "title": "Luz y radio",
+          "items": {
+            "radio": "Una radio de pilas o de manivela",
+            "flashlight": "Una linterna por persona",
+            "batteries": "Pilas extra",
+            "powerBank": "Una batería externa cargada y un cable de teléfono",
+            "whistle": "Un silbato para pedir ayuda"
+          }
+        },
+        "firstAid": {
+          "title": "Primeros auxilios y salud",
+          "items": {
+            "firstAidKit": "Un botiquín de primeros auxilios",
+            "medicines": "Sus medicinas para 7 días",
+            "hygiene": "Jabón, cepillo de dientes, toallas sanitarias y papel",
+            "dustMask": "Mascarillas contra el polvo"
+          }
+        },
+        "papersMoney": {
+          "title": "Papeles, dinero y ropa",
+          "items": {
+            "documents": "Copias de identificaciones y papeles importantes en una bolsa impermeable",
+            "contactList": "Números de emergencia escritos en papel",
+            "cash": "Efectivo en billetes pequeños y monedas",
+            "map": "Un mapa de su zona",
+            "clothes": "Una muda de ropa y una manta"
+          }
+        }
+      }
+    },
+    "building": {
+      "short": "Edificio",
+      "title": "Un edificio más seguro",
+      "description": "Un edificio fuerte protege a las personas que están adentro.",
+      "sections": {
+        "foundation": {
+          "title": "Estructura",
+          "points": [
+            "Pida a un ingeniero civil con licencia que revise los edificios viejos.",
+            "Construya y repare según el código de construcción de su país.",
+            "Los muros de bloque deben tener varillas de acero adentro.",
+            "Busque grietas en muros, columnas y vigas. Hágalas reparar.",
+            "Revise el techo, las columnas y las vigas con regularidad."
+          ]
+        },
+        "interior": {
+          "title": "Dentro de la casa",
+          "points": [
+            "Cierre la válvula del tanque de gas cuando no use la estufa.",
+            "Use una buena manguera de gas y revise que no tenga grietas.",
+            "Fije bien los ventiladores de techo y las lámparas.",
+            "Ponga película de seguridad en las ventanas grandes.",
+            "Fije los objetos pequeños con masilla o correas."
+          ]
+        }
+      }
+    },
+    "community": {
+      "short": "Comunidad",
+      "title": "Su comunidad",
+      "description": "Los vecinos se ayudan primero después de un desastre.",
+      "sections": {
+        "neighborhood": {
+          "title": "Con sus vecinos",
+          "points": [
+            "Participe en los simulacros de sismo de su barrio, escuela u oficina.",
+            "Sepa qué vecinos saben de medicina o de construcción.",
+            "Haga un plan para personas mayores y con discapacidad.",
+            "Acuerden cómo se van a comunicar después de un sismo."
+          ]
+        },
+        "resources": {
+          "title": "Conozca su zona",
+          "points": [
+            "Sepa dónde están su zona de evacuación, el hospital y el centro de salud.",
+            "Pregunte a su gobierno local por los suministros de emergencia.",
+            "Conozca el plan de emergencia de su barrio y su ciudad.",
+            "Tome un curso de primeros auxilios, por ejemplo con la Cruz Roja.",
+            "Apoye reglas de construcción seguras en su comunidad."
+          ]
+        }
+      }
+    }
   }
 }
-

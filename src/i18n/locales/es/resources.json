@@ -1,77 +1,158 @@
 {
-  "title": "Recursos de Emergencia",
-  "subtitle": "Contactos esenciales, organizaciones y recursos para la preparación ante terremotos y respuesta de emergencia. Mantenga esta información fácilmente accesible.",
+  "kicker": "Recursos",
+  "title": "Números de emergencia",
+  "subtitle": "Toque un número para llamar. Guarde estos números en su teléfono ahora.",
   "sections": {
     "hotlines": {
-      "title": "Líneas Directas de Emergencia",
-      "subtitle": "Números de contacto críticos para asistencia inmediata"
+      "title": "Líneas de emergencia",
+      "subtitle": "País: {{country}}",
+      "call": "Llamar a {{name}}: {{number}}"
+    },
+    "cityFinder": {
+      "title": "Números de su ciudad",
+      "text": "Vea líneas locales, hospitales y centros de evacuación de {{count}} ciudades grandes de Filipinas.",
+      "link": "Buscar su ciudad"
     },
     "agencies": {
-      "title": "Agencias Gubernamentales",
-      "subtitle": "Recursos federales para respuesta a desastres y monitoreo"
+      "title": "Agencias del gobierno",
+      "subtitle": "Agencias oficiales para sismos y desastres.",
+      "opens": "(se abre en una pestaña nueva)"
     },
     "local": {
-      "title": "Recursos Comunitarios Locales",
-      "subtitle": "Contacte a su oficina local de gestión de emergencias para ubicaciones específicas",
-      "shelters": {
-        "category": "Refugios de Emergencia",
-        "description": "Contacte a su oficina local de gestión de emergencias para ubicaciones de refugios",
-        "items": {
-          "community": "Centros Comunitarios",
-          "schools": "Escuelas (designadas como refugios)",
-          "religious": "Organizaciones Religiosas",
-          "redcross": "Refugios de la Cruz Roja"
+      "title": "Dónde pedir ayuda",
+      "subtitle": "Pregunte a su gobierno local por los lugares exactos cerca de usted.",
+      "US": {
+        "shelters": {
+          "category": "Refugios de emergencia",
+          "description": "Pregunte a su oficina local de emergencias dónde están los refugios.",
+          "items": {
+            "community": "Centros comunitarios",
+            "schools": "Escuelas que sirven de refugio",
+            "religious": "Lugares de culto",
+            "redcross": "Refugios de la Cruz Roja"
+          }
+        },
+        "healthcare": {
+          "category": "Atención médica",
+          "description": "Sepa dónde está la ayuda médica más cercana.",
+          "items": {
+            "hospitals": "Hospitales",
+            "urgent": "Centros de atención urgente",
+            "fire": "Estaciones de bomberos con paramédicos",
+            "community": "Centros de salud comunitarios"
+          }
+        },
+        "supply": {
+          "category": "Suministros",
+          "description": "Lugares que reparten suministros después de un desastre.",
+          "items": {
+            "eoc": "Centros de operaciones de emergencia",
+            "fema": "Centros de recuperación de FEMA",
+            "foodbanks": "Bancos de alimentos locales",
+            "distribution": "Puntos de distribución comunitarios"
+          }
         }
       },
-      "healthcare": {
-        "category": "Instalaciones de Salud",
-        "description": "Conozca la ubicación de las instalaciones médicas cercanas",
-        "items": {
-          "hospitals": "Hospitales",
-          "urgent": "Centros de Atención Urgente",
-          "fire": "Estaciones de Bomberos (servicios EMT)",
-          "community": "Centros de Salud Comunitarios"
-        }
-      },
-      "supply": {
-        "category": "Distribución de Suministros",
-        "description": "Ubicaciones para suministros de emergencia durante desastres",
-        "items": {
-          "eoc": "Centros de Operaciones de Emergencia",
-          "fema": "Centros de Ayuda en Desastres de FEMA",
-          "foodbanks": "Bancos de Alimentos Locales",
-          "distribution": "Puntos de Distribución Comunitarios"
+      "PH": {
+        "shelters": {
+          "category": "Evacuación",
+          "description": "Su barangay conoce las zonas de evacuación cerca de usted.",
+          "items": {
+            "evacuation": "Zonas de evacuación del barangay",
+            "schools": "Escuelas públicas",
+            "courts": "Canchas techadas y gimnasios"
+          }
+        },
+        "healthcare": {
+          "category": "Atención médica",
+          "description": "Sepa dónde está la ayuda médica más cercana.",
+          "items": {
+            "hospitals": "Hospitales",
+            "healthStation": "Puestos de salud del barangay",
+            "rhu": "Unidades de salud rural y oficinas de salud de la ciudad"
+          }
+        },
+        "supply": {
+          "category": "Ayuda y suministros",
+          "description": "Oficinas que ayudan a las familias después de un desastre.",
+          "items": {
+            "drrmo": "La oficina de desastres (DRRMO) de su ciudad o municipio",
+            "dswd": "Reparto de ayuda del DSWD",
+            "barangayHall": "La oficina de su barangay"
+          }
         }
       }
     },
     "volunteer": {
-      "title": "Organizaciones de Voluntarios",
-      "subtitle": "Apoyo comunitario y programas de capacitación en respuesta de emergencia",
-      "cert": {
-        "name": "Equipo Comunitario de Respuesta a Emergencias (CERT)",
-        "description": "Capacítese para ayudar a su comunidad durante emergencias",
-        "type": "capacitación"
+      "title": "Voluntariado",
+      "subtitle": "Reciba capacitación y ayude a su comunidad.",
+      "US": {
+        "cert": {
+          "name": "Community Emergency Response Team (CERT)",
+          "description": "Capacítese para ayudar a su comunidad en una emergencia.",
+          "type": "Capacitación"
+        },
+        "redcross": {
+          "name": "Voluntarios de la Cruz Roja Americana",
+          "description": "Ayuda en desastres y emergencias.",
+          "type": "Ayuda"
+        },
+        "salvation": {
+          "name": "Salvation Army Emergency Disaster Services",
+          "description": "Respuesta a desastres y apoyo comunitario.",
+          "type": "Ayuda"
+        },
+        "radio": {
+          "name": "Amateur Radio Emergency Service (ARES)",
+          "description": "Apoyo de comunicación por radio en emergencias.",
+          "type": "Comunicación"
+        }
       },
-      "redcross": {
-        "name": "Voluntarios de la Cruz Roja Americana",
-        "description": "Voluntarios de ayuda en desastres y asistencia de emergencia",
-        "type": "ayuda"
-      },
-      "salvation": {
-        "name": "Servicios de Emergencia y Desastres del Ejército de Salvación",
-        "description": "Respuesta a desastres y servicios de apoyo comunitario",
-        "type": "ayuda"
-      },
-      "radio": {
-        "name": "Servicios Locales de Radio Amateur de Emergencia",
-        "description": "Apoyo de comunicación durante emergencias",
-        "type": "comunicación"
+      "PH": {
+        "redcross143": {
+          "name": "Voluntarios de la Cruz Roja Filipina",
+          "description": "Únase al programa Red Cross 143 o a una sede local. Los voluntarios reciben capacitación y ayudan en desastres.",
+          "type": "Ayuda"
+        },
+        "ocdVolunteers": {
+          "name": "Office of Civil Defense (OCD)",
+          "description": "La OCD acredita grupos comunitarios de voluntarios para desastres. Pregunte en la oficina regional de la OCD.",
+          "type": "Gobierno"
+        }
       }
     }
   },
   "disclaimer": {
-    "title": "Información Importante",
-    "text": "Esta lista proporciona recursos generales y contactos de emergencia. Para información específica de ubicación, contacte a su oficina local de gestión de emergencias, ayuntamiento o gobierno del condado. Mantenga los números de emergencia locales fácilmente accesibles y considere programarlos en su teléfono."
+    "title": "Verifique estos números",
+    "text": "Los números pueden cambiar. Verifíquelos con su gobierno local antes de una emergencia. Guárdelos en su teléfono."
+  },
+  "emergencyFinder": {
+    "kicker": "Filipinas · Datos de ejemplo",
+    "title": "Números de emergencia por ciudad",
+    "intro": "Elija una ciudad de la lista o del mapa. Verá sus líneas de emergencia, hospitales y centros de evacuación.",
+    "note": "Esta lista tiene solo {{count}} ciudades grandes. Son datos de ejemplo. Los números pueden cambiar.",
+    "call911": "En una emergencia, llame al 911",
+    "searchLabel": "Buscar ciudad o provincia",
+    "searchPlaceholder": "Por ejemplo, Cebu",
+    "clear": "Borrar búsqueda",
+    "resultCount_one": "{{count}} ciudad",
+    "resultCount_other": "{{count}} ciudades",
+    "noResults": "Ninguna ciudad de la lista coincide con “{{query}}”. En una emergencia, llame al 911.",
+    "cityList": "Ciudades de la lista",
+    "back": "Todas las ciudades",
+    "localGovernment": "Gobierno local",
+    "contacts": "Líneas de emergencia",
+    "hospitals": "Hospitales",
+    "evacuationCenters": "Centros de evacuación",
+    "evacuationNote": "Solo nombres. Pregunte a su barangay por el lugar exacto.",
+    "mapLabel": "Mapa de las ciudades de la lista",
+    "types": {
+      "EMERGENCY": "Emergencia",
+      "HOSPITAL": "Hospital",
+      "FIRE": "Bomberos",
+      "POLICE": "Policía",
+      "DISASTER": "Oficina de desastres",
+      "EVACUATION": "Evacuación"
+    }
   }
 }
-

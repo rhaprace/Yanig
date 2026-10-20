@@ -1,81 +1,64 @@
 import { useState } from 'react';
-import { Calendar, Clock, Tag, ImageOff } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import type { NewsArticle } from '@/types/news';
-import { newsCategories } from '@/data/news';
+import { formatArticleDate } from './format';
 
 interface NewsArticleCardProps {
   article: NewsArticle;
-  onClick: (article: NewsArticle) => void;
+  isSample: boolean;
+  onOpen: (article: NewsArticle) => void;
 }
 
-export const NewsArticleCard: React.FC<NewsArticleCardProps> = ({ article, onClick }) => {
-  const [imageError, setImageError] = useState(false);
-
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    });
-  };
+/** One clipped notice on the news board. */
+export const NewsArticleCard = ({ article, isSample, onOpen }: NewsArticleCardProps) => {
+  const { t, i18n } = useTranslation('about');
+  const [imageFailed, setImageFailed] = useState(false);
+  const date = isSample ? '' : formatArticleDate(article.datePublished, i18n.language);
+  const titleId = `news-title-${article.id}`;
 
   return (
     <article
-      className="bg-background rounded-lg border border-border/50 overflow-hidden hover:border-primary/30 hover:shadow-md transition-all duration-200 cursor-pointer group flex flex-col"
-      onClick={() => onClick(article)}
+      aria-labelledby={titleId}
+      className="relative flex h-full flex-col border-2 border-primary/25 bg-card text-card-foreground md:group-odd:-rotate-[0.6deg] md:group-even:rotate-[0.5deg]"
     >
-      {article.imageUrl && !imageError ? (
-        <div className="w-full h-48 overflow-hidden bg-muted relative">
-          <img
-            src={article.imageUrl}
-            alt={article.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
-            onError={() => {
-              setImageError(true);
-            }}
-            loading="lazy"
-          />
-        </div>
-      ) : article.imageUrl && imageError ? (
-        <div className="w-full h-48 bg-muted flex items-center justify-center">
-          <div className="flex flex-col items-center gap-2 text-muted-foreground">
-            <ImageOff className="h-8 w-8" />
-            <span className="text-xs">Image unavailable</span>
-          </div>
-        </div>
-      ) : null}
-
-      <div className="p-6 flex-1 flex flex-col">
-        <div className="mb-3">
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20">
-            <Tag className="h-3 w-3" />
-            {newsCategories.find(cat => cat.id === article.category)?.name}
-          </span>
-        </div>
-        <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors line-clamp-2">
-          {article.title}
-        </h3>
-        <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
-          {article.excerpt}
+      {/* the clip that holds the notice to the board */}
+      <span
+        className="absolute -top-3 left-1/2 z-10 h-6 w-16 -translate-x-1/2 bg-primary/80"
+        aria-hidden="true"
+      />
+      {article.imageUrl && !imageFailed && (
+        <img
+          src={article.imageUrl}
+          alt=""
+          loading="lazy"
+          referrerPolicy="no-referrer"
+          onError={() => setImageFailed(true)}
+          className="h-44 w-full border-b-2 border-primary/25 object-cover contrast-125 grayscale"
+        />
+      )}
+      <div className="flex flex-1 flex-col gap-3 p-5 pt-6">
+        <p className="font-display text-sm font-bold uppercase tracking-[0.14em] text-riso-text">
+          {t(`news.categories.${article.category}`)}
+          {!isSample && article.source ? ` · ${article.source}` : ''}
         </p>
-        <div className="flex flex-wrap gap-3 text-xs text-muted-foreground mt-auto">
-          <div className="flex items-center gap-1">
-            <Calendar className="h-3 w-3" />
-            {formatDate(article.datePublished)}
-          </div>
-          <div className="flex items-center gap-1">
-            <Clock className="h-3 w-3" />
-            {article.readTime} min
-          </div>
+        <h2 id={titleId} className="font-sans text-xl font-bold normal-case leading-snug tracking-normal text-primary">
+          {article.title}
+        </h2>
+        {article.excerpt && <p className="line-clamp-4 text-base text-foreground/85">{article.excerpt}</p>}
+        <div className="mt-auto flex flex-wrap items-center justify-between gap-3 pt-2">
+          {date ? <span className="text-sm text-muted-foreground">{date}</span> : <span />}
+          <button
+            type="button"
+            onClick={() => onOpen(article)}
+            className="inline-flex min-h-11 items-center border-2 border-primary px-4 font-semibold text-primary hover:bg-primary hover:text-primary-foreground"
+          >
+            {t('news.read')}
+            <span className="sr-only">: {article.title}</span>
+          </button>
         </div>
-      </div>
-      <div className="px-6 py-3 bg-muted/30 border-t text-sm text-primary font-medium group-hover:bg-primary/5 transition-colors">
-        Read article →
       </div>
     </article>
   );
 };
 
 export default NewsArticleCard;
-

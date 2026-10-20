@@ -1,16 +1,5 @@
 export const API_ENDPOINTS = {
   USGS: 'https://earthquake.usgs.gov/fdsnws/event/1/query',
-  USGS_GEOJSON: 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary',
-  PHIVOLCS: 'https://earthquake.phivolcs.dost.gov.ph/2010EQLatest/LatestEarthquake.html',
-  JMA: 'https://www.jma.go.jp/bosai/quake/data/list.json',
-  EMSC: 'https://www.seismicportal.eu/fdsnws/event/1/query',
-
-  OPEN_WEATHER: 'https://api.openweathermap.org/data/2.5',
-
-  NEWS_API: 'https://newsapi.org/v2',
-
-  NOAA_TSUNAMI: 'https://www.tsunami.gov/events/xml/PHEBxml.xml',
-
   IP_GEOLOCATION: 'https://ipapi.co/json',
 } as const;
 
@@ -123,7 +112,7 @@ export const geolocationAPI = {
       }
       return response.json();
     } catch (error) {
-      console.error('Geolocation error:', error);
+      if (import.meta.env.DEV) console.warn('Geolocation error:', error);
       return null;
     }
   },
@@ -140,37 +129,6 @@ export const geolocationAPI = {
         maximumAge: 0,
       });
     });
-  },
-};
-export const regionalAPI = {
-  getPhilippinesEarthquakes: async () => {
-    console.warn('PHIVOLCS API not directly accessible - would need backend implementation');
-    return null;
-  },
-  getJapanEarthquakes: async () => {
-    console.warn('JMA API might need CORS proxy - would need backend implementation');
-    return null;
-  },
-  getEMSCEarthquakes: async (params: USGSQueryParams = {}) => {
-    const defaultParams = {
-      format: 'json',
-      limit: 50,
-      minmag: 2.5,
-    };
-
-    const queryString = buildQueryString({ ...defaultParams, ...params });
-    const url = `${API_ENDPOINTS.EMSC}?${queryString}`;
-
-    try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error(`EMSC API Error: ${response.status}`);
-      }
-      return response.json();
-    } catch (error) {
-      console.error('EMSC API error:', error);
-      return null;
-    }
   },
 };
 
@@ -209,6 +167,5 @@ export const statisticsAPI = {
 export default {
   usgs: usgsAPI,
   geolocation: geolocationAPI,
-  regional: regionalAPI,
   statistics: statisticsAPI,
 };

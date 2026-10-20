@@ -1,65 +1,86 @@
 {
   "hero": {
-    "badge": "Live na Pagsubaybay sa Lindol",
-    "title": "Kaligtasan sa Lindol at Real-Time na Pagsubaybay",
-    "subtitle": "Real-time na pagsubaybay sa lindol mula sa mga opisyal na sanggunian. Mag-access ng live na seismic activity, mga gabay sa paghahanda, at mga emergency resources."
+    "kicker": "Public notice · Pabatid sa publiko",
+    "title": "Kapag yumanig ang lupa, alam mo ang gagawin.",
+    "intro": "Ipinapakita ng Yanig ang mga bagong lindol malapit sa Pilipinas at sa buong mundo. May mga hakbang pangkaligtasan at numerong pang-emergency din.",
+    "ctaGuides": "Alamin ang Yumuko, Magtago, Kumapit",
+    "ctaTracker": "Tingnan ang mga bagong lindol",
+    "stamp": "Libre",
+    "stampSmall": "Walang account"
   },
-  "features": {
-    "title": "Mga Pangunahing Feature",
-    "subtitle": "Mahahalagang tools para sa kamalayan sa lindol",
-    "realtime": {
-      "title": "Real-Time na Data",
-      "description": "Live na pagsubaybay sa lindol mula sa mga awtorisadong sanggunian tulad ng PHIVOLCS at USGS"
+  "quakes": {
+    "kicker": "Huling 5 · Sa buong mundo",
+    "title": "Mga bagong lindol",
+    "loading": "Kinukuha ang mga bagong lindol",
+    "error": "Hindi makuha ng Yanig ang datos ng lindol ngayon. Tingnan ang iyong koneksyon sa internet.",
+    "retry": "Subukan muli",
+    "magnitude": "Magnitude {{mag}}",
+    "depth": "{{km}} km ang lalim",
+    "depthUnknown": "Hindi alam ang lalim",
+    "source": "Pinagmulan: {{name}}",
+    "updates": "Tumitingin ang Yanig ng bagong datos bawat 10 minuto.",
+    "link": "Tingnan ang lahat ng lindol sa tracker",
+    "kickerNear": "Pinakabagong 5 · Malapit sa Pilipinas"
+  },
+  "during": {
+    "kicker": "Gabay · Habang may lindol",
+    "title": "Habang yumayanig",
+    "intro": "Gawin ang tatlong hakbang na ito kapag yumanig ang lupa.",
+    "stripLabel": "Yumuko, Magtago, Kumapit. Gamitin ang arrow keys para magpalit ng hakbang.",
+    "stepOf": "Hakbang {{n}} sa 3",
+    "steps": {
+      "drop": {
+        "name": "Yumuko",
+        "text": "Yumuko sa iyong mga kamay at tuhod kaagad."
+      },
+      "cover": {
+        "name": "Magtago",
+        "text": "Magtago sa ilalim ng matibay na mesa. Kung walang mesa, takpan ang ulo at leeg gamit ang mga braso."
+      },
+      "hold": {
+        "name": "Kumapit",
+        "text": "Kumapit sa iyong pinagtataguan. Manatili sa posisyong ito hanggang tumigil ang pagyanig."
+      }
     },
-    "interactive": {
-      "title": "Interactive na Mapa",
-      "description": "Visualize ang seismic activity sa buong mundo gamit ang detalyadong interactive maps"
+    "back": "Bumalik",
+    "next": "Susunod na hakbang",
+    "door": "Huwag tumayo sa pintuan.",
+    "guideLink": "Basahin ang lahat ng gabay"
+  },
+  "hotlines": {
+    "kicker": "{{country}} · Pindutin ang numero para tumawag",
+    "title": "Mga hotline pang-emergency",
+    "call": "Tumawag"
+  },
+  "finder": {
+    "kicker": "Pilipinas",
+    "title": "Hanapin ang iyong lungsod",
+    "text": "May listahan ang Yanig ng mga hotline, ospital at evacuation center para sa {{cities}} lungsod sa {{regions}} rehiyon.",
+    "link": "Buksan ang emergency finder"
+  },
+  "offline": {
+    "title": "I-install ito. Gamitin kahit walang internet.",
+    "install": "Idagdag ang Yanig sa iyong home screen. Bubukas ito na parang app.",
+    "before": "Gumagana kahit walang internet ang mga pahinang nabuksan mo na dati.",
+    "needsInternet": "Kailangan ng internet para sa bagong datos ng lindol."
+  },
+  "faq": {
+    "title": "Mga tanong",
+    "source": {
+      "q": "Saan galing ang datos?",
+      "a": "Galing ito sa USGS, GeoNet (New Zealand) at BMKG (Indonesia). Tumitingin ang Yanig ng bagong datos bawat 10 minuto."
     },
-    "preparedness": {
-      "title": "Mga Gabay sa Paghahanda",
-      "description": "Komprehensibong mga alituntunin sa kaligtasan para bago, habang, at pagkatapos ng lindol"
+    "warn": {
+      "q": "Babalaan ba ako nito bago lumindol?",
+      "a": "Hindi. Walang makahuhula ng lindol. Ipinapakita ng Yanig ang mga lindol pagkatapos mangyari ang mga ito."
+    },
+    "offline": {
+      "q": "Gumagana ba ito kahit walang internet?",
+      "a": "Bahagya lang. Gumagana kahit walang internet ang mga pahinang nabuksan mo na dati. Kailangan ng internet para sa bagong datos ng lindol."
+    },
+    "free": {
+      "q": "Libre ba ito?",
+      "a": "Oo. Libre ang Yanig. Hindi mo kailangan ng account."
     }
-  },
-  "preparedness": {
-    "title": "Mga Gabay sa Paghahanda",
-    "subtitle": "Mahahalagang safety protocols para sa paghahanda at pagtugon sa lindol",
-    "before": {
-      "title": "Bago ang Lindol",
-      "description": "Ihanda ang inyong tahanan at pamilya para sa posibleng lindol"
-    },
-    "during": {
-      "title": "Habang may Lindol",
-      "description": "Alamin kung ano ang gagawin kapag nagsimulang umalog ang lupa"
-    },
-    "after": {
-      "title": "Pagkatapos ng Lindol",
-      "description": "Mga hakbang na dapat gawin kapag tumigil na ang pag-alog"
-    },
-    "kit": {
-      "title": "Emergency Kit",
-      "description": "Mahahalagang gamit na dapat mayroon ang bawat sambahayan"
-    }
-  },
-  "stats": {
-    "monitored": {
-      "value": "24/7",
-      "label": "Real-time na Pagsubaybay",
-      "description": "Tuloy-tuloy na pagsubaybay"
-    },
-    "daily": {
-      "value": "1000+",
-      "label": "Araw-araw na Lindol",
-      "description": "Pandaigdigang saklaw"
-    },
-    "coverage": {
-      "value": "Global",
-      "label": "Pandaigdigang Saklaw",
-      "description": "International network"
-    }
-  },
-  "cta": {
-    "title": "Mag-access ng Emergency Resources",
-    "subtitle": "Kumuha ng real-time na data sa lindol, mga safety protocols, at emergency contact information upang protektahan ang inyong sarili at komunidad."
   }
 }
-

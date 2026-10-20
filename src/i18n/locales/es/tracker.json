@@ -1,32 +1,58 @@
 {
-  "title": "Rastreador de Terremotos en Vivo",
-  "subtitle": "Monitoreo de actividad sísmica en tiempo real",
-  "loading": "Cargando datos de terremotos...",
-  "error": "Error al cargar datos de terremotos. Por favor, inténtelo de nuevo.",
-  "noData": "No hay datos de terremotos disponibles.",
-  "filters": {
-    "timeRange": "Rango de Tiempo",
+  "seo": {
+    "title": "Rastreador de sismos: sismos recientes cerca de Filipinas",
+    "description": "Vea los sismos recientes cerca de Filipinas y en todo el mundo, en un mapa y en una lista. Datos de USGS, GeoNet y BMKG. Yanig busca datos nuevos cada 10 minutos."
+  },
+  "hero": {
+    "kicker": "Sismos recientes",
+    "title": "Rastreador de sismos",
+    "intro": "Vea los sismos recientes cerca de Filipinas y en todo el mundo. Seleccione un sismo en la lista para verlo en el mapa."
+  },
+  "status": {
+    "interval": "Yanig busca datos nuevos cada 10 minutos.",
+    "lastUpdated": "Última actualización: {{time}}",
+    "checking": "Buscando datos nuevos",
+    "refresh": "Actualizar",
+    "sources": "Fuentes",
+    "staleError": "Yanig no pudo obtener datos nuevos. La lista muestra datos de {{time}}."
+  },
+  "controls": {
     "magnitude": "Magnitud",
-    "all": "Todos los Terremotos",
-    "hour": "Última Hora",
-    "day": "Último Día",
-    "week": "Última Semana",
-    "month": "Último Mes"
+    "magAll": "Todos",
+    "magMin": "M{{value}}+",
+    "magMinLabel": "Magnitud {{value}} o más",
+    "sort": "Ordenar",
+    "newest": "Más recientes",
+    "strongest": "Más fuertes",
+    "region": "Región",
+    "ph": "Cerca de Filipinas",
+    "all": "Todas las regiones",
+    "view": "Vista",
+    "map": "Mapa",
+    "list": "Lista",
+    "both": "Ambos"
   },
-  "views": {
-    "map": "Vista de Mapa",
-    "list": "Vista de Lista"
+  "list": {
+    "heading": "Sismos",
+    "count_one": "{{count}} sismo",
+    "count_other": "{{count}} sismos",
+    "magnitude": "Magnitud {{mag}}",
+    "depth": "Profundidad {{depth}} km",
+    "source": "Fuente: {{source}}"
   },
-  "card": {
-    "magnitude": "M",
-    "depth": "km de profundidad",
-    "tsunamiWarning": "Alerta de Tsunami",
-    "alert": "Alerta"
+  "empty": "Ningún sismo coincide. Elija una magnitud menor o Todas las regiones.",
+  "loading": "Cargando datos de sismos",
+  "error": {
+    "title": "Yanig no pudo cargar los datos de sismos",
+    "body": "Revise su conexión a internet. Luego intente de nuevo.",
+    "retry": "Intentar de nuevo"
   },
-  "stats": {
-    "total": "Eventos Totales",
-    "significant": "Significativos",
-    "recent": "Última Hora"
+  "map": {
+    "label": "Mapa de los sismos de la lista",
+    "legend": "Magnitud",
+    "time": "Hora",
+    "depth": "Profundidad",
+    "source": "Fuente",
+    "details": "Ver detalles en el sitio web de {{source}}"
   }
 }
-

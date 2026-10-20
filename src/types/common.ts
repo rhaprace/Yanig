@@ -63,3 +63,65 @@ export interface LegalSection {
   content: string | string[];
 }
 
+
+/** The agencies Yanig reads earthquake data from. */
+export type EarthquakeSource = 'usgs' | 'geonet' | 'bmkg';
+
+/** Earthquake properties in the USGS GeoJSON shape. GeoNet and BMKG data is converted to it. */
+export interface EarthquakeProperties {
+  mag: number;
+  place: string;
+  /** Origin time, in milliseconds since 1970 (UTC). */
+  time: number;
+  updated: number;
+  tz?: number | null;
+  url: string;
+  detail: string;
+  felt?: number | null;
+  cdi?: number | null;
+  mmi?: number | null;
+  alert?: string | null;
+  status: string;
+  tsunami: number;
+  sig: number;
+  net: string;
+  code: string;
+  ids: string;
+  sources: string;
+  types: string;
+  nst?: number | null;
+  dmin?: number | null;
+  rms: number;
+  gap?: number | null;
+  magType: string;
+  type: string;
+  title: string;
+  /** The agency this record came from. Set by Yanig, not by the APIs. */
+  source?: EarthquakeSource;
+}
+
+export interface EarthquakeGeometry {
+  type: 'Point';
+  /** [longitude, latitude, depth in km] */
+  coordinates: [number, number, number];
+}
+
+export interface EarthquakeFeature {
+  type: 'Feature';
+  properties: EarthquakeProperties;
+  geometry: EarthquakeGeometry;
+  id: string;
+}
+
+export interface EarthquakeResponse {
+  type: 'FeatureCollection';
+  metadata: {
+    generated: number;
+    url: string;
+    title: string;
+    status: number;
+    api: string;
+    count: number;
+  };
+  features: EarthquakeFeature[];
+}

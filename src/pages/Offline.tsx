@@ -1,83 +1,66 @@
-import { WifiOff, BookOpen, AlertTriangle, RefreshCw } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { SEO } from '@/components/SEO';
-import { InfoBox, IconListItem } from '@/components/common';
+import { PageHero } from '@/components/poster';
 import { refreshPage } from '@/utils/offline';
 import { getOfflineSEO } from '@/utils/seo';
 
-const Offline: React.FC = () => {
+const list = (value: unknown): string[] => (Array.isArray(value) ? value.filter((v) => typeof v === 'string') : []);
+
+const Offline = () => {
+  const { t } = useTranslation('about');
+  const works = list(t('offlinePage.works', { returnObjects: true }));
+  const needs = list(t('offlinePage.needs', { returnObjects: true }));
+
   return (
     <>
       <SEO {...getOfflineSEO()} />
-      <div className="container mx-auto px-4 py-16">
-      <div className="mx-auto max-w-2xl text-center">
-        <div className="mb-8 flex justify-center">
-          <div className="rounded-full bg-amber-100 p-6 dark:bg-amber-900/20">
-            <WifiOff className="h-16 w-16 text-amber-600 dark:text-amber-500" />
-          </div>
-        </div>
-        <h1 className="mb-4 text-4xl font-bold tracking-tight">
-          You're Offline
-        </h1>
-        <p className="mb-8 text-lg text-muted-foreground">
-          It looks like you've lost your internet connection. Don't worry - you can still access
-          some features of QuakeSafe while offline.
-        </p>
-
-        <InfoBox title="Available Offline" icon={BookOpen} className="mb-8 text-left">
-          <ul className="space-y-3">
-            <IconListItem icon={<span className="mt-1 text-green-500">✓</span>}>
-              Previously viewed earthquake data (cached)
-            </IconListItem>
-            <IconListItem icon={<span className="mt-1 text-green-500">✓</span>}>
-              Earthquake preparedness guides
-            </IconListItem>
-            <IconListItem icon={<span className="mt-1 text-green-500">✓</span>}>
-              Emergency resources and contacts
-            </IconListItem>
-            <IconListItem icon={<span className="mt-1 text-green-500">✓</span>}>
-              Safety information and tips
-            </IconListItem>
-          </ul>
-        </InfoBox>
-
-        <InfoBox title="Requires Internet" icon={AlertTriangle} variant="warning" className="mb-8 text-left">
-          <ul className="space-y-3 text-amber-800 dark:text-amber-400">
-            <IconListItem icon={<span className="mt-1">✗</span>}>
-              Real-time earthquake updates
-            </IconListItem>
-            <IconListItem icon={<span className="mt-1">✗</span>}>
-              Interactive maps with live data
-            </IconListItem>
-            <IconListItem icon={<span className="mt-1">✗</span>}>
-              Location-based earthquake alerts
-            </IconListItem>
-          </ul>
-        </InfoBox>
-
-        <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-          <Button onClick={refreshPage} size="lg" className="gap-2">
-            <RefreshCw className="h-4 w-4" />
-            Try Again
+      <PageHero kicker={t('offlinePage.kicker')} title={t('offlinePage.title')} intro={<p>{t('offlinePage.intro')}</p>}>
+        <div className="mt-6 flex flex-wrap gap-3">
+          <Button onClick={refreshPage} size="lg">
+            <RefreshCw aria-hidden="true" />
+            {t('offlinePage.tryAgain')}
           </Button>
           <Button asChild variant="outline" size="lg">
-            <Link to="/guides">View Safety Guides</Link>
+            <Link to="/guides">{t('offlinePage.guides')}</Link>
           </Button>
           <Button asChild variant="outline" size="lg">
-            <Link to="/resources">Emergency Resources</Link>
+            <Link to="/emergency-finder">{t('offlinePage.hotlines')}</Link>
           </Button>
         </div>
+      </PageHero>
 
-        <InfoBox variant="muted" className="mt-12 text-sm">
-          <p className="font-medium">💡 Tip:</p>
-          <p className="mt-1">
-            When you're back online, QuakeSafe will automatically update with the latest earthquake data.
-            Pages you visit while online are cached for offline access.
-          </p>
-        </InfoBox>
+      <div className="page-wrap grid gap-0 border-t-[3px] border-primary text-[17px] md:grid-cols-2">
+        <section className="py-6 md:pr-8" aria-labelledby="offline-works">
+          <h2 id="offline-works" className="mb-3 font-display text-3xl font-black uppercase leading-none text-primary">
+            {t('offlinePage.worksTitle')}
+          </h2>
+          <ul className="grid gap-2 pl-5 marker:text-riso [list-style:square]">
+            {works.map((item) => (
+              <li key={item} className="pl-1">
+                {item}
+              </li>
+            ))}
+          </ul>
+        </section>
+        <section
+          className="border-t border-dashed border-primary py-6 md:border-l md:border-t-0 md:pl-8"
+          aria-labelledby="offline-needs"
+        >
+          <h2 id="offline-needs" className="mb-3 font-display text-3xl font-black uppercase leading-none text-primary">
+            {t('offlinePage.needsTitle')}
+          </h2>
+          <ul className="grid gap-2 pl-5 marker:text-riso [list-style:square]">
+            {needs.map((item) => (
+              <li key={item} className="pl-1">
+                {item}
+              </li>
+            ))}
+          </ul>
+        </section>
       </div>
-    </div>
     </>
   );
 };

@@ -1,8 +1,6 @@
 /**
  * Type definitions for Emergency Finder feature
  */
-import { Icon } from 'leaflet';
-
 export type EmergencyContactType = 
   | 'EMERGENCY' 
   | 'HOSPITAL' 
@@ -32,15 +30,3 @@ export interface CityEmergencyData {
     address?: string;
   };
 }
-
-export interface MapConfig {
-  center: [number, number];
-  zoom: number;
-  icon: Icon;
-}
-
-export interface ContactIconMapping {
-  icon: React.ReactNode;
-  colorClass: string;
-}
-

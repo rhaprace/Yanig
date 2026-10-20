@@ -1,67 +1,86 @@
 {
   "hero": {
-    "badge": "Monitoreo Sísmico en Vivo",
-    "title": "Seguridad Sísmica y Monitoreo en Tiempo Real",
-    "subtitle": "Seguimiento de terremotos en tiempo real y recursos completos de preparación para mantener a usted y su comunidad seguros durante eventos sísmicos."
+    "kicker": "Public notice · Pabatid sa publiko",
+    "title": "Cuando la tierra tiembla, sepa qué hacer.",
+    "intro": "Yanig muestra los sismos recientes cerca de Filipinas y de todo el mundo. También da pasos de seguridad y números de emergencia.",
+    "ctaGuides": "Aprenda Agáchese, Cúbrase, Sujétese",
+    "ctaTracker": "Ver sismos recientes",
+    "stamp": "Gratis",
+    "stampSmall": "Sin cuenta"
   },
-  "features": {
-    "title": "Características Principales",
-    "subtitle": "Herramientas esenciales para la conciencia sísmica",
-    "realtime": {
-      "title": "Datos en Tiempo Real",
-      "description": "Seguimiento de terremotos en vivo desde fuentes autorizadas con actualizaciones automáticas cada 10 minutos."
+  "quakes": {
+    "kicker": "Últimos 5 · Todo el mundo",
+    "title": "Sismos recientes",
+    "loading": "Cargando sismos recientes",
+    "error": "Yanig no puede obtener datos de sismos ahora. Revise su conexión a internet.",
+    "retry": "Intentar de nuevo",
+    "magnitude": "Magnitud {{mag}}",
+    "depth": "{{km}} km de profundidad",
+    "depthUnknown": "Profundidad desconocida",
+    "source": "Fuente: {{name}}",
+    "updates": "Yanig busca datos nuevos cada 10 minutos.",
+    "link": "Ver todos los sismos en el monitor",
+    "kickerNear": "Últimos 5 · Cerca de Filipinas"
+  },
+  "during": {
+    "kicker": "Guía · Durante",
+    "title": "Durante el temblor",
+    "intro": "Haga estos tres pasos cuando la tierra tiembla.",
+    "stripLabel": "Agáchese, Cúbrase, Sujétese. Use las flechas del teclado para cambiar de paso.",
+    "stepOf": "Paso {{n}} de 3",
+    "steps": {
+      "drop": {
+        "name": "Agáchese",
+        "text": "Póngase de inmediato sobre sus manos y rodillas."
+      },
+      "cover": {
+        "name": "Cúbrase",
+        "text": "Cúbrase debajo de un escritorio o una mesa fuerte. Si no hay mesa, cubra su cabeza y cuello con los brazos."
+      },
+      "hold": {
+        "name": "Sujétese",
+        "text": "Sujétese a su refugio. Quédese en esta posición hasta que pare el temblor."
+      }
     },
-    "interactive": {
-      "title": "Mapa Interactivo",
-      "description": "Ubicaciones visuales de terremotos con información detallada de magnitud, profundidad e impacto."
+    "back": "Atrás",
+    "next": "Paso siguiente",
+    "door": "No se quede en el marco de una puerta.",
+    "guideLink": "Leer todas las guías de seguridad"
+  },
+  "hotlines": {
+    "kicker": "{{country}} · Toque un número para llamar",
+    "title": "Números de emergencia",
+    "call": "Llamar"
+  },
+  "finder": {
+    "kicker": "Filipinas",
+    "title": "Busque su ciudad",
+    "text": "Yanig muestra números de emergencia, hospitales y centros de evacuación de {{cities}} ciudades en {{regions}} regiones.",
+    "link": "Abrir el buscador de emergencias"
+  },
+  "offline": {
+    "title": "Instálela. Úsela sin internet.",
+    "install": "Agregue Yanig a su pantalla de inicio. Se abre como una app.",
+    "before": "Las páginas que abrió antes funcionan sin internet.",
+    "needsInternet": "Los datos nuevos de sismos necesitan internet."
+  },
+  "faq": {
+    "title": "Preguntas",
+    "source": {
+      "q": "¿De dónde vienen los datos?",
+      "a": "De USGS, GeoNet (Nueva Zelanda) y BMKG (Indonesia). Yanig busca datos nuevos cada 10 minutos."
     },
-    "preparedness": {
-      "title": "Guías de Preparación",
-      "description": "Protocolos de seguridad basados en evidencia y procedimientos de respuesta de emergencia para todos los escenarios."
+    "warn": {
+      "q": "¿Me avisa antes de un sismo?",
+      "a": "No. Nadie puede predecir los sismos. Yanig muestra los sismos después de que ocurren."
+    },
+    "offline": {
+      "q": "¿Funciona sin internet?",
+      "a": "En parte. Las páginas que abrió antes funcionan sin internet. Los datos nuevos de sismos necesitan internet."
+    },
+    "free": {
+      "q": "¿Es gratis?",
+      "a": "Sí. Yanig es gratis. No necesita una cuenta."
     }
-  },
-  "preparedness": {
-    "title": "Preparación para Terremotos",
-    "subtitle": "Protocolos de seguridad esenciales",
-    "before": {
-      "title": "Antes de un Terremoto",
-      "description": "Prepare su hogar y familia para posibles terremotos"
-    },
-    "during": {
-      "title": "Durante un Terremoto",
-      "description": "Sepa qué hacer cuando el suelo comience a temblar"
-    },
-    "after": {
-      "title": "Después de un Terremoto",
-      "description": "Pasos a seguir una vez que el temblor haya cesado"
-    },
-    "kit": {
-      "title": "Kit de Emergencia",
-      "description": "Suministros esenciales que cada hogar debe tener"
-    }
-  },
-  "stats": {
-    "title": "Actividad Sísmica Global",
-    "subtitle": "Comprendiendo patrones sísmicos",
-    "daily": {
-      "value": "50+",
-      "label": "Terremotos Diarios",
-      "description": "Magnitud 3.0+"
-    },
-    "monitored": {
-      "value": "24/7",
-      "label": "Monitoreo Continuo",
-      "description": "Seguimiento en tiempo real"
-    },
-    "coverage": {
-      "value": "Global",
-      "label": "Cobertura Mundial",
-      "description": "Todas las regiones sísmicas"
-    }
-  },
-  "cta": {
-    "title": "Acceda a Recursos de Emergencia",
-    "subtitle": "Obtenga datos de terremotos en tiempo real, protocolos de seguridad e información de contacto de emergencia para protegerse a usted y a su comunidad."
   }
 }
-

@@ -1,38 +1,58 @@
 {
-  "title": "Earthquake Tracker",
-  "subtitle": "Real-time seismic activity monitoring",
-  "multiSource": "Multi-source data: USGS, GeoNet (NZ), BMKG (Indonesia)",
-  "recentCount": "recent earthquakes",
-  "recentEarthquakes": "Recent Earthquakes",
-  "selectedEarthquake": "Selected Earthquake",
-  "loading": "Loading earthquake data...",
-  "error": "Failed to load earthquake data. Please check your internet connection and try again.",
-  "noData": "No earthquake data available.",
-  "noEarthquakesFound": "No earthquakes found for the current criteria.",
-  "filters": {
-    "timeRange": "Time Range",
-    "magnitude": "Magnitude",
-    "all": "All Earthquakes",
-    "hour": "Past Hour",
-    "day": "Past Day",
-    "week": "Past Week",
-    "month": "Past Month"
+  "seo": {
+    "title": "Earthquake tracker: recent earthquakes near the Philippines",
+    "description": "See recent earthquakes near the Philippines and around the world on a map and in a list. Data from USGS, GeoNet and BMKG. Yanig checks for new data every 10 minutes."
   },
-  "views": {
+  "hero": {
+    "kicker": "Recent earthquakes",
+    "title": "Earthquake tracker",
+    "intro": "See recent earthquakes near the Philippines and around the world. Select an earthquake in the list to show it on the map."
+  },
+  "status": {
+    "interval": "Yanig checks for new data every 10 minutes.",
+    "lastUpdated": "Last updated: {{time}}",
+    "checking": "Checking for new data",
+    "refresh": "Refresh",
+    "sources": "Sources",
+    "staleError": "Yanig could not get new data. The list shows data from {{time}}."
+  },
+  "controls": {
+    "magnitude": "Magnitude",
+    "magAll": "All",
+    "magMin": "M{{value}}+",
+    "magMinLabel": "Magnitude {{value}} and above",
+    "sort": "Sort",
+    "newest": "Newest",
+    "strongest": "Strongest",
+    "region": "Region",
+    "ph": "Near the Philippines",
+    "all": "All regions",
+    "view": "View",
     "map": "Map",
     "list": "List",
     "both": "Both"
   },
-  "card": {
-    "magnitude": "M",
-    "depth": "km depth",
-    "tsunamiWarning": "Tsunami Warning",
-    "alert": "Alert"
+  "list": {
+    "heading": "Earthquakes",
+    "count_one": "{{count}} earthquake",
+    "count_other": "{{count}} earthquakes",
+    "magnitude": "Magnitude {{mag}}",
+    "depth": "Depth {{depth}} km",
+    "source": "Source: {{source}}"
   },
-  "stats": {
-    "total": "Total Events",
-    "significant": "Significant",
-    "recent": "Last Hour"
+  "empty": "No earthquakes match. Choose a lower magnitude or All regions.",
+  "loading": "Loading earthquake data",
+  "error": {
+    "title": "Yanig could not load earthquake data",
+    "body": "Check your internet connection. Then try again.",
+    "retry": "Try again"
+  },
+  "map": {
+    "label": "Map of the earthquakes in the list",
+    "legend": "Magnitude",
+    "time": "Time",
+    "depth": "Depth",
+    "source": "Source",
+    "details": "See details on the {{source}} website"
   }
 }
-

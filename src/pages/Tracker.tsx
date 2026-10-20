@@ -1,179 +1,237 @@
-import { useState } from 'react';
-import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Skeleton } from '@/components/ui/skeleton';
-import { SEO } from '@/components/SEO';
-import EarthquakeMap from '@/components/EarthquakeMap';
-import EarthquakeCard from '@/components/EarthquakeCard';
-import { type EarthquakeFeature } from '@/hooks/useEarthquakeData';
-import { useMultiSourceEarthquakeData } from '@/hooks/useMultiSourceEarthquakeData';
-import { RefreshCw, MapPin, List, Globe } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { SEO } from '@/components/SEO';
+import { PageHero } from '@/components/poster';
+import { Button } from '@/components/ui/button';
+import EarthquakeMap from '@/components/EarthquakeMap';
+import { Segmented } from '@/components/tracker/Segmented';
+import { StatusBar } from '@/components/tracker/StatusBar';
+import { QuakeList } from '@/components/tracker/QuakeList';
+import { MapLegend } from '@/components/tracker/MapLegend';
+import { useMultiSourceEarthquakeData } from '@/hooks/useMultiSourceEarthquakeData';
+import type { EarthquakeFeature } from '@/types/common';
 import { getTrackerSEO } from '@/utils/seo';
+import {
+  DEFAULT_MAGNITUDE,
+  DEFAULT_REGION,
+  DEFAULT_SORT,
+  DEFAULT_TRACKER_VIEW,
+  MAGNITUDE_FILTERS,
+  REGION_FILTERS,
+  SORT_ORDERS,
+  TRACKER_VIEWS,
+  selectEarthquakes,
+  type MagnitudeFilter,
+  type RegionFilter,
+  type SortOrder,
+  type TrackerView,
+} from '@/utils/tracker';
+
+/** Re-render once a minute so "5 minutes ago" stays correct. */
+const useNow = () => {
+  const [now, setNow] = useState(() => Date.now());
+  useEffect(() => {
+    const id = window.setInterval(() => setNow(Date.now()), 60 * 1000);
+    return () => window.clearInterval(id);
+  }, []);
+  return now;
+};
+
+const prefersReducedMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+
+const LoadingPlaceholder = ({ label }: { label: string }) => (
+  <div role="status" className="grid gap-6 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
+    <span className="sr-only">{label}</span>
+    <div aria-hidden="true" className="h-[360px] border-4 border-primary/30 bg-muted/60 lg:h-[600px]" />
+    <div aria-hidden="true" className="border-t-4 border-primary/30">
+      {Array.from({ length: 6 }, (_, i) => (
+        <div key={i} className="flex items-center gap-4 border-b-2 border-dashed border-primary/20 px-3 py-4">
+          <div className="h-9 w-14 bg-muted" />
+          <div className="flex-1 space-y-2">
+            <div className="h-4 w-3/4 bg-muted" />
+            <div className="h-4 w-1/2 bg-muted/70" />
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+);
 
 const Tracker = () => {
   const { t } = useTranslation('tracker');
-  const { data, isLoading, error, refetch, isRefetching } = useMultiSourceEarthquakeData();
-  const [selectedEarthquake, setSelectedEarthquake] = useState<EarthquakeFeature | null>(null);
-  const [view, setView] = useState<'map' | 'list' | 'both'>('both');
+  const { data, error, refetch, isFetching, isPending, dataUpdatedAt } = useMultiSourceEarthquakeData();
+  const now = useNow();
 
-  const handleViewOnMap = (earthquake: EarthquakeFeature) => {
-    setSelectedEarthquake(earthquake);
-    setView('map');
-  };
+  const [minMagnitude, setMinMagnitude] = useState<MagnitudeFilter>(DEFAULT_MAGNITUDE);
+  const [sort, setSort] = useState<SortOrder>(DEFAULT_SORT);
+  const [region, setRegion] = useState<RegionFilter>(DEFAULT_REGION);
+  const [view, setView] = useState<TrackerView>(DEFAULT_TRACKER_VIEW);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const mapBoxRef = useRef<HTMLDivElement>(null);
 
-  const handleRefresh = () => {
-    refetch();
-  };
+  const quakes = useMemo(
+    () => selectEarthquakes(data?.features ?? [], { minMagnitude, region, sort }),
+    [data, minMagnitude, region, sort],
+  );
 
-  if (error) {
-    return (
-      <>
-        <SEO {...getTrackerSEO()} />
-        <div className="container mx-auto px-4 py-8">
-          <Alert variant="destructive">
-            <AlertDescription>
-              {t('error')}
-              <Button
-                onClick={handleRefresh}
-                variant="outline"
-                size="sm"
-                className="ml-2"
-              >
-                {t('common:buttons.retry')}
-              </Button>
-            </AlertDescription>
-          </Alert>
-        </div>
-      </>
-    );
-  }
+  // A selection hidden by a filter is no longer selected.
+  const activeSelectedId = selectedId && quakes.some((q) => q.id === selectedId) ? selectedId : null;
+
+  const handleListSelect = useCallback(
+    (quake: EarthquakeFeature) => {
+      setSelectedId(quake.id);
+      if (view === 'list') setView('both');
+      // On small screens the map is above the list. Bring it into view.
+      requestAnimationFrame(() => {
+        const box = mapBoxRef.current;
+        if (!box) return;
+        const rect = box.getBoundingClientRect();
+        if (rect.top < 0 || rect.top > window.innerHeight - 120) {
+          box.scrollIntoView({
+            behavior: prefersReducedMotion() ? 'auto' : 'smooth',
+            block: 'start',
+          });
+        }
+      });
+    },
+    [view],
+  );
+
+  const handleMapSelect = useCallback((quake: EarthquakeFeature) => setSelectedId(quake.id), []);
+  const handleRefresh = () => void refetch();
+
+  const seo = getTrackerSEO();
+  const showMap = view === 'map' || view === 'both';
+  const showList = view === 'list' || view === 'both';
+  const fitKey = `${region}|${minMagnitude}`;
 
   return (
     <>
-      <SEO {...getTrackerSEO()} />
-      <div className="container mx-auto px-4 py-8">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">{t('title')}</h1>
-          <p className="text-muted-foreground mt-2 flex items-center gap-2">
-            <Globe className="h-4 w-4" />
-            {t('multiSource')}
-            {data && (
-              <span className="ml-2">
-                • {data.features.length} {t('recentCount')}
-              </span>
+      <SEO
+        {...seo}
+        title={t('seo.title')}
+        description={t('seo.description')}
+        keywords={['earthquake tracker', 'Philippines earthquakes', 'lindol', 'USGS', 'GeoNet', 'BMKG']}
+      />
+      <PageHero kicker={t('hero.kicker')} title={t('hero.title')} intro={<p>{t('hero.intro')}</p>} />
+
+      <div className="page-wrap pb-16">
+        <StatusBar
+          updatedAt={data ? dataUpdatedAt : 0}
+          isFetching={isFetching}
+          staleError={Boolean(error && data)}
+          onRefresh={handleRefresh}
+        />
+
+        <div className="mt-6 flex flex-wrap items-end gap-x-6 gap-y-4">
+          <Segmented
+            label={t('controls.region')}
+            value={region}
+            onChange={setRegion}
+            options={REGION_FILTERS.map((value) => ({
+              value,
+              label: t(`controls.${value}`),
+            }))}
+          />
+          <Segmented
+            label={t('controls.magnitude')}
+            value={minMagnitude}
+            onChange={setMinMagnitude}
+            options={MAGNITUDE_FILTERS.map((value) =>
+              value === 0
+                ? { value, label: t('controls.magAll') }
+                : {
+                    value,
+                    label: t('controls.magMin', { value }),
+                    ariaLabel: t('controls.magMinLabel', { value }),
+                  },
             )}
-          </p>
+          />
+          <Segmented
+            label={t('controls.sort')}
+            value={sort}
+            onChange={setSort}
+            options={SORT_ORDERS.map((value) => ({
+              value,
+              label: t(`controls.${value}`),
+            }))}
+          />
+          <Segmented
+            label={t('controls.view')}
+            value={view}
+            onChange={setView}
+            options={TRACKER_VIEWS.map((value) => ({
+              value,
+              label: t(`controls.${value}`),
+            }))}
+          />
         </div>
-        
-        <div className="flex items-center gap-2">
-          <div className="hidden md:flex border rounded-lg p-1">
-            <Button
-              variant={view === 'map' ? 'default' : 'ghost'}
-              size="sm"
-              onClick={() => setView('map')}
-            >
-              <MapPin className="h-4 w-4" />
-            </Button>
-            <Button
-              variant={view === 'both' ? 'default' : 'ghost'}
-              size="sm"
-              onClick={() => setView('both')}
-            >
-              {t('views.both')}
-            </Button>
-            <Button
-              variant={view === 'list' ? 'default' : 'ghost'}
-              size="sm"
-              onClick={() => setView('list')}
-            >
-              <List className="h-4 w-4" />
-            </Button>
-          </div>
-          <Button
-            onClick={handleRefresh}
-            variant="outline"
-            size="sm"
-            disabled={isRefetching}
-          >
-            <RefreshCw className={`h-4 w-4 ${isRefetching ? 'animate-spin' : ''}`} />
-            <span className="ml-2 hidden sm:inline">{t('common:buttons.refresh')}</span>
-          </Button>
-        </div>
-      </div>
-      {isLoading && (
-        <div className="space-y-6">
-          <Skeleton className="h-96 w-full rounded-lg" />
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {[...Array(6)].map((_, i) => (
-              <Skeleton key={i} className="h-48 w-full rounded-lg" />
-            ))}
-          </div>
-        </div>
-      )}
-      {data && (
-        <div className="space-y-6">
-          {(view === 'map' || view === 'both') && (
-            <div>
-              <EarthquakeMap
-                earthquakes={data.features}
-                selectedEarthquake={selectedEarthquake}
-                height="500px"
-              />
-              {selectedEarthquake && (
-                <div className="mt-4 p-4 bg-muted rounded-lg">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="font-semibold">{t('selectedEarthquake')}</h3>
-                      <p className="text-sm text-muted-foreground">
-                        {selectedEarthquake.properties.place}
+
+        <div className="mt-8">
+          {isPending ? (
+            <LoadingPlaceholder label={t('loading')} />
+          ) : !data ? (
+            <div role="alert" className="border-l-8 border-riso bg-card px-5 py-6">
+              <p className="font-display text-3xl font-black uppercase leading-tight text-primary">
+                {t('error.title')}
+              </p>
+              <p className="mt-2 text-lg">{t('error.body')}</p>
+              <Button className="mt-4 text-base" onClick={handleRefresh} disabled={isFetching}>
+                {t('error.retry')}
+              </Button>
+            </div>
+          ) : (
+            <>
+              {view === 'map' && quakes.length === 0 && (
+                <p className="mb-4 border-y-4 border-primary px-2 py-6 text-lg font-semibold">{t('empty')}</p>
+              )}
+              <div className={view === 'both' ? 'grid gap-6 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]' : ''}>
+                {showMap && (
+                  <div ref={mapBoxRef} className="min-w-0 scroll-mt-24">
+                    <EarthquakeMap
+                      earthquakes={quakes}
+                      selectedId={activeSelectedId}
+                      onSelect={handleMapSelect}
+                      region={region}
+                      fitKey={fitKey}
+                      className={
+                        view === 'map' ? 'h-[420px] sm:h-[560px] lg:h-[640px]' : 'h-[360px] sm:h-[460px] lg:h-[600px]'
+                      }
+                    />
+                    <MapLegend />
+                  </div>
+                )}
+                {showList && (
+                  <section aria-labelledby="quake-list-heading" className="min-w-0">
+                    <div className="mb-2 flex items-baseline justify-between gap-3">
+                      <h2
+                        id="quake-list-heading"
+                        className="font-display text-3xl font-black uppercase leading-none text-primary"
+                      >
+                        {t('list.heading')}
+                      </h2>
+                      <p className="text-base text-muted-foreground" aria-live="polite">
+                        {t('list.count', { count: quakes.length })}
                       </p>
                     </div>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => setSelectedEarthquake(null)}
-                    >
-                      {t('common:buttons.clear')}
-                    </Button>
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
-          {(view === 'list' || view === 'both') && (
-            <div>
-              <h2 className="text-xl font-semibold mb-4">{t('recentEarthquakes')}</h2>
-              {data.features.length === 0 ? (
-                <Alert>
-                  <AlertDescription>
-                    {t('noEarthquakesFound')}
-                  </AlertDescription>
-                </Alert>
-              ) : (
-                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
-                  {data.features
-                    .sort((a, b) => b.properties.time - a.properties.time)
-                    .map((earthquake) => (
-                      <EarthquakeCard
-                        key={earthquake.id}
-                        earthquake={earthquake}
-                        onViewMap={handleViewOnMap}
+                    {quakes.length === 0 ? (
+                      <p className="border-y-4 border-primary px-2 py-6 text-lg font-semibold">{t('empty')}</p>
+                    ) : (
+                      <QuakeList
+                        quakes={quakes}
+                        selectedId={activeSelectedId}
+                        onSelect={handleListSelect}
+                        now={now}
+                        className={view === 'both' ? 'lg:max-h-[600px] lg:overflow-y-auto' : ''}
                       />
-                    ))}
-                </div>
-              )}
-            </div>
-          )}
-          {data.metadata && (
-            <div className="text-center text-sm text-muted-foreground">
-              Last updated: {new Date(data.metadata.generated).toLocaleString()}
-            </div>
+                    )}
+                  </section>
+                )}
+              </div>
+            </>
           )}
         </div>
-      )}
-    </div>
+      </div>
     </>
   );
 };

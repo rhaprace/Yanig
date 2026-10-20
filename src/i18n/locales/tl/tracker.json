@@ -1,48 +1,58 @@
 {
-  "title": "Live na Earthquake Tracker",
-  "subtitle": "Real-time na seismic activity monitoring mula sa mga opisyal na sanggunian",
-  "multiSource": "Multi-source data: USGS, GeoNet (NZ), BMKG (Indonesia)",
-  "recentCount": "kamakailang lindol",
-  "recentEarthquakes": "Kamakailang Lindol",
-  "selectedEarthquake": "Napiling Lindol",
-  "loading": "Naglo-load ng earthquake data...",
-  "error": "Hindi ma-load ang earthquake data. Mangyaring subukan muli.",
-  "noData": "Walang available na earthquake data sa kasalukuyan.",
-  "noEarthquakesFound": "Walang nahanap na lindol para sa kasalukuyang criteria.",
-  "filters": {
-    "timeRange": "Time Range",
-    "all": "Lahat",
-    "hour": "Nakaraang Oras",
-    "day": "Nakaraang Araw",
-    "week": "Nakaraang Linggo",
-    "month": "Nakaraang Buwan",
-    "magnitude": "Magnitude",
-    "minMagnitude": "Minimum Magnitude"
+  "seo": {
+    "title": "Tracker ng lindol: mga bagong lindol malapit sa Pilipinas",
+    "description": "Tingnan ang mga bagong lindol malapit sa Pilipinas at sa buong mundo, sa mapa at sa listahan. Datos mula sa USGS, GeoNet at BMKG. Sinusuri ng Yanig ang bagong datos tuwing 10 minuto."
   },
-  "views": {
+  "hero": {
+    "kicker": "Mga bagong lindol",
+    "title": "Tracker ng lindol",
+    "intro": "Tingnan ang mga bagong lindol malapit sa Pilipinas at sa buong mundo. Pumili ng lindol sa listahan para makita ito sa mapa."
+  },
+  "status": {
+    "interval": "Sinusuri ng Yanig ang bagong datos tuwing 10 minuto.",
+    "lastUpdated": "Huling update: {{time}}",
+    "checking": "Naghahanap ng bagong datos",
+    "refresh": "I-refresh",
+    "sources": "Pinagmulan",
+    "staleError": "Hindi nakakuha ng bagong datos ang Yanig. Datos mula {{time}} ang nasa listahan."
+  },
+  "controls": {
+    "magnitude": "Magnitude",
+    "magAll": "Lahat",
+    "magMin": "M{{value}}+",
+    "magMinLabel": "Magnitude {{value}} pataas",
+    "sort": "Ayusin",
+    "newest": "Pinakabago",
+    "strongest": "Pinakamalakas",
+    "region": "Lugar",
+    "ph": "Malapit sa Pilipinas",
+    "all": "Lahat ng lugar",
+    "view": "Tingnan",
     "map": "Mapa",
     "list": "Listahan",
     "both": "Pareho"
   },
-  "card": {
-    "magnitude": "Magnitude",
-    "depth": "Lalim",
-    "location": "Lokasyon",
-    "time": "Oras",
-    "tsunamiWarning": "Babala sa Tsunami",
-    "felt": "Naramdaman",
-    "updated": "Na-update"
+  "list": {
+    "heading": "Mga lindol",
+    "count_one": "{{count}} lindol",
+    "count_other": "{{count}} lindol",
+    "magnitude": "Magnitude {{mag}}",
+    "depth": "Lalim {{depth}} km",
+    "source": "Pinagmulan: {{source}}"
   },
-  "stats": {
-    "total": "Kabuuang Lindol",
-    "significant": "Makabuluhang Events",
-    "lastHour": "Nakaraang Oras",
-    "lastDay": "Nakaraang Araw"
+  "empty": "Walang lindol na tugma. Pumili ng mas mababang magnitude o Lahat ng lugar.",
+  "loading": "Nilo-load ang datos ng lindol",
+  "error": {
+    "title": "Hindi ma-load ng Yanig ang datos ng lindol",
+    "body": "Tingnan ang koneksyon mo sa internet. Pagkatapos, subukan ulit.",
+    "retry": "Subukan ulit"
   },
   "map": {
-    "zoom": "Zoom",
-    "center": "I-center",
-    "layers": "Mga Layer"
+    "label": "Mapa ng mga lindol sa listahan",
+    "legend": "Magnitude",
+    "time": "Oras",
+    "depth": "Lalim",
+    "source": "Pinagmulan",
+    "details": "Tingnan ang detalye sa website ng {{source}}"
   }
 }
-
